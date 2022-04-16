@@ -1,0 +1,87 @@
+<template>
+  <brand-promo></brand-promo>
+  <div class="products center">
+    <div class="noProducts center" v-if="countProd2 === 0">{{ error }}</div>
+    <product-items
+      v-for="item of filtered"
+      :key="item.id"
+      :product="item"
+    ></product-items>
+  </div>
+  <form class="click">
+    <button class="button__browse">
+      <span class="browse__product">Browse All Product</span
+      ><img src="@/assets/img/arrow__right.png" alt="go-ahead" />
+    </button>
+  </form>
+  <offer-discount></offer-discount>
+</template>
+
+<script>
+import BrandPromo from "@/components/HomePage/BrandPromo.vue";
+import ProductItems from "@/components/HomePage/ProductItems.vue";
+import OfferDiscount from "@/components/HomePage/OfferDiscount.vue";
+
+export default {
+  name: "MainPage",
+  components: {
+    BrandPromo,
+    ProductItems,
+    OfferDiscount,
+  },
+  data() {
+    return {
+      filtered: [
+        {
+          img: "teenager.png",
+          id: 1,
+          name: "T-shirt",
+          price: 25,
+        },
+        {
+          img: "girlinred.png",
+          id: 2,
+          name: "Blouse",
+          price: 30,
+        },
+        {
+          img: "barberman.png",
+          id: 3,
+          name: "Jacket",
+          price: 45,
+        },
+        {
+          img: "girlwhite.png",
+          id: 4,
+          name: "Blouse",
+          price: 35.0,
+        },
+        {
+          img: "blondgirl.png",
+          id: 5,
+          name: "Blouse",
+          price: 25,
+        },
+        {
+          img: "guyjacket.png",
+          id: 6,
+          name: "Blazer",
+          price: 40,
+        },
+        {
+          img: "pans.png",
+          id: 7,
+          name: "Pants",
+          price: 50,
+        },
+        {
+          img: "guyshorts.png",
+          id: 8,
+          name: "Shorts",
+          price: 35,
+        },
+      ],
+    };
+  },
+};
+</script>

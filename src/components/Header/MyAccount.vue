@@ -1,0 +1,66 @@
+<template>
+  <div class="relativeAccount">
+    <div class="account">
+      <a
+        class="button__account"
+        href="#"
+        @click="clickOnAccount"
+        v-if="currentRow === 'down'"
+      >
+        My Account <i class="fas fa-caret-down" />
+      </a>
+      <a class="button__account" href="#" @click="clickOnAccount" v-else>
+        My Account <i class="fas fa-caret-up" />
+      </a>
+    </div>
+    <div class="absolutLogin">
+      <login-input
+        v-if="currentRow === 'up'"
+        type="text"
+        placeholder="name"
+        class="loginInput"
+        label="Type your name:"
+        v-model.capitalize="name"
+      ></login-input>
+    </div>
+  </div>
+</template>
+
+<script>
+import LoginInput from "@/components/Header/LoginInput.vue";
+
+export default {
+  name: "MyAccount",
+  components: {
+    LoginInput,
+  },
+  data() {
+    return {
+      currentRow: "down",
+      name: "",
+    };
+  },
+  methods: {
+    clickOnAccount() {
+      this.currentRow === "down"
+        ? (this.currentRow = "up")
+        : (this.currentRow = "down");
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.loginInput {
+  padding: 0 10px;
+  margin: 10px;
+  border: 1px solid #f16d7f;
+}
+.relativeAccount {
+  position: relative;
+}
+.absolutLogin {
+  position: absolute;
+  left: -8px;
+}
+</style>
