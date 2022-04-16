@@ -29,7 +29,7 @@
 import EventService from "@/services/EventService.js";
 
 export default {
-  //mixins changeRating
+  //mixins changeRating()
   data() {
     return {
       product: null,
