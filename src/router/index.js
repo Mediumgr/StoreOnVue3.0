@@ -4,7 +4,16 @@ const routes = [
   {
     path: "/",
     name: "MainPage",
-    component: () => import("@/components/HomePage/MainPage"),
+    component: () =>
+      import(
+        /* webpackChunkName: "MainPage"*/ "@/components/HomePage/MainPage"
+      ),
+  },
+  {
+    path: "/product/3",
+    name: "ProductDetails",
+    component: () =>
+      import(/* webpackChunkName: "ProductDetails"*/ "@/views/ProductDetails"),
   },
 ];
 

@@ -6,6 +6,9 @@
         :src="require(`/src/assets/img/${product.img}`)"
         alt="photo"
     /></a>
+    <router-link to="/product/3">
+      <span class="description">Description</span>
+    </router-link>
     <div class="bottom">
       <a href="#" class="text__mango">{{ product.name }}</a>
       <p class="price">
@@ -40,6 +43,7 @@ export default {
   },
   methods: {
     changeRating(n) {
+      console.log("emit", n);
       for (let i = 0; i < n; i++) {
         this.$refs.star[i].classList.value = "fas fa-star fa-sm star";
       }
@@ -52,15 +56,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.fa,
-.fas {
-  font-weight: 100;
-  cursor: pointer;
-}
-.star {
-  color: #f16d7f;
-  font-weight: 800;
-}
-</style>
