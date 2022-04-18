@@ -16,7 +16,7 @@
       "id": 3,
       "name": "Jacket",
       "price": 45,
-      "variants": "['barberman.png', 'kurtka.jpg', 'kurtka1.jpg']"
+      "variants": "[barberman.png, kurtka.jpg, kurtka1.jpg]"
     },
     {
       "img": "girlwhite.png",
