@@ -599,18 +599,18 @@ a {
 
 .tabBtns {
   padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-radius: 3px;
   border: 1px solid #ccc;
   cursor: pointer;
-  background: #f0f0f0;
+  background: white;
   margin-bottom: -1px;
   margin-right: -1px;
     &:hover {
         background: #e0e0e0;
     }
     &.active {
-        background: #e0e0e0;
+        background: #f16d7f;
+        color: white;
     }
 }
 

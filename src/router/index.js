@@ -13,7 +13,9 @@ const routes = [
     path: "/product/3",
     name: "ProductDetails",
     component: () =>
-      import(/* webpackChunkName: "ProductDetails"*/ "@/views/ProductDetails"),
+      import(
+        /* webpackChunkName: "ProductDetails"*/ "@/views/Product/ProductDetails"
+      ),
   },
 ];
 

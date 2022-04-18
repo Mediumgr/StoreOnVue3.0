@@ -1,11 +1,21 @@
 <template>
   <div class="product-detail">
     <div class="flex">
+      <div class="goodContainer">
+        <img
+          v-for="variant in variants"
+          :key="variant"
+          :src="require(`@/assets/img/${variant}`)"
+          alt="photo"
+          class="blueJacket"
+          @mouseover="changeImage(variant)"
+        />
+      </div>
       <div>
         <div class="flex-box">
           <img
             class="product-img"
-            :src="require(`/src/assets/img/${product.img}`)"
+            :src="require(`@/assets/img/${image}`)"
             alt="photo"
           />
         </div>
@@ -34,17 +44,16 @@
         >
           {{ tab }}
         </button>
-        <component :is="currentComponent"></component>
+        <component :product="product" :is="currentComponent"></component>
       </div>
     </div>
-    <img src="photo" alt="photo" />
   </div>
 </template>
 
 <script>
 import EventService from "@/services/EventService.js";
-import ProductDescription from "@/views/ProductDescription.vue";
-import ProductDelivery from "@/views/ProductDelivery.vue";
+import ProductDescription from "@/views/Product/ProductDescription.vue";
+import ProductDelivery from "@/views/Product/ProductDelivery.vue";
 
 export default {
   //mixins changeRating()
@@ -56,10 +65,17 @@ export default {
   data() {
     return {
       product: null,
+      image: "",
       id: 3,
+      variants: [],
       currentTab: "Description",
       tabs: ["Description", "Delivery"],
     };
+  },
+  methods: {
+    changeImage(variant) {
+      this.image = variant;
+    },
   },
   computed: {
     currentComponent() {
@@ -70,6 +86,8 @@ export default {
     EventService.getProduct(this.id)
       .then((response) => {
         this.product = response.data;
+        this.variants = response.data.variants;
+        this.image = response.data.variants[0];
       })
       .catch((error) => {
         console.log("axios.getError", error);
@@ -79,6 +97,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.goodContainer {
+  display: flex;
+  flex-direction: column;
+  padding-right: 15px;
+}
+
+.blueJacket {
+  width: 65px;
+  height: 70px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.blueJacket:hover {
+  outline: 2px solid #f16d7f;
+}
 .info {
   float: left;
 }
