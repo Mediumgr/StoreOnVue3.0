@@ -37,6 +37,7 @@
         <component :is="currentComponent"></component>
       </div>
     </div>
+    <img src="photo" alt="photo" />
   </div>
 </template>
 
