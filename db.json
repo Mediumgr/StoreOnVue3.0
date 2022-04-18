@@ -3,13 +3,45 @@
       "img": "teenager.png",
       "id": 1,
       "name": "T-shirt",
-      "price": 25
+      "price": 25,
+      "variants": ["teenager.png", "teenager1.jpg", "teenager2.jpg"],
+      "description": ["Printed cotton T-shirt", "Model: 5B641011M/47885N/1000N", "Compound: 100% cotton,", "Line: Basic", "Color: white", "Practical T-shirt with short sleeves and round neckline. This model is indispensable in the men's wardrobe - with it you can create many looks in a variety of styles. With jeans, hoodies or sweatshirts and sneakers, you will have a relaxed urban look for every day. With jersey trousers or shorts, you will make a sports kit for training in the gym. The T-shirt is also perfect for the time you spend at home, and the 100% cotton fabric will make you feel comfortable in any environment!"],
+      "posts": [{
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }, {
+        "id": 2,
+        "title": "Sizes",
+        "content": "<p>Available sizes: XS, M, L</p>"
+      }],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     },
     {
       "img": "girlinred.png",
       "id": 2,
       "name": "Blouse",
-      "price": 30
+      "price": 30,
+      "variants": ["girlinred.png", "girlinred1.jpg", "girlinred2.jpg"],
+      "description": ["BLOUSE", "Model: GBL001928", "Compound: 64% polyester, 36% viscose", "Line: Basic", "Color: red", "An elegant blouse with a cascading frill will help create a feminine, romantic look. Straight fit, sleeveless, comfortable fit without restricting movement. The model is made of light, airy fabric with a silky viscose content.Delicate material is pleasant to the touch and allows the skin to breathe. The blouse has a V - shaped neckline with a stand - up collar tied with narrow ribbons.Pair with a pencil skirt and high heels for an elegant look."],
+      "posts": [{
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }, {
+        "id": 2,
+        "title": "Sizes",
+        "content": "<p>Available sizes: S, M</p>"
+      }],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     },
     {
       "img": "barberman.png",
@@ -37,31 +69,111 @@
       "img": "girlwhite.png",
       "id": 4,
       "name": "Blouse",
-      "price": 35.0
+      "price": 35.0,
+      "variants": ["girlwhite.png", "girlwhite1.jpg", "girlwhite2.jpg"],
+      "description": ["BLOUSE", "Model: GBL001928", "Compound: Cotton", "Line: New", "Color: powdery, light pink, pink", "An elegant blouse with a cascading frill will help create a feminine, romantic look. Straight fit, sleeveless, comfortable fit without restricting movement. The model is made of light, airy fabric with a silky viscose content.Delicate material is pleasant to the touch and allows the skin to breathe. The blouse has a V - shaped neckline with a stand - up collar tied with narrow ribbons.Pair with a pencil skirt and high heels for an elegant look."],
+      "posts": [{
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }, {
+        "id": 2,
+        "title": "Sizes",
+        "content": "<p>Available sizes: XS, S</p>"
+      }],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     },
     {
       "img": "blondgirl.png",
       "id": 5,
       "name": "Blouse",
-      "price": 25
+      "price": 25,
+      "variants": ["blondgirl.png", "blondgirl1.png", "blondgirl2.jpg"],
+      "description": ["BLOUSE", "Model: 14911009-1B/26346/7912S", "Compound: Viscose 100%", "Line: Ultra", "Color: blue", "Lightweight fabric is unpretentious in care and will retain its original appearance for a long time. With this elegant blouse, you can create many spectacular everyday sets. Wear it to work, school, meeting friends or going to the movies. For business looks, a blouse can be combined with dress pants and pumps. And for more casual sets - with jeans, a knitted cardigan and comfortable low-heeled boots. This blouse will easily fit into any style."],
+      "posts": [{
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }, {
+        "id": 2,
+        "title": "Sizes",
+        "content": "<p>Available sizes: S, M, L, XXl</p>"
+      }],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     },
     {
       "img": "guyjacket.png",
       "id": 6,
       "name": "Blazer",
-      "price": 40
+      "price": 40,
+      "variants": ["guyjacket.png", "jacket1.jpg", "jacket2.jpg"],
+      "description": ["Blazer", "Model: 2L420261M/49145N/7010O", "Compound: PE 90%, Vis 8%, PU 2%", "Line: Lab", "Color: light blue", "Regular-fit dress with a stand-up collar, flap side pockets and a small chest pocket. On the back of the slot. Lined model, upper made of dense fabric that is pleasant and smooth to the touch. A fitted jacket looks good on figures of different types. This model pairs perfectly with classic trousers with pleats and turn-down collar shirts. Properly selected accessories and jewelry will help you to place accents in the created image. A versatile jacket for spectacular looks!"],
+      "posts": [{
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }, {
+        "id": 2,
+        "title": "Sizes",
+        "content": "<p>Available sizes: X, S, M, L</p>"
+      }],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     },
     {
       "img": "pans.png",
       "id": 7,
       "name": "Pants",
-      "price": 50
+      "price": 50,
+       "variants": ["pans.png", "pans1.jpg", "pans2.jpg"],
+       "description": ["Pants", "Model:2B120015M/39622N/6600N", "Compound: Cotton 98%, PU 2%", "Line: Base", "Color: beige", "Lightweight summer trousers with side pockets and cuffs. The design of the model is completed with a drawstring with ties, which will help you find a comfortable fit. Made from a blend of linen and viscose, this fabric is perfect for warmer weather: it's lightweight, durable and stretchy. Wear trousers with plain or contrasting T-shirts, and choose sneakers or loafers for shoes. Looks with linen trousers will be the perfect choice for work or school, walking with friends or a date. Comfortable linen trousers are a stylish solution for every day!"],
+       "posts": [{
+         "id": 1,
+         "title": "Payment",
+         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+       }, {
+         "id": 2,
+         "title": "Sizes",
+         "content": "<p>Available sizes: M, L</p>"
+       }],
+       "selectedPost": {
+         "id": 1,
+         "title": "Payment",
+         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+       }
     },
     {
       "img": "guyshorts.png",
       "id": 8,
       "name": "Shorts",
-      "price": 35
+      "price": 35,
+      "variants": ["guyshorts.png", "guyshorts1.jpg", "guyshorts2.jpg"],
+       "description": ["Shorts", "Model: 2B710008M/44213N/6C00N", "Compound: Cotton 100%", "Line: Base", "Color: beige", "Cotton shorts. Model with a regular fit at the waist and fastening with a zip and button. There are loops on the waist that you can put a belt through. Convenient side pockets. The shorts fit well and do not restrict movement. Shorts will look great with a tank top or t-shirt. Going for a walk around the city, meeting with friends or a sporting event, they can be worn with a tight-fitting T-shirt, an open shirt and comfortable semi-sports shoes - sneakers, moccasins or slip-ons. For a country trip, shorts can be combined with a T-shirt and sneakers."],
+       "posts": [{
+         "id": 1,
+         "title": "Payment",
+         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+       }, {
+         "id": 2,
+         "title": "Sizes",
+         "content": "<p>Available sizes: S, M, L</p>"
+       }],
+       "selectedPost": {
+         "id": 1,
+         "title": "Payment",
+         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+       }
     }
   ]
 }
