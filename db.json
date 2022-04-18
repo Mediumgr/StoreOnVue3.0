@@ -18,8 +18,19 @@
       "price": 45,
       "variants": ["barberman.png", "kurtka.jpg", "kurtka1.jpg"],
       "description": ["Long jacket with hood", "Model: 1L121005M/50313N/7901N", "Compound: PE 100%", "Line: Lab", "Color: blue", "Warm quilted jacket with stand-up collar. The model is fastened with a zipper.Pair the jacket with your favorite everyday pieces - jeans, sweatshirts, hoodies, sneakers - and you 'll always have a laid-back casual look.And the discreet design allows you to wear the jacket with formal suit combinations for the office and important meetings.Versatility, comfort and warmth in one product!"],
-      "posts": "[{id: 1, title: 'Payment', content: '<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>'}, {id: 2, title: 'Sizes', content: '<p>Available sizes: S, M, L</p>'}]",
-      "selectedPost": "{id: 1, title: 'Payment', content: '<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>'}"
+       "posts": [{
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }, {
+        "id": 2,
+        "title": "Sizes",
+        "content": "<p>Available sizes: S, M, L</p>"
+      }],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
     },
     {
       "img": "girlwhite.png",
