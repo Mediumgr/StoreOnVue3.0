@@ -1,9 +1,12 @@
 <template>
   <h3 class="product">{{ product.description[0] }}</h3>
-  <h5 class="product">{{ product.description[1] }}</h5>
-  <h5 class="product">{{ product.description[2] }}</h5>
-  <h5 class="product">{{ product.description[3] }}</h5>
-  <h5 class="product">{{ product.description[4] }}</h5>
+  <div class="product" v-for="(item, index) in product.description" :key="item">
+    <h5
+      v-if="item !== product.description[0] && item !== product.description[5]"
+    >
+      {{ product.description[index] }}
+    </h5>
+  </div>
   <p class="product">{{ product.description[5] }}</p>
   <h5 class="costProduct">
     Price:

@@ -1,20 +1,35 @@
 {
-  "filtered": [{
+  "filtered": [
+    {
       "img": "teenager.png",
       "id": 1,
       "name": "T-shirt",
       "price": 25,
-      "variants": ["teenager.png", "teenager1.jpg", "teenager2.jpg"],
-      "description": ["Printed cotton T-shirt", "Model: 5B641011M/47885N/1000N", "Compound: 100% cotton,", "Line: Basic", "Color: white", "Practical T-shirt with short sleeves and round neckline. This model is indispensable in the men's wardrobe - with it you can create many looks in a variety of styles."],
-      "posts": [{
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }, {
-        "id": 2,
-        "title": "Sizes",
-        "content": "<p>Available sizes: XS, M, L</p>"
-      }],
+      "variants": [
+        "teenager.png",
+        "teenager1.jpg",
+        "teenager2.jpg"
+      ],
+      "description": [
+        "Printed cotton T-shirt",
+        "Model: 5B641011M/47885N/1000N",
+        "Compound: 100% cotton,",
+        "Line: Basic",
+        "Color: white",
+        "Practical T-shirt with short sleeves and round neckline. This model is indispensable in the men's wardrobe - with it you can create many looks in a variety of styles."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: XS, M, L</p>"
+        }
+      ],
       "selectedPost": {
         "id": 1,
         "title": "Payment",
@@ -26,17 +41,31 @@
       "id": 2,
       "name": "Blouse",
       "price": 30,
-      "variants": ["girlinred.png", "girlinred1.jpg", "girlinred2.jpg"],
-      "description": ["BLOUSE", "Model: GBL001928", "Compound: 64% polyester, 36% viscose", "Line: Basic", "Color: red", "An elegant blouse with a cascading frill will help create a feminine, romantic look. Straight fit, sleeveless, comfortable fit without restricting movement."],
-      "posts": [{
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }, {
-        "id": 2,
-        "title": "Sizes",
-        "content": "<p>Available sizes: S, M</p>"
-      }],
+      "variants": [
+        "girlinred.png",
+        "girlinred1.jpg",
+        "girlinred2.jpg"
+      ],
+      "description": [
+        "BLOUSE",
+        "Model: GBL001928",
+        "Compound: 64% polyester, 36% viscose",
+        "Line: Basic",
+        "Color: red",
+        "An elegant blouse with a cascading frill will help create a feminine, romantic look. Straight fit, sleeveless, comfortable fit without restricting movement."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M</p>"
+        }
+      ],
       "selectedPost": {
         "id": 1,
         "title": "Payment",
@@ -48,17 +77,31 @@
       "id": 3,
       "name": "Jacket",
       "price": 45,
-      "variants": ["barberman.png", "kurtka.jpg", "kurtka1.jpg"],
-      "description": ["Long jacket with hood", "Model: 1L121005M/50313N/7901N", "Compound: PE 100%", "Line: Lab", "Color: blue", "Warm quilted jacket with stand-up collar. The model is fastened with a zipper.And the discreet design allows you to wear the jacket with formal suit combinations for the office and important meetings.Versatility, comfort and warmth in one product!"],
-      "posts": [{
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }, {
-        "id": 2,
-        "title": "Sizes",
-        "content": "<p>Available sizes: S, M, L</p>"
-      }],
+      "variants": [
+        "barberman.png",
+        "kurtka.jpg",
+        "kurtka1.jpg"
+      ],
+      "description": [
+        "Long jacket with hood",
+        "Model: 1L121005M/50313N/7901N",
+        "Compound: PE 100%",
+        "Line: Lab",
+        "Color: blue",
+        "Warm quilted jacket with stand-up collar. The model is fastened with a zipper.And the discreet design allows you to wear the jacket with formal suit combinations for the office and important meetings.Versatility, comfort and warmth in one product!"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L</p>"
+        }
+      ],
       "selectedPost": {
         "id": 1,
         "title": "Payment",
@@ -69,18 +112,32 @@
       "img": "girlwhite.png",
       "id": 4,
       "name": "Blouse",
-      "price": 35.0,
-      "variants": ["girlwhite.png", "girlwhite1.jpg", "girlwhite2.jpg"],
-      "description": ["BLOUSE", "Model: GBL001928", "Compound: Cotton", "Line: New", "Color: powdery, light pink, pink", "An elegant blouse with a cascading frill will help create a feminine, romantic look. Straight fit, sleeveless, comfortable fit without restricting movement."],
-      "posts": [{
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }, {
-        "id": 2,
-        "title": "Sizes",
-        "content": "<p>Available sizes: XS, S</p>"
-      }],
+      "price": 35,
+      "variants": [
+        "girlwhite.png",
+        "girlwhite1.jpg",
+        "girlwhite2.jpg"
+      ],
+      "description": [
+        "BLOUSE",
+        "Model: GBL001928",
+        "Compound: Cotton",
+        "Line: New",
+        "Color: powdery, light pink, pink",
+        "An elegant blouse with a cascading frill will help create a feminine, romantic look. Straight fit, sleeveless, comfortable fit without restricting movement."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: XS, S</p>"
+        }
+      ],
       "selectedPost": {
         "id": 1,
         "title": "Payment",
@@ -92,17 +149,31 @@
       "id": 5,
       "name": "Blouse",
       "price": 25,
-      "variants": ["blondgirl.png", "blondgirl1.png", "blondgirl2.jpg"],
-      "description": ["BLOUSE", "Model: 14911009-1B/26346/7912S", "Compound: Viscose 100%", "Line: Ultra", "Color: blue", "Lightweight fabric is unpretentious in care and will retain its original appearance for a long time. With this elegant blouse, you can create many spectacular everyday sets."],
-      "posts": [{
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }, {
-        "id": 2,
-        "title": "Sizes",
-        "content": "<p>Available sizes: S, M, L, XXl</p>"
-      }],
+      "variants": [
+        "blondgirl.png",
+        "blondgirl1.png",
+        "blondgirl2.jpg"
+      ],
+      "description": [
+        "BLOUSE",
+        "Model: 14911009-1B/26346/7912S",
+        "Compound: Viscose 100%",
+        "Line: Ultra",
+        "Color: blue",
+        "Lightweight fabric is unpretentious in care and will retain its original appearance for a long time. With this elegant blouse, you can create many spectacular everyday sets."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXl</p>"
+        }
+      ],
       "selectedPost": {
         "id": 1,
         "title": "Payment",
@@ -114,17 +185,31 @@
       "id": 6,
       "name": "Blazer",
       "price": 40,
-      "variants": ["guyjacket.png", "jacket1.jpg", "jacket2.jpg"],
-      "description": ["Blazer", "Model: 2L420261M/49145N/7010O", "Compound: PE 90%, Vis 8%, PU 2%", "Line: Lab", "Color: light blue", "Regular-fit dress with a stand-up collar, flap side pockets and a small chest pocket. On the back of the slot. Lined model, upper made of dense fabric that is pleasant and smooth to the touch."],
-      "posts": [{
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }, {
-        "id": 2,
-        "title": "Sizes",
-        "content": "<p>Available sizes: X, S, M, L</p>"
-      }],
+      "variants": [
+        "guyjacket.png",
+        "jacket1.jpg",
+        "jacket2.jpg"
+      ],
+      "description": [
+        "Blazer",
+        "Model: 2L420261M/49145N/7010O",
+        "Compound: PE 90%, Vis 8%, PU 2%",
+        "Line: Lab",
+        "Color: light blue",
+        "Regular-fit dress with a stand-up collar, flap side pockets and a small chest pocket. On the back of the slot. Lined model, upper made of dense fabric that is pleasant and smooth to the touch."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: X, S, M, L</p>"
+        }
+      ],
       "selectedPost": {
         "id": 1,
         "title": "Payment",
@@ -136,44 +221,98 @@
       "id": 7,
       "name": "Pants",
       "price": 50,
-       "variants": ["pans.png", "pans1.jpg", "pans2.jpg"],
-       "description": ["Pants", "Model:2B120015M/39622N/6600N", "Compound: Cotton 98%, PU 2%", "Line: Base", "Color: beige", "Lightweight summer trousers with side pockets and cuffs. The design of the model is completed with a drawstring with ties, which will help you find a comfortable fit."],
-       "posts": [{
-         "id": 1,
-         "title": "Payment",
-         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-       }, {
-         "id": 2,
-         "title": "Sizes",
-         "content": "<p>Available sizes: M, L</p>"
-       }],
-       "selectedPost": {
-         "id": 1,
-         "title": "Payment",
-         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-       }
+      "variants": [
+        "pans.png",
+        "pans1.jpg",
+        "pans2.jpg"
+      ],
+      "description": [
+        "Pants",
+        "Model:2B120015M/39622N/6600N",
+        "Compound: Cotton 98%, PU 2%",
+        "Line: Base",
+        "Color: beige",
+        "Lightweight summer trousers with side pockets and cuffs. The design of the model is completed with a drawstring with ties, which will help you find a comfortable fit."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: M, L</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     },
     {
       "img": "guyshorts.png",
       "id": 8,
       "name": "Shorts",
       "price": 35,
-      "variants": ["guyshorts.png", "guyshorts1.jpg", "guyshorts2.jpg"],
-       "description": ["Shorts", "Model: 2B710008M/44213N/6C00N", "Compound: Cotton 100%", "Line: Base", "Color: beige", "Cotton shorts. Model with a regular fit at the waist and fastening with a zip and button. There are loops on the waist that you can put a belt through. Convenient side pockets."],
-       "posts": [{
-         "id": 1,
-         "title": "Payment",
-         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-       }, {
-         "id": 2,
-         "title": "Sizes",
-         "content": "<p>Available sizes: S, M, L</p>"
-       }],
-       "selectedPost": {
-         "id": 1,
-         "title": "Payment",
-         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-       }
+      "variants": [
+        "guyshorts.png",
+        "guyshorts1.jpg",
+        "guyshorts2.jpg"
+      ],
+      "description": [
+        "Shorts",
+        "Model: 2B710008M/44213N/6C00N",
+        "Compound: Cotton 100%",
+        "Line: Base",
+        "Color: beige",
+        "Cotton shorts. Model with a regular fit at the waist and fastening with a zip and button. There are loops on the waist that you can put a belt through. Convenient side pockets."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     }
+  ],
+  "cart": [
+    [
+      {
+        "img": "pans.png",
+        "id": 7,
+        "name": "Pants",
+        "price": 50
+      }
+    ],
+    [
+      {
+        "img": "girlwhite.png",
+        "id": 4,
+        "name": "Blouse",
+        "price": 35
+      }
+    ],
+    [
+      {
+        "img": "girlwhite.png",
+        "id": 4,
+        "name": "Blouse",
+        "price": 35
+      }
+    ]
   ]
 }

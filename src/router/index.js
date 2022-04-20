@@ -6,15 +6,16 @@ const routes = [
     name: "MainPage",
     component: () =>
       import(
-        /* webpackChunkName: "MainPage"*/ "@/components/HomePage/MainPage"
+        /* webpackChunkName: "MainPage"*/ "../components/HomePage/MainPage"
       ),
   },
   {
-    path: "/product/3",
+    path: "/product/:id",
+    props: true,
     name: "ProductDetails",
     component: () =>
       import(
-        /* webpackChunkName: "ProductDetails"*/ "@/views/Product/ProductDetails"
+        /* webpackChunkName: "ProductDetails"*/ "../views/Product/ProductDetails"
       ),
   },
 ];

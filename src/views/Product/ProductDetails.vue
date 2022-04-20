@@ -58,6 +58,12 @@ import ProductDelivery from "@/views/Product/ProductDelivery.vue";
 export default {
   //mixins changeRating()
   name: "ProductDetails",
+  props: {
+    id: {
+      type: String,
+      default: "",
+    },
+  },
   components: {
     ProductDescription,
     ProductDelivery,
@@ -66,7 +72,6 @@ export default {
     return {
       product: null,
       image: "",
-      id: 3,
       variants: [],
       currentTab: "Description",
       tabs: ["Description", "Delivery"],

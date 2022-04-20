@@ -11,7 +11,7 @@
   <form class="click">
     <button class="button__browse">
       <span class="browse__product">Browse All Product</span
-      ><img src="@/assets/img/arrow__right.png" alt="go-ahead" />
+      ><i class="fa-solid fa-arrow-right-long" style="margin-left: 8px"></i>
     </button>
   </form>
   <offer-discount></offer-discount>

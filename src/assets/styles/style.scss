@@ -37,6 +37,7 @@ a {
 
 .logo {
     display: flex;
+    cursor: pointer;
     align-items: center;
     margin-right: 37px;
     font-size: 27px;
@@ -46,10 +47,8 @@ a {
     letter-spacing: 0.03em;
     line-height: 32px;
     text-transform: uppercase;
-    animation: backInDown; //animate.style
-    /* referring directly to the animation's @keyframe declaration */
+    animation: backInDown; 
     animation-duration: 1s;
-    /* don't forget to set a duration! */
 }
 
 .logo__img {
@@ -550,12 +549,13 @@ a {
         display: flex;
         justify-content: center;
         opacity: 0;
+        background: #cccc;
     }
 
     .fa,
     .fas {
-        font-weight: 100;
         cursor: pointer;
+        font-weight: 100;
     }
     .star {
         color: #f16d7f;
@@ -570,11 +570,18 @@ a {
         .description {
             opacity: 1;
             cursor: pointer;
+            position: relative;
         }
         .add__cart {
             display: flex;
         }
     }
+}
+
+.arrow {
+    position: absolute;
+    top: 10px;
+    right: 70px;
 }
 
 .product-details {

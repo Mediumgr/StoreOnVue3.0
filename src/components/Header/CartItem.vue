@@ -4,8 +4,8 @@
       <img :src="img" alt="your product" class="rebox__img_photo" />
     </div>
     <div class="flex__name__product">
-      <a href="#" class="rebox__text">{{ cartItem.product_name }}</a>
-      <div class="star"><img src="img/4star.jpg" alt="stars" /></div>
+      <a href="#" class="rebox__text">{{ cartItem.name }}</a>
+      <div class="star"><img src="" alt="stars" /></div>
       <div class="price__for__order">
         {{ cartItem.quantity }} X {{ cartItem.quantity * cartItem.price }}$
       </div>
@@ -17,5 +17,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    cartItem: {
+      type: Object,
+      default: () => {},
+    },
+  },
+};
 </script>
