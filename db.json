@@ -289,30 +289,5 @@
       }
     }
   ],
-  "cart": [
-    [
-      {
-        "img": "pans.png",
-        "id": 7,
-        "name": "Pants",
-        "price": 50
-      }
-    ],
-    [
-      {
-        "img": "girlwhite.png",
-        "id": 4,
-        "name": "Blouse",
-        "price": 35
-      }
-    ],
-    [
-      {
-        "img": "girlwhite.png",
-        "id": 4,
-        "name": "Blouse",
-        "price": 35
-      }
-    ]
-  ]
+  "cart": []
 }

@@ -3,7 +3,7 @@
     <div class="flex">
       <div class="goodContainer">
         <img
-          v-for="variant in variants"
+          v-for="variant in product.variants"
           :key="variant"
           :src="require(`@/assets/img/${variant}`)"
           alt="photo"
@@ -15,7 +15,7 @@
         <div class="flex-box">
           <img
             class="product-img"
-            :src="require(`@/assets/img/${image}`)"
+            :src="require(`@/assets/img/${product.variants[0]}`)"
             alt="photo"
           />
         </div>
@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import EventService from "@/services/EventService.js";
 import ProductDescription from "@/views/Product/ProductDescription.vue";
 import ProductDelivery from "@/views/Product/ProductDelivery.vue";
 
@@ -70,9 +69,6 @@ export default {
   },
   data() {
     return {
-      product: null,
-      image: "",
-      variants: [],
       currentTab: "Description",
       tabs: ["Description", "Delivery"],
     };
@@ -86,17 +82,12 @@ export default {
     currentComponent() {
       return "product-" + this.currentTab.toLowerCase();
     },
+    product() {
+      return this.$store.state.product;
+    },
   },
   created() {
-    EventService.getProduct(this.id)
-      .then((response) => {
-        this.product = response.data;
-        this.variants = response.data.variants;
-        this.image = response.data.variants[0];
-      })
-      .catch((error) => {
-        console.log("axios.getError", error);
-      });
+    this.$store.dispatch("getProduct", +this.id);
   },
 };
 </script>

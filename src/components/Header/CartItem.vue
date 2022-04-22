@@ -1,13 +1,19 @@
 <template>
   <div class="order__first">
     <div class="rebox__img">
-      <img :src="img" alt="your product" class="rebox__img_photo" />
+      <img
+        :src="require(`@/assets/img/${cartItem.img}`)"
+        alt="your product"
+        class="rebox__img_photo"
+      />
     </div>
     <div class="flex__name__product">
       <a href="#" class="rebox__text">{{ cartItem.name }}</a>
-      <div class="star"><img src="" alt="stars" /></div>
+      <div>
+        <i v-for="n in 5" :key="n" class="fas fa-star fa-sm stars"></i>
+      </div>
       <div class="price__for__order">
-        {{ cartItem.quantity }} X {{ cartItem.quantity * cartItem.price }}$
+        {{ cartItem.quantity }} X {{ cartItem.quantity * cartItem.price }}&#36;
       </div>
     </div>
     <div class="cross" @click="$emit('remove', cartItem)">
@@ -18,6 +24,7 @@
 
 <script>
 export default {
+  emits: ["remove"],
   props: {
     cartItem: {
       type: Object,
@@ -26,3 +33,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.stars {
+  color: #f16d7f;
+}
+</style>

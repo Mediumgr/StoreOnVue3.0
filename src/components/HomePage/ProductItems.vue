@@ -27,17 +27,11 @@
         ></span>
       </p>
     </div>
-    <div @click="productCounter($event)">
-      <a href="#" class="add__cart" @click="addProductToCart(product)">
-        <img src="@/assets/img/w_b.png" alt="buy" />Add to Cart
-      </a>
-    </div>
+    <p class="add__cart" @click="addProductToCart(product)" v-html="img"></p>
   </div>
 </template>
 
 <script>
-import EventService from "@/services/EventService.js";
-
 export default {
   name: "ProductItems",
   props: {
@@ -45,6 +39,14 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return {
+      counter: 0,
+      cart: "Add to Cart",
+      img: '<img src="@/assets/img/w_b.png" alt="buy" />{{ cart }}',
+      id: null,
+    };
   },
   methods: {
     changeRating(n) {
@@ -57,26 +59,21 @@ export default {
         }
       }
     },
-    productCounter(event) {
-      console.log("каунт", event);
-    },
     addProductToCart(product) {
-      // this.$commit('addProductToCart', product) -> добавить в state для корзины cart: [] и вывести через геттер в картордер компонент
-      let prod = [
-        {
-          img: product.img,
-          id: product.id,
-          name: product.name,
-          price: product.price,
-        },
-      ];
-      EventService.postProductToCart(prod)
-        .then(() => {
-          /* this.$commit('addProductToCart', prod) и в методе сделать проверку на наличие такого же товара - см. смотри в компоненте cartOrder: addProduct(product) */
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.cart = `Added ${++this.counter} pcs`;
+      this.$store.dispatch("postToCart", {
+        img: product.img,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+      });
+    },
+  },
+  computed: {
+    id() {
+      this.id = this.$store.getters.id;
+      return this.id;
     },
   },
 };

@@ -18,10 +18,16 @@ export default {
   getProduct(id) {
     return apiClient.get("/filtered/" + id);
   },
-  postProductToCart(product) {
+  cartFetch() {
+    return apiClient.get("/cart");
+  },
+  postToCart(product) {
     return apiClient.post("/cart", product);
   },
-  getProductFromCart() {
-    return apiClient.get("/cart");
+  putToCart(payload) {
+    return apiClient.put("/cart/" + `${payload.id}`, payload);
+  },
+  deleteProduct(payload) {
+    return apiClient.delete("/cart/" + `${payload.id}`);
   },
 };

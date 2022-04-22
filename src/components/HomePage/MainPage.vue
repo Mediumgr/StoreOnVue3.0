@@ -1,7 +1,7 @@
 <template>
   <brand-promo></brand-promo>
   <div class="products center">
-    <div class="noProducts center" v-if="countProd2 === 0">{{ error }}</div>
+    <!-- <div class="noProducts center" v-if="filter === 0">{{ error }}</div> -->
     <product-items
       v-for="item of filtered"
       :key="item.id"
@@ -21,7 +21,6 @@
 import BrandPromo from "@/components/HomePage/BrandPromo.vue";
 import ProductItems from "@/components/HomePage/ProductItems.vue";
 import OfferDiscount from "@/components/HomePage/OfferDiscount.vue";
-import EventService from "@/services/EventService.js";
 
 export default {
   name: "MainPage",
@@ -32,17 +31,16 @@ export default {
   },
   data() {
     return {
-      filtered: null,
+      error: "Товары не найдены, впишите название товара согласно каталогу",
     };
   },
   created() {
-    EventService.getProducts()
-      .then((response) => {
-        this.filtered = response.data;
-      })
-      .catch((error) => {
-        console.log("axios.getError", error);
-      });
+    this.$store.dispatch("getProducts");
+  },
+  computed: {
+    filtered() {
+      return this.$store.state.filtered;
+    },
   },
 };
 </script>

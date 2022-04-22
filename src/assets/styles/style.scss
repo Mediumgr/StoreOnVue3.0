@@ -47,7 +47,7 @@ a {
     letter-spacing: 0.03em;
     line-height: 32px;
     text-transform: uppercase;
-    animation: backInDown; 
+    animation: backInDown;
     animation-duration: 1s;
 }
 
@@ -57,15 +57,13 @@ a {
 
 .bin__for__order {
     position: relative;
+    cursor: pointer;
 
     .bin__img {
         display: block;
 
         .header__cart {
-            cursor: pointer;
             margin-right: 26px;
-            animation: backInDown;
-            animation-duration: 1s;
         }
     }
 
@@ -130,10 +128,11 @@ a {
 
     .styleForTotal,
     .dollars {
-        color: #222222;
+        color: #f16d7f;
         font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
+        font-weight: 900;
     }
 }
 
@@ -172,22 +171,29 @@ a {
         border: 1px solid #eaeaea;
         display: grid;
 
-        .styleForCard {
-            color: #4a4a4a;
-            font-size: $fontSize;
-            font-weight: 700;
-            text-transform: uppercase;
-            background-color: #ffffff;
-            cursor: pointer;
-            border: none;
-            outline: none;
-
-            &:hover {
-                background-color: $background-color;
-                color: white;
-                transition: 0.4s;
-            }
+        &:hover {
+            background-color: $background-color;
+            color: white;
+            transition: 0.4s;
         }
+    }
+}
+
+.styleForCard {
+    color: #4a4a4a;
+    font-size: $fontSize;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #ffffff;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    height: 40px;
+    margin-top: 5px;
+    &:hover {
+        transition: 0.6s;
+        background-color: #f16d7f;
+        color: white;
     }
 }
 
@@ -605,13 +611,13 @@ a {
 }
 
 .tabBtns {
-  padding: 6px 10px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: white;
-  margin-bottom: -1px;
-  margin-right: -1px;
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: white;
+    margin-bottom: -1px;
+    margin-right: -1px;
     &:hover {
         background: #e0e0e0;
     }
