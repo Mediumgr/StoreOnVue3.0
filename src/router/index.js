@@ -18,6 +18,16 @@ const routes = [
         /* webpackChunkName: "ProductDetails"*/ "../views/Product/ProductDetails"
       ),
   },
+  {
+    path: "/error/:error",
+    props: true,
+    name: "ErrorDisplay",
+    component: () =>
+      import(
+        /* webpackChunkName: "ErrorDisplay"*/
+        "../views/Product/ErrorDisplay"
+      ),
+  },
 ];
 
 const router = createRouter({

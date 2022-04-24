@@ -1,7 +1,9 @@
 <template>
   <brand-promo></brand-promo>
   <div class="products center">
-    <!-- <div class="noProducts center" v-if="filter === 0">{{ error }}</div> -->
+    <div class="noProducts center" v-if="!filtered.length">
+      {{ error }}
+    </div>
     <product-items
       v-for="item of filtered"
       :key="item.id"
@@ -21,6 +23,7 @@
 import BrandPromo from "@/components/HomePage/BrandPromo.vue";
 import ProductItems from "@/components/HomePage/ProductItems.vue";
 import OfferDiscount from "@/components/HomePage/OfferDiscount.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "MainPage",
@@ -31,16 +34,17 @@ export default {
   },
   data() {
     return {
-      error: "Товары не найдены, впишите название товара согласно каталогу",
+      error:
+        "The products you are looking for were not found. Enter the name of the product.",
     };
   },
   created() {
-    this.$store.dispatch("getProducts");
+    this.$store.dispatch("getProducts").catch((error) => {
+      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+    });
   },
   computed: {
-    filtered() {
-      return this.$store.state.filtered;
-    },
+    ...mapState(["products", "filtered"]),
   },
 };
 </script>

@@ -13,7 +13,8 @@
         <i v-for="n in 5" :key="n" class="fas fa-star fa-sm stars"></i>
       </div>
       <div class="price__for__order">
-        {{ cartItem.quantity }} X {{ cartItem.quantity * cartItem.price }}&#36;
+        {{ cartItem.quantity }} {{ cartItem.name }}:
+        {{ cartItem.quantity * cartItem.price }}&#36;
       </div>
     </div>
     <div class="cross" @click="$emit('remove', cartItem)">

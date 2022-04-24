@@ -1,17 +1,16 @@
 <template>
   <div class="relativeAccount">
     <div class="account">
-      <a
-        class="button__account"
-        href="#"
+      <button
+        class="clickOnAccount"
         @click="clickOnAccount"
         v-if="currentRow === 'down'"
       >
         My Account <i class="fas fa-caret-down" />
-      </a>
-      <a class="button__account" href="#" @click="clickOnAccount" v-else>
+      </button>
+      <button class="clickOnAccount" @click="clickOnAccount" v-else>
         My Account <i class="fas fa-caret-up" />
-      </a>
+      </button>
     </div>
     <div class="absolutLogin">
       <login-input

@@ -15,7 +15,7 @@
         <div class="flex-box">
           <img
             class="product-img"
-            :src="require(`@/assets/img/${product.variants[0]}`)"
+            :src="require(`/src/assets/img/${product.img}`)"
             alt="photo"
           />
         </div>
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     changeImage(variant) {
-      this.image = variant;
+      this.$store.state.product.img = variant; //Изменяю state - не очень...через created .then(() => не получается)
     },
   },
   computed: {
@@ -87,7 +87,9 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("getProduct", +this.id);
+    this.$store.dispatch("getProduct", this.id).catch((error) => {
+      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+    });
   },
 };
 </script>

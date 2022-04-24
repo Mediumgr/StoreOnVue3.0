@@ -3,14 +3,14 @@ import EventService from "@/services/EventService.js";
 
 export default createStore({
   state: {
-    filtered: [],
+    products: [],
     cart: [],
     product: [],
-    id: null,
+    filtered: [],
   },
   mutations: {
     SET_PRODUCTS(state, products) {
-      state.filtered = products;
+      state.products = products;
     },
     SET_PRODUCT(state, product) {
       state.product = product;
@@ -18,68 +18,80 @@ export default createStore({
     ADD_PRODUCT_TO_CART(state, product) {
       state.cart.push(product);
     },
-    COUNTER_ID(state, productId) {
-      state.id = productId;
+    FILTER_PRODUCTS(state, payload) {
+      state.filtered = payload;
     },
   },
   actions: {
     getProducts({ commit }) {
-      EventService.getProducts()
+      return EventService.getProducts()
         .then((response) => {
           commit("SET_PRODUCTS", response.data);
+          commit("FILTER_PRODUCTS", response.data);
         })
         .catch((error) => {
-          console.log("SET_PRODUCTS", error);
+          throw error;
         });
     },
     getProduct({ commit }, id) {
-      EventService.getProduct(id)
+      return EventService.getProduct(id)
         .then((response) => {
           commit("SET_PRODUCT", response.data);
         })
         .catch((error) => {
-          console.log("SET_PRODUCT", error);
+          throw error;
         });
     },
     cartFetch({ state }) {
-      EventService.cartFetch().then((response) => {
-        state.cart = response.data;
-      });
+      return EventService.cartFetch()
+        .then((response) => {
+          state.cart = response.data;
+        })
+        .catch((error) => {
+          throw error;
+        });
     },
     postToCart({ state, commit }, payload) {
       let existingProduct = state.cart.find(
         (product) => product.id === payload.id
       );
       if (!existingProduct) {
-        EventService.postToCart(payload)
+        return EventService.postToCart(payload)
           .then((response) => {
             commit("ADD_PRODUCT_TO_CART", response.data);
           })
           .catch((error) => {
-            console.log("ADD_PRODUCT_TO_CART", error);
+            throw error;
           });
       } else {
         existingProduct.quantity++;
-        EventService.putToCart(existingProduct).catch((error) =>
-          console.log("ADD_PRODUCT_TO_CART", error)
-        );
+        return EventService.putToCart(existingProduct).catch((error) => {
+          throw error;
+        });
       }
     },
-    remove({ state, commit }, payload) {
-      EventService.deleteProduct(payload)
+    remove({ state }, payload) {
+      return EventService.deleteProduct(payload)
         .then(() => {
           state.cart.splice(state.cart.indexOf(payload), 1);
         })
-        .then(() => {
-          commit("COUNTER_ID", payload.id);
+        .catch((error) => {
+          throw error;
         });
     },
     updateQuantity({ state }, payload) {
       let existingProduct = state.cart.find((item) => item.id === payload.id);
       existingProduct.quantity--;
-      EventService.putToCart(existingProduct).catch((error) =>
-        console.log("updateQuantity", error)
+      return EventService.putToCart(existingProduct).catch((error) => {
+        throw error;
+      });
+    },
+    filterProducts({ state, commit }, payload) {
+      let regexp = new RegExp(payload, "i");
+      let filtered = state.products.filter((product) =>
+        regexp.test(product.name)
       );
+      commit("FILTER_PRODUCTS", filtered);
     },
   },
   getters: {
@@ -87,7 +99,6 @@ export default createStore({
       state.cart.reduce((accum, item) => accum + item.quantity, 0),
     totalPrice: (state) =>
       state.cart.reduce((accum, item) => accum + item.price * item.quantity, 0),
-    id: (state) => state.id,
   },
   modules: {},
 });

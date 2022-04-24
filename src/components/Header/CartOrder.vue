@@ -18,7 +18,7 @@
       }}</span>
     </div>
     <div class="product__order" v-show="showCart">
-      <p v-if="!cart.length" class="cartItem">В корзине нет товаров</p>
+      <p v-if="!cart.length" class="cartItem">No products in your cart</p>
       <div v-else>
         <cart-item
           v-for="item of cart"
@@ -46,6 +46,7 @@
 
 <script>
 import CartItem from "@/components/Header/CartItem.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "CardOrder",
@@ -60,26 +61,27 @@ export default {
   methods: {
     remove(product) {
       if (product.quantity === 1) {
-        this.$store.dispatch("remove", product);
+        this.$store.dispatch("remove", product).catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
       }
       if (product.quantity > 1) {
-        this.$store.dispatch("updateQuantity", product);
+        this.$store.dispatch("updateQuantity", product).catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
       }
     },
   },
   computed: {
+    ...mapGetters(["totalPrice", "cartProductsAmount"]),
     cart() {
       return this.$store.state.cart;
     },
-    cartProductsAmount() {
-      return this.$store.getters.cartProductsAmount;
-    },
-    totalPrice() {
-      return this.$store.getters.totalPrice;
-    },
   },
   created() {
-    this.$store.dispatch("cartFetch");
+    this.$store.dispatch("cartFetch").catch((error) => {
+      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+    });
   },
 };
 </script>

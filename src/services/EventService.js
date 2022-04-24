@@ -13,10 +13,10 @@ const apiClient = axios.create({
 
 export default {
   getProducts() {
-    return apiClient.get("/filtered");
+    return apiClient.get("/products");
   },
   getProduct(id) {
-    return apiClient.get("/filtered/" + id);
+    return apiClient.get(`/products/${id}`);
   },
   cartFetch() {
     return apiClient.get("/cart");
@@ -25,9 +25,9 @@ export default {
     return apiClient.post("/cart", product);
   },
   putToCart(payload) {
-    return apiClient.put("/cart/" + `${payload.id}`, payload);
+    return apiClient.put(`/cart/${payload.id}`, payload);
   },
   deleteProduct(payload) {
-    return apiClient.delete("/cart/" + `${payload.id}`);
+    return apiClient.delete(`/cart/${payload.id}`);
   },
 };

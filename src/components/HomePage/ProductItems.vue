@@ -27,7 +27,9 @@
         ></span>
       </p>
     </div>
-    <p class="add__cart" @click="addProductToCart(product)" v-html="img"></p>
+    <p class="add__cart" @click="addProductToCart(product)">
+      <img :src="require('@/assets/img/w_b.png')" alt="buy" />{{ cart }}
+    </p>
   </div>
 </template>
 
@@ -44,8 +46,6 @@ export default {
     return {
       counter: 0,
       cart: "Add to Cart",
-      img: '<img src="@/assets/img/w_b.png" alt="buy" />{{ cart }}',
-      id: null,
     };
   },
   methods: {
@@ -61,19 +61,17 @@ export default {
     },
     addProductToCart(product) {
       this.cart = `Added ${++this.counter} pcs`;
-      this.$store.dispatch("postToCart", {
-        img: product.img,
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: 1,
-      });
-    },
-  },
-  computed: {
-    id() {
-      this.id = this.$store.getters.id;
-      return this.id;
+      this.$store
+        .dispatch("postToCart", {
+          img: product.img,
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        })
+        .catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
     },
   },
 };

@@ -9,7 +9,11 @@
         >
           <div v-show="person.active" class="personActive">
             <div class="foto">
-              <img :src="person.src" :alt="person.name" class="img" />
+              <img
+                :src="require(`@/assets/img/${person.src}`)"
+                :alt="person.name"
+                class="img"
+              />
             </div>
             <div class="france">
               <h3 class="text__france">&#171;{{ person.text }}&raquo;</h3>
@@ -33,10 +37,21 @@
           <h1 class="subscribe">Subscribe</h1>
           <h3 class="newletter">FOR OUR NEWLETTER AND PROMOTION</h3>
         </div>
-        <form action="#" class="right__button">
-          <input type="text" placeholder="Enter Your Email" class="email" />
+        <form @submit.prevent="checkEmail" class="right__button">
+          <input
+            type="text"
+            v-model="userEmail"
+            placeholder="Enter Your Email"
+            class="email"
+          />
           <button class="subscribe__button">Subscribe</button>
         </form>
+        <p class="emailError" v-show="correctEmail === false">
+          {{ error }}
+        </p>
+        <p class="emailSuccess" v-show="correctEmail === true">
+          {{ success }}
+        </p>
       </div>
     </div>
   </div>
@@ -134,7 +149,7 @@ export default {
           text: "Vestibulum quis porttitor dui! Quisque viverra nunc mi, apulvinar purus condlmentum a. Aliquam condimentum mattis neque sed pretium",
           name: "Ram",
           location: "Sochi, Russia",
-          src: "https://sun1-16.userapi.com/s/v1/ig2/vAZ7cG68IyJxbHtdD35F0DkpbOvZENDwe56zlRBIsEwOQ9wOtI8z5EuXht5iSfsQpXCn7p3bn3fCS90exgH1VKRq.jpg?size=100x100&quality=95&crop=0,165,437,437&ava=1",
+          src: "ram.jpg",
           active: true,
         },
         {
@@ -142,7 +157,7 @@ export default {
           text: "A modern online store with good selection of bona pro omnigustu. Magistratus urbani et consultores responsivi qui plus semel ad exemplar electionis adiuverunt. Gratias tibi!",
           name: "Dmitriy",
           location: "Canada, Ottava",
-          src: "https://sun1-18.userapi.com/s/v1/ig2/JAPcF5xb0kaMwuf7Suj6gIrYn3peRX3W5tC9FiML2yflv8VGxtk2OZzS4nRuBvEoGVXWo3ndsK5kBHIL-rx2X-js.jpg?size=100x100&quality=96&crop=230,396,1152,1152&ava=1",
+          src: "dim.jpg",
           active: false,
         },
         {
@@ -150,10 +165,15 @@ export default {
           text: "Amplis, a. Egregia qualitas. Cogitatio in singulis. Promotiones valde utiles. Baculi attentio et voluntas ad vota etpetitiones. Lorem aliquot annos fui. Bene vale et faustum nobis gaudium.",
           name: "Ruslan",
           location: "Moscow, Russia",
-          src: "https://sun1-26.userapi.com/s/v1/if1/JyOEVRrrkZ3JbQsvgFx13oJOOT_pZHFZ06_sk17pde8uLywQljKWX0pklzohcXZI0RcCYCU7.jpg?size=100x100&quality=96&crop=0,484,1536,1536&ava=1",
+          src: "rus.jpg",
           active: false,
         },
       ],
+      userEmail: "",
+      email: /^[\w.-]+@\w+\.[a-z]{2,4}$/i,
+      correctEmail: "",
+      error: "Enter correct email: *****@*** . **",
+      success: "Your e-mail has been added to database",
     };
   },
   methods: {
@@ -163,6 +183,9 @@ export default {
         person.active = false;
       });
       this.persons[index - 1].active = true;
+    },
+    checkEmail() {
+      this.correctEmail = this.email.test(this.userEmail);
     },
   },
 };

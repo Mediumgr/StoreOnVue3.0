@@ -1,8 +1,7 @@
 <template>
   <div class="header center">
     <div class="header__left">
-      <router-link to="/" custom v-slot="{ navigate }">
-        <!-- to="?" -->
+      <router-link :to="{ name: 'MainPage' }" custom v-slot="{ navigate }">
         <span class="logo" @click="navigate">
           <img
             class="logo__img"
@@ -14,8 +13,7 @@
           <span class="letter">D</span>
         </span>
       </router-link>
-      <form @submit.prevent="ACTION" class="header__form">
-        <!-- Action -->
+      <form @submit.prevent="filter" class="header__form">
         <details>
           <summary ref="summary" class="listed" @click="currentSummary">
             <span>Browse</span>
@@ -39,8 +37,12 @@
             </div>
           </div>
         </details>
-        <input placeholder="Search for outwear..." type="text" />
-        <button>
+        <input
+          v-model.trim="userSearch"
+          placeholder="Search for outwear..."
+          type="text"
+        />
+        <button class="searchBtn">
           <img src="@/assets/img/search.png" alt="search" />
         </button>
       </form>
@@ -59,6 +61,7 @@ import MyAccount from "@/components/Header/MyAccount.vue";
 import LineBar from "@/components/Header/LineBar.vue";
 
 export default {
+  name: "NavBar",
   components: { CartOrder, MyAccount, LineBar },
   data() {
     return {
@@ -82,11 +85,16 @@ export default {
         "Blazers",
         "Jackets/vests",
       ],
+      userSearch: "",
     };
   },
   methods: {
     currentSummary() {
       this.current === 1 ? (this.current = 2) : (this.current = 1);
+    },
+    filter() {
+      this.$store.dispatch("filterProducts", this.userSearch);
+      window.scroll(0, 1670);
     },
   },
   watch: {

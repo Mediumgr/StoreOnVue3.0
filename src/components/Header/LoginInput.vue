@@ -1,8 +1,12 @@
 <template>
   <div class="login">
     <label class="label">{{ label }}</label>
-    <input :value="modelValue" @change="updateValue" v-bind="$attrs" />
-    {{ modelValue }}
+    <input
+      type="text"
+      :value="modelValue"
+      @input="updateValue($event)"
+      v-bind="$attrs"
+    />
     <button class="button" @click="submit">login</button>
   </div>
 </template>
@@ -11,7 +15,7 @@
 /* import firebase from "firebase/compat/app"; */
 
 export default {
-  emits: ["update: modelValue"],
+  emits: ["update:modelValue"],
   props: {
     label: {
       type: String,
@@ -24,14 +28,14 @@ export default {
   },
   methods: {
     updateValue(event) {
-      console.log(event.target.value);
-      let value = event.target.value;
       if (this.modelModifiers.capitalize) {
-        value = value.charAt(0).toUpperCase() + value.slice(1);
+        let value =
+          event.target.value.charAt(0).toUpperCase() +
+          event.target.value.slice(1);
+        this.$emit("update:modelValue", value);
       }
-      this.$emit("update: modelValue", value);
     },
-    async submit() {
+    submit() {
       console.log("Submit", this.modelValue);
       /*       await firebase.database().ref(`/users/orders`).push("Имя"); */
     },
