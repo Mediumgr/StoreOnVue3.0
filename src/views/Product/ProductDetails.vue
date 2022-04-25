@@ -87,9 +87,14 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("getProduct", this.id).catch((error) => {
-      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-    });
+    this.$store
+      .dispatch("getProduct", this.id)
+      .then(() => {
+        window.scroll(0, 0);
+      })
+      .catch((error) => {
+        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+      });
   },
 };
 </script>

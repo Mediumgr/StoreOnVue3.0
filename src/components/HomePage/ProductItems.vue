@@ -1,18 +1,18 @@
 <template>
   <div class="product-item">
-    <a
+    <span
       ><img
         class="product-item__img"
         :src="require(`@/assets/img/${product.img}`)"
         alt="photo"
-    /></a>
+    /></span>
     <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }">
       <span class="description"
         >Description <i class="fa-solid fa-circle-arrow-right fa-xs arrow"></i
       ></span>
     </router-link>
     <div class="bottom">
-      <a href="#" class="text__mango">{{ product.name }}</a>
+      <span class="text__mango">{{ product.name }}</span>
       <p class="price">
         <span> &#36;{{ product.price }}</span>
         <span>

@@ -44,7 +44,7 @@ export default {
     });
   },
   computed: {
-    ...mapState(["products", "filtered"]),
+    ...mapState(["filtered"]),
   },
 };
 </script>

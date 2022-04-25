@@ -6,10 +6,10 @@
         @click="clickOnAccount"
         v-if="currentRow === 'down'"
       >
-        My Account <i class="fas fa-caret-down" />
+        My Account <i class="fas fa-caret-down caret-down" />
       </button>
       <button class="clickOnAccount" @click="clickOnAccount" v-else>
-        My Account <i class="fas fa-caret-up" />
+        My Account <i class="fas fa-caret-up caret-up" />
       </button>
     </div>
     <div class="absolutLogin">
