@@ -289,13 +289,5 @@
       }
     }
   ],
-  "cart": [
-    {
-      "img": "pans.png",
-      "id": 7,
-      "name": "Pants",
-      "price": 50,
-      "quantity": 1
-    }
-  ]
+  "cart": []
 }

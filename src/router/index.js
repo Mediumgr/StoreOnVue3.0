@@ -19,6 +19,14 @@ const routes = [
       ),
   },
   {
+    path: "/products/",
+    name: "ProductPage",
+    component: () =>
+      import(
+        /* webpackChunkName: "Products"*/ "../components/ProductPage/Products.vue"
+      ),
+  },
+  {
     path: "/error/:error",
     props: true,
     name: "ErrorDisplay",

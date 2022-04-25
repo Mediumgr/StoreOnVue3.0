@@ -1775,6 +1775,7 @@ summary::-webkit-details-marker {
     }
 
     .category__link {
+        cursor: pointer;
         flex-direction: column;
         display: flex;
         font-size: $fontSize;
