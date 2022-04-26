@@ -23,7 +23,7 @@
               <h3 class="drop__h3">Women</h3>
               <ul class="drop__ul">
                 <li v-for="cloth in clothes" :key="cloth">
-                  <a href="#" class="drop__a">{{ cloth }}</a>
+                  <span class="drop__a">{{ cloth }}</span>
                 </li>
               </ul>
             </div>
@@ -31,7 +31,7 @@
               <h3 class="drop__h3">Men</h3>
               <ul class="drop__ul">
                 <li v-for="wear in outerWear" :key="wear">
-                  <a href="#" class="drop__a">{{ wear }}</a>
+                  <span class="drop__a">{{ wear }}</span>
                 </li>
               </ul>
             </div>
@@ -46,6 +46,7 @@
           <img src="@/assets/img/search.png" alt="search" />
         </button>
       </form>
+      <span class="filtered">{{ message }}</span>
     </div>
     <div class="header__right">
       <cart-order></cart-order>
@@ -86,6 +87,7 @@ export default {
         "Jackets/vests",
       ],
       userSearch: "",
+      message: "",
     };
   },
   methods: {
@@ -93,8 +95,9 @@ export default {
       this.current === 1 ? (this.current = 2) : (this.current = 1);
     },
     filter() {
-      this.$store.dispatch("filterProducts", this.userSearch);
-      window.scroll(0, 1670);
+      this.$store.dispatch("filterProducts", this.userSearch).then(() => {
+        this.message = `Found products: ${this.$store.state.filtered.length}`;
+      });
     },
   },
   watch: {

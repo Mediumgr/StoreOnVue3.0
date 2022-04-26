@@ -3,22 +3,28 @@
     <left-aside></left-aside>
     <option-products></option-products>
     <div class="block__of__product">
+      <div class="noProducts center" v-if="!filtered.length">
+        {{ error }}
+      </div>
       <product-items
         v-for="item of filtered"
         :key="item.id"
         :product="item"
       ></product-items>
-      <additional-products></additional-products>
     </div>
     <div class="viewAllBlock">
       <nav class="listed__pages">
-        <a href="#"><i class="fas fa-angle-left left__pink__arrow"></i></a>
-        <a href="#" class="numberOfPages">1</a>
-        <a href="#" class="numberOfPages">2</a>
-        <a href="#" class="numberOfPages">3</a>
-        <a href="#"><i class="fas fa-angle-right right__pink__arrow"></i></a>
+        <span><i class="fas fa-angle-left left__pink__arrow"></i></span>
+        <span class="numberOfPages" v-for="n in 3" :key="n">{{ n }}</span>
+        <span><i class="fas fa-angle-right right__pink__arrow"></i></span>
       </nav>
-      <button class="view__all__button">View All</button>
+      <button
+        :style="styleButton"
+        class="view__all__button"
+        @click.once="viewAllProducts"
+      >
+        View All
+      </button>
     </div>
   </div>
   <div class="InformationCenter center">
@@ -63,27 +69,42 @@
 
 <script>
 import ProductItems from "@/components/HomePage/ProductItems.vue";
-import AdditionalProducts from "@/components/ProductPage/AdditionalProducts.vue";
 import LeftAside from "@/components/ProductPage/LeftAside.vue";
 import OptionProducts from "@/components/ProductPage/OptionProducts.vue";
 import { mapState } from "vuex";
 
 export default {
   name: "ProductPage",
-  components: { ProductItems, AdditionalProducts, LeftAside, OptionProducts },
+  components: { ProductItems, LeftAside, OptionProducts },
   data() {
     return {
       counter: 0,
       cart: "Add to Cart",
+      disable: false,
+      styleButton: {
+        display: "block",
+      },
     };
   },
-  computed: {
-    ...mapState(["filtered"]),
+  methods: {
+    viewAllProducts() {
+      this.$store
+        .dispatch("getExtraProducts")
+        .then(() => {
+          this.styleButton.display = "none";
+        })
+        .catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
+    },
   },
   created() {
     this.$store.dispatch("getProducts").catch((error) => {
       this.$router.push({ name: "ErrorDisplay", params: { error: error } });
     });
+  },
+  computed: {
+    ...mapState(["filtered"]),
   },
 };
 </script>

@@ -7,10 +7,14 @@ export default createStore({
     cart: [],
     product: [],
     filtered: [],
+    extraProducts: [],
   },
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    SET_EXTRA_PRODUCTS(state, products) {
+      state.extraProducts = products;
     },
     SET_PRODUCT(state, product) {
       state.product = product;
@@ -21,6 +25,9 @@ export default createStore({
     FILTER_PRODUCTS(state, payload) {
       state.filtered = payload;
     },
+    CONCAT_ALL_PRODUCTS(state) {
+      state.products = state.products.concat(state.extraProducts);
+    },
   },
   actions: {
     getProducts({ commit }) {
@@ -28,6 +35,21 @@ export default createStore({
         .then((response) => {
           commit("SET_PRODUCTS", response.data);
           commit("FILTER_PRODUCTS", response.data);
+        })
+        .catch((error) => {
+          throw error;
+        });
+    },
+    getExtraProducts({ commit, state }) {
+      return EventService.getExtraProducts()
+        .then((response) => {
+          commit("SET_EXTRA_PRODUCTS", response.data);
+        })
+        .then(() => {
+          commit("CONCAT_ALL_PRODUCTS");
+        })
+        .then(() => {
+          commit("FILTER_PRODUCTS", state.products);
         })
         .catch((error) => {
           throw error;
@@ -99,6 +121,9 @@ export default createStore({
       state.cart.reduce((accum, item) => accum + item.quantity, 0),
     totalPrice: (state) =>
       state.cart.reduce((accum, item) => accum + item.price * item.quantity, 0),
+    /*     mainProducts: (state) => state.products.slice(0, 8), */
+    /*     productsList: (state) => state.products.slice(0, 9),
+    extraProducts: (state) => state.products.slice(9, state.products.length), */
   },
   modules: {},
 });

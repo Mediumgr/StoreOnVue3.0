@@ -19,7 +19,7 @@ const routes = [
       ),
   },
   {
-    path: "/products/",
+    path: "/products",
     name: "ProductPage",
     component: () =>
       import(

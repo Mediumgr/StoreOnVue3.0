@@ -27,7 +27,13 @@ a {
     justify-content: space-between;
     align-items: center;
 
-    .header__left,
+    .header__left {
+        display: flex;
+        align-items: center;
+        z-index: 1;
+        position: relative;
+    }
+
     .header__right {
         display: flex;
         align-items: center;
@@ -586,6 +592,10 @@ a {
             display: flex;
         }
     }
+}
+
+.product-item:not(:nth-child(3n)) {
+    margin-right: 28px;
 }
 
 .fa,
@@ -1825,7 +1835,8 @@ summary::-webkit-details-marker {
     font-weight: 900;
 }
 
-.caret-down, .caret-up {
+.caret-down,
+.caret-up {
     font-weight: 900;
 }
 
@@ -2041,17 +2052,17 @@ input:checked + .your__size:before {
 .block__of__product {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: start;
     margin-top: 48px;
     margin-left: 294px;
 
-        .fa-xs {
-            padding-left: 7px;
-        }   
+    .fa-xs {
+        padding-left: 7px;
+    }
 
-        &:nth-last-child(-n + 3) {
-            margin-bottom: 0;
-        }
+    &:nth-last-child(-n + 3) {
+        margin-bottom: 0;
+    }
 }
 
 .viewAllBlock {
@@ -2075,6 +2086,7 @@ input:checked + .your__size:before {
 
     .numberOfPages {
         color: #c4c4c4;
+        cursor: pointer;
 
         &:hover {
             color: $colorPink;
@@ -2086,7 +2098,17 @@ input:checked + .your__size:before {
 .left__pink__arrow {
     color: #ef5b70;
     font-size: 15px;
-    font-weight: 900
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.filtered {
+    color: red;
+    font-size: medium;
+    font-weight: 500;
+    position: absolute;
+    top: 48px;
+    left: 310px;
 }
 
 .view__all__button {

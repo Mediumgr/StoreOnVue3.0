@@ -289,13 +289,259 @@
       }
     }
   ],
-  "cart": [
+  "extraProducts": [
     {
-      "img": "pans.png",
-      "id": 7,
-      "name": "Pants",
-      "price": 50,
-      "quantity": 1
+      "img": "1.png",
+      "id": 9,
+      "name": "Poloneck",
+      "price": 35,
+      "variants": [
+        "1.png",
+        "Poloneck.jpg",
+        "Poloneck2.jpg"
+      ],
+      "description": [
+        "Poloneck",
+        "Model: 5B641011M/47885N/1000N",
+        "Compound: 80% cotton, 20% polyester, spandex",
+        "Line: Basic",
+        "Color: black",
+        "Black padded oversized hoodie with lining. The model has four deep pockets with waterproof zippers and a voluminous hood with drawstrings."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: XS, M, L</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "2.png",
+      "id": 10,
+      "name": "Coat",
+      "price": 55,
+      "variants": [
+        "2.png",
+        "mango.jpg",
+        "TAGLIATORE.jpg"
+      ],
+      "description": [
+        "Coat",
+        "Model: 548855",
+        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Line: Outlet",
+        "Color: Brown",
+        "Coat with notched collar, button closure, front pockets, back slit"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "4.png",
+      "id": 11,
+      "name": "Coat",
+      "price": 55,
+      "variants": [
+        "2.png",
+        "mango.jpg",
+        "TAGLIATORE.jpg"
+      ],
+      "description": [
+        "Coat",
+        "Model: 548855",
+        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Line: Outlet",
+        "Color: Brown",
+        "Coat with notched collar, button closure, front pockets, back slit"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "5.png",
+      "id": 12,
+      "name": "Coat",
+      "price": 55,
+      "variants": [
+        "2.png",
+        "mango.jpg",
+        "TAGLIATORE.jpg"
+      ],
+      "description": [
+        "Coat",
+        "Model: 548855",
+        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Line: Outlet",
+        "Color: Brown",
+        "Coat with notched collar, button closure, front pockets, back slit"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "6.png",
+      "id": 13,
+      "name": "Coat",
+      "price": 55,
+      "variants": [
+        "2.png",
+        "mango.jpg",
+        "TAGLIATORE.jpg"
+      ],
+      "description": [
+        "Coat",
+        "Model: 548855",
+        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Line: Outlet",
+        "Color: Brown",
+        "Coat with notched collar, button closure, front pockets, back slit"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "7.png",
+      "id": 14,
+      "name": "Coat",
+      "price": 55,
+      "variants": [
+        "2.png",
+        "mango.jpg",
+        "TAGLIATORE.jpg"
+      ],
+      "description": [
+        "Coat",
+        "Model: 548855",
+        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Line: Outlet",
+        "Color: Brown",
+        "Coat with notched collar, button closure, front pockets, back slit"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "8.png",
+      "id": 15,
+      "name": "Coat",
+      "price": 55,
+      "variants": [
+        "2.png",
+        "mango.jpg",
+        "TAGLIATORE.jpg"
+      ],
+      "description": [
+        "Coat",
+        "Model: 548855",
+        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Line: Outlet",
+        "Color: Brown",
+        "Coat with notched collar, button closure, front pockets, back slit"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: S, M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     }
-  ]
+  ],
+  "cart": []
 }

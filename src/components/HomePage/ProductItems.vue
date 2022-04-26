@@ -8,8 +8,8 @@
     /></span>
     <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }">
       <span class="description"
-        >Description <i class="fa-solid fa-circle-arrow-right fa-xs arrow"></i
-      ></span>
+        >Description <i class="fa-solid fa-circle-arrow-right fa-xs arrow"></i>
+      </span>
     </router-link>
     <div class="bottom">
       <span class="text__mango">{{ product.name }}</span>
