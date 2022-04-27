@@ -47,15 +47,20 @@
         <component :product="product" :is="currentComponent"></component>
       </div>
     </div>
+    <button class="putToCart" @click="addProductToCart(product)">
+      <img :src="require('@/assets/img/w_b.png')" alt="buy" />
+    </button>
+    <span class="cartAdded" v-if="cartProductsAmount !== 0">{{ message }}</span>
   </div>
 </template>
 
 <script>
 import ProductDescription from "@/views/Product/ProductDescription.vue";
 import ProductDelivery from "@/views/Product/ProductDelivery.vue";
+import { mapGetters, mapState } from "vuex";
 
 export default {
-  //mixins changeRating()
+  //mixins changeRating() / addProductToCart  with ProductItems component
   name: "ProductDetails",
   props: {
     id: {
@@ -71,24 +76,50 @@ export default {
     return {
       currentTab: "Description",
       tabs: ["Description", "Delivery"],
+      message: "",
     };
   },
   methods: {
     changeImage(variant) {
       this.$store.state.product.img = variant; //Изменяю state - не очень...через created .then(() => не получается)
     },
+    changeRating(n) {
+      for (let i = 0; i < n; i++) {
+        this.$refs.star[i].classList.value = "fas fa-star fa-sm star";
+      }
+      if (n <= this.$refs.star.length) {
+        for (let i = n; i < this.$refs.star.length; i++) {
+          this.$refs.star[i].classList.value = "fas fa-star fa-sm";
+        }
+      }
+    },
+    addProductToCart(product) {
+      this.$store
+        .dispatch("postToCart", {
+          img: product.img,
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        })
+        .then(() => {
+          this.message = `Added ${this.cartProductsAmount} pcs`;
+        })
+        .catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
+    },
   },
   computed: {
+    ...mapState(["product"]),
+    ...mapGetters(["cartProductsAmount"]),
     currentComponent() {
       return "product-" + this.currentTab.toLowerCase();
-    },
-    product() {
-      return this.$store.state.product;
     },
   },
   created() {
     this.$store
-      .dispatch("getProduct", this.id)
+      .dispatch("getProduct", +this.id)
       .then(() => {
         window.scroll(0, 0);
       })

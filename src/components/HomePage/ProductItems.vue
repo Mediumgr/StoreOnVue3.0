@@ -28,7 +28,7 @@
       </p>
     </div>
     <p class="add__cart" @click="addProductToCart(product)">
-      <img :src="require('@/assets/img/w_b.png')" alt="buy" />{{ cart }}
+      <img :src="require('@/assets/img/w_b.png')" alt="buy" />{{ message }}
     </p>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       counter: 0,
-      cart: "Add to Cart",
+      message: "Add to Cart",
     };
   },
   methods: {
@@ -60,7 +60,6 @@ export default {
       }
     },
     addProductToCart(product) {
-      this.cart = `Added ${++this.counter} pcs`;
       this.$store
         .dispatch("postToCart", {
           img: product.img,
@@ -68,6 +67,9 @@ export default {
           name: product.name,
           price: product.price,
           quantity: 1,
+        })
+        .then(() => {
+          this.message = `Added ${++this.counter} pcs`;
         })
         .catch((error) => {
           this.$router.push({ name: "ErrorDisplay", params: { error: error } });

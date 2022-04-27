@@ -21,6 +21,9 @@ export default {
   getProduct(id) {
     return apiClient.get(`/products/${id}`);
   },
+  getExtraProduct(id) {
+    return apiClient.get(`/extraProducts/${id}`);
+  },
   cartFetch() {
     return apiClient.get("/cart");
   },

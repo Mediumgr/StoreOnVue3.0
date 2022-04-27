@@ -4,6 +4,7 @@ import EventService from "@/services/EventService.js";
 export default createStore({
   state: {
     products: [],
+    length: null,
     cart: [],
     product: [],
     filtered: [],
@@ -12,6 +13,9 @@ export default createStore({
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    LENGTH_OF_PRODUCTS_DATABASE(state, payload) {
+      state.length = payload;
     },
     SET_EXTRA_PRODUCTS(state, products) {
       state.extraProducts = products;
@@ -35,6 +39,7 @@ export default createStore({
         .then((response) => {
           commit("SET_PRODUCTS", response.data);
           commit("FILTER_PRODUCTS", response.data);
+          commit("LENGTH_OF_PRODUCTS_DATABASE", response.data.length);
         })
         .catch((error) => {
           throw error;
@@ -55,8 +60,19 @@ export default createStore({
           throw error;
         });
     },
-    getProduct({ commit }, id) {
-      return EventService.getProduct(id)
+    getProduct({ commit, dispatch, state }, id) {
+      if (id < state.length) {
+        return EventService.getProduct(id)
+          .then((response) => {
+            commit("SET_PRODUCT", response.data);
+          })
+          .catch((error) => {
+            throw error;
+          });
+      } else dispatch("getExtraProduct", id);
+    },
+    getExtraProduct({ commit }, id) {
+      return EventService.getExtraProduct(id)
         .then((response) => {
           commit("SET_PRODUCT", response.data);
         })
@@ -121,9 +137,6 @@ export default createStore({
       state.cart.reduce((accum, item) => accum + item.quantity, 0),
     totalPrice: (state) =>
       state.cart.reduce((accum, item) => accum + item.price * item.quantity, 0),
-    /*     mainProducts: (state) => state.products.slice(0, 8), */
-    /*     productsList: (state) => state.products.slice(0, 9),
-    extraProducts: (state) => state.products.slice(9, state.products.length), */
   },
   modules: {},
 });

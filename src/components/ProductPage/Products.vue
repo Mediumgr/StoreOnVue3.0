@@ -3,7 +3,7 @@
     <left-aside></left-aside>
     <option-products></option-products>
     <div class="block__of__product">
-      <div class="noProducts center" v-if="!filtered.length">
+      <div class="noConcatProducts center" v-if="!filtered.length">
         {{ error }}
       </div>
       <product-items
@@ -81,6 +81,8 @@ export default {
       counter: 0,
       cart: "Add to Cart",
       disable: false,
+      error:
+        "The products you are looking for were not found. Enter the name of the product.",
       styleButton: {
         display: "block",
       },

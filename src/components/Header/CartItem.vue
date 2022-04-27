@@ -8,7 +8,7 @@
       />
     </div>
     <div class="flex__name__product">
-      <a href="#" class="rebox__text">{{ cartItem.name }}</a>
+      <span class="rebox__text">{{ cartItem.name }}</span>
       <div>
         <i v-for="n in 5" :key="n" class="fas fa-star fa-sm stars"></i>
       </div>
