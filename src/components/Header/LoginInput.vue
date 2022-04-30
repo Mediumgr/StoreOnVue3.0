@@ -8,7 +8,7 @@
       v-bind="$attrs"
       @keyup.enter="submit"
     />
-    <button class="button" @click="submit">login</button>
+    <button class="button" @click.stop="submit">login</button>
   </div>
   <div v-if="flashMessage" class="flash">{{ flashMessage }}</div>
 </template>

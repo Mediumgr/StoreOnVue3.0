@@ -25,6 +25,7 @@
 import BrandPromo from "@/components/HomePage/BrandPromo.vue";
 import ProductItems from "@/components/HomePage/ProductItems.vue";
 import OfferDiscount from "@/components/HomePage/OfferDiscount.vue";
+import NProgress from "nprogress";
 import { mapState } from "vuex";
 
 export default {
@@ -41,9 +42,15 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("getProducts").catch((error) => {
-      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-    });
+    NProgress.start();
+    this.$store
+      .dispatch("getProducts")
+      .catch((error) => {
+        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+      })
+      .finally(() => {
+        NProgress.done();
+      });
   },
   computed: {
     ...mapState(["filtered"]),

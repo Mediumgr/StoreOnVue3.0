@@ -1,5 +1,5 @@
 <template>
-  <div class="product-detail">
+  <div class="product-detail" v-if="product">
     <div class="flex">
       <div class="goodContainer">
         <img
@@ -58,6 +58,7 @@
 <script>
 import ProductDescription from "@/views/Product/ProductDescription.vue";
 import ProductDelivery from "@/views/Product/ProductDelivery.vue";
+import NProgress from "nprogress";
 import { mapGetters, mapState } from "vuex";
 
 export default {
@@ -120,9 +121,15 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("getProduct", +this.id).then(() => {
-      window.scroll(0, 0);
-    });
+    NProgress.start();
+    this.$store
+      .dispatch("getProduct", +this.id)
+      .then(() => {
+        window.scroll(0, 0);
+      })
+      .finally(() => {
+        NProgress.done();
+      });
   },
 };
 </script>

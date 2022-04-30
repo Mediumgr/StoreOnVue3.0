@@ -66,6 +66,7 @@
 import ProductItems from "@/components/HomePage/ProductItems.vue";
 import LeftAside from "@/components/ProductPage/LeftAside.vue";
 import OptionProducts from "@/components/ProductPage/OptionProducts.vue";
+import NProgress from "nprogress";
 import { mapState } from "vuex";
 
 export default {
@@ -98,10 +99,18 @@ export default {
     },
   },
   created() {
-    window.scroll(0, 0);
-    this.$store.dispatch("getProducts").catch((error) => {
-      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-    });
+    NProgress.start();
+    this.$store
+      .dispatch("getProducts")
+      .then(() => {
+        window.scroll(0, 0);
+      })
+      .catch((error) => {
+        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+      })
+      .finally(() => {
+        NProgress.done();
+      });
   },
   computed: {
     ...mapState(["filtered"]),

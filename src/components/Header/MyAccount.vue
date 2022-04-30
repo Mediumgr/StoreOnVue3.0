@@ -3,12 +3,12 @@
     <div class="account">
       <button
         class="clickOnAccount"
-        @click="clickOnAccount"
+        @click.stop="clickOnAccount"
         v-if="currentRow === 'down'"
       >
         My Account <i class="fas fa-caret-down caret-down" />
       </button>
-      <button class="clickOnAccount" @click="clickOnAccount" v-else>
+      <button class="clickOnAccount" @click.stop="clickOnAccount" v-else>
         My Account <i class="fas fa-caret-up caret-up" />
       </button>
     </div>
