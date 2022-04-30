@@ -628,10 +628,6 @@ a {
     }
 }
 
-.product-item:not(:nth-child(3n)) {
-    margin-right: 28px;
-}
-
 .fa,
 .fas {
     cursor: pointer;
@@ -667,6 +663,7 @@ a {
     .star {
         color: #f16d7f;
         font-weight: 800;
+        cursor: pointer;
     }
 }
 
@@ -2086,46 +2083,20 @@ input:checked + .your__size:before {
 .block__of__product {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: space-between;
     margin-top: 48px;
     margin-left: 294px;
 
     .fa-xs {
         padding-left: 7px;
     }
-
-    &:nth-last-child(-n + 3) {
-        margin-bottom: 0;
-    }
 }
 
 .viewAllBlock {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 43px 0 0 294px;
-}
-
-.listed__pages {
-    width: 261px;
-    height: 44px;
-    border-radius: 3px;
-    border: 1px solid #ebebeb;
-    background-color: #ffffff;
-    padding: 10px 19px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    box-sizing: border-box;
-
-    .numberOfPages {
-        color: #c4c4c4;
-        cursor: pointer;
-
-        &:hover {
-            color: $colorPink;
-        }
-    }
 }
 
 .right__pink__arrow,

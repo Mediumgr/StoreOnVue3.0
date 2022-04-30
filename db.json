@@ -287,14 +287,50 @@
         "title": "Payment",
         "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
       }
+    },
+    {
+      "img": "9.jpg",
+      "id": 9,
+      "name": "Jumper",
+      "price": 35,
+      "variants": [
+        "9.jpg",
+        "9-2.jpg",
+        "9.1.jpg"
+      ],
+      "description": [
+        "Jumper",
+        "Model: YN121",
+        "Compound: ACRYLIC 100%",
+        "Line: Base",
+        "Color: New Year's style",
+        "Jumper. Jacquard jersey. Round neckline. Long sleeves. "
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: XXS, S, M, XL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
     }
   ],
   "extraProducts": [
     {
       "img": "1.png",
-      "id": 9,
+      "id": 10,
       "name": "Poloneck",
-      "price": 35,
+      "price": 75,
       "variants": [
         "1.png",
         "poloneck.jpg",
@@ -317,7 +353,7 @@
         {
           "id": 2,
           "title": "Sizes",
-          "content": "<p>Available sizes: XS, M, L</p>"
+          "content": "<p>Available sizes: XS, S,  M, L</p>"
         }
       ],
       "selectedPost": {
@@ -328,9 +364,9 @@
     },
     {
       "img": "2.png",
-      "id": 10,
+      "id": 11,
       "name": "Coat",
-      "price": 55,
+      "price": 65,
       "variants": [
         "2.png",
         "mango.jpg",
@@ -353,7 +389,7 @@
         {
           "id": 2,
           "title": "Sizes",
-          "content": "<p>Available sizes: S, M, L, XXL</p>"
+          "content": "<p>Available sizes: XXS, L, XL, XXL</p>"
         }
       ],
       "selectedPost": {
@@ -364,21 +400,21 @@
     },
     {
       "img": "4.png",
-      "id": 11,
-      "name": "Coat",
-      "price": 55,
+      "id": 12,
+      "name": "Floral T-shirt",
+      "price": 25,
       "variants": [
-        "2.png",
-        "mango.jpg",
-        "TAGLIATORE.jpg"
+        "4.png",
+        "4.1.jpg",
+        "4.2.jpg"
       ],
       "description": [
-        "Coat",
+        "Floral T-shirt",
         "Model: 548855",
-        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Compound: 48% COTTON, 48% VISCOSE, 4% ELASTANE",
         "Line: Outlet",
-        "Color: Brown",
-        "Coat with notched collar, button closure, front pockets, back slit"
+        "Color: Floral white",
+        "Nice t-shirt for men"
       ],
       "posts": [
         {
@@ -399,22 +435,22 @@
       }
     },
     {
-      "img": "5.png",
-      "id": 12,
-      "name": "Coat",
-      "price": 55,
+      "img": "13.jpg",
+      "id": 13,
+      "name": "Jeans",
+      "price": 85,
       "variants": [
-        "2.png",
-        "mango.jpg",
-        "TAGLIATORE.jpg"
+        "13.jpg",
+        "13.1.jpg",
+        "13.2.jpg"
       ],
       "description": [
-        "Coat",
-        "Model: 548855",
-        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Skinny jeans",
+        "Model: US30",
+        "Compound: 99% COTTON, 1% ELASTANE",
         "Line: Outlet",
-        "Color: Brown",
-        "Coat with notched collar, button closure, front pockets, back slit"
+        "Color: Blue",
+        "Skinny fit jeans skinny fit Eco-conception, very high rise. Support Effect."
       ],
       "posts": [
         {
@@ -425,7 +461,7 @@
         {
           "id": 2,
           "title": "Sizes",
-          "content": "<p>Available sizes: S, M, L, XXL</p>"
+          "content": "<p>Available sizes: XXS, S, M</p>"
         }
       ],
       "selectedPost": {
@@ -436,57 +472,21 @@
     },
     {
       "img": "6.png",
-      "id": 13,
-      "name": "Coat",
-      "price": 55,
-      "variants": [
-        "2.png",
-        "mango.jpg",
-        "TAGLIATORE.jpg"
-      ],
-      "description": [
-        "Coat",
-        "Model: 548855",
-        "Compound: Wool, Acrylic, Cotton, Polyester",
-        "Line: Outlet",
-        "Color: Brown",
-        "Coat with notched collar, button closure, front pockets, back slit"
-      ],
-      "posts": [
-        {
-          "id": 1,
-          "title": "Payment",
-          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-        },
-        {
-          "id": 2,
-          "title": "Sizes",
-          "content": "<p>Available sizes: S, M, L, XXL</p>"
-        }
-      ],
-      "selectedPost": {
-        "id": 1,
-        "title": "Payment",
-        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
-      }
-    },
-    {
-      "img": "7.png",
       "id": 14,
-      "name": "Coat",
-      "price": 55,
+      "name": "Jacket",
+      "price": 75,
       "variants": [
-        "2.png",
-        "mango.jpg",
-        "TAGLIATORE.jpg"
+        "6.png",
+        "14.jpeg",
+        "14.1.jpeg"
       ],
       "description": [
-        "Coat",
-        "Model: 548855",
-        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Men's jacket",
+        "Model: UTPF1756",
+        "Compound: Cotton",
         "Line: Outlet",
-        "Color: Brown",
-        "Coat with notched collar, button closure, front pockets, back slit"
+        "Color: Black",
+        "Contrasting piping on collar and sleeves. Pockets. Markings on one sleeve"
       ],
       "posts": [
         {
@@ -507,22 +507,22 @@
       }
     },
     {
-      "img": "8.png",
+      "img": "15.jpg",
       "id": 15,
-      "name": "Coat",
-      "price": 55,
+      "name": "Pajamas",
+      "price": 45,
       "variants": [
-        "2.png",
-        "mango.jpg",
-        "TAGLIATORE.jpg"
+        "15.jpg",
+        "15.1.jpg",
+        "15.2.jpg"
       ],
       "description": [
-        "Coat",
-        "Model: 548855",
-        "Compound: Wool, Acrylic, Cotton, Polyester",
+        "Women's Pajamas",
+        "Model: YP695 ",
+        "Compound: Cotton 100%",
         "Line: Outlet",
-        "Color: Brown",
-        "Coat with notched collar, button closure, front pockets, back slit"
+        "Color: Pink",
+        "Funny Pajamas Valentine's Day with crew neck and short sleeves"
       ],
       "posts": [
         {
@@ -533,7 +533,115 @@
         {
           "id": 2,
           "title": "Sizes",
-          "content": "<p>Available sizes: S, M, L, XXL</p>"
+          "content": "<p>Available sizes: XXS, S, M</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "16.jpg",
+      "id": 16,
+      "name": "Dress",
+      "price": 15,
+      "variants": [
+        "16.jpg",
+        "16.1.jpg",
+        "16.2.jpg"
+      ],
+      "description": [
+        "Dress",
+        "Model: YA855 ",
+        "Compound: Cotton 100%",
+        "Line: Outlet",
+        "Color: Blue",
+        "Beautiful maternity dress made from organically grown cotton."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: M, L, XXL</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "17.jpg",
+      "id": 17,
+      "name": "Leggings",
+      "price": 85,
+      "variants": [
+        "17.jpg",
+        "17.1.jpg",
+        "17.2.jpg"
+      ],
+      "description": [
+        "Ribbed knit leggings",
+        "Model: RKDM25",
+        "Compound: 97% COTTON, 3% ELASTANE",
+        "Line: Outlet",
+        "Color: Brown",
+        "High rise leggings for comfort and optimal support!"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: XS, S, M, L</p>"
+        }
+      ],
+      "selectedPost": {
+        "id": 1,
+        "title": "Payment",
+        "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+      }
+    },
+    {
+      "img": "18.jpg",
+      "id": 18,
+      "name": "Pants",
+      "price": 55,
+      "variants": [
+        "18.jpg",
+        "18.1.jpg",
+        "18.2.jpg"
+      ],
+      "description": [
+        "Sports pants",
+        "Model: 548855",
+        "Compound: 69% COTTON, 31% POLYESTER",
+        "Line: Outlet",
+        "Color: Brown",
+        "Comfortable and stylish fleece sweatpants with elasticated drawstring waistband"
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes",
+          "content": "<p>Available sizes: M, L, XXL</p>"
         }
       ],
       "selectedPost": {

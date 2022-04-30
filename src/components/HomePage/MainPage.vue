@@ -10,12 +10,14 @@
       :product="item"
     ></product-items>
   </div>
-  <form class="click">
-    <button class="button__browse">
-      <span class="browse__product">Browse All Product</span
-      ><i class="fa-solid fa-arrow-right-long" style="margin-left: 8px"></i>
-    </button>
-  </form>
+  <router-link :to="{ name: 'ProductPage' }">
+    <div class="click">
+      <button class="button__browse">
+        <span class="browse__product">Browse All Product</span
+        ><i class="fa-solid fa-arrow-right-long" style="margin-left: 8px"></i>
+      </button>
+    </div>
+  </router-link>
   <offer-discount></offer-discount>
 </template>
 

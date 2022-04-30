@@ -1,7 +1,6 @@
 <template>
   <div class="errorBlock">
-    <h4>Oops!</h4>
-    <p>{{ error }}</p>
+    <h4>Oops! No such {{ resource }}</h4>
     <router-link :to="{ name: 'MainPage' }" class="back"
       >Back to the home page</router-link
     >
@@ -11,14 +10,11 @@
 <script>
 export default {
   props: {
-    error: {
+    resource: {
       type: String,
       required: true,
-      default: "The page you are looking for not exist",
+      default: "page",
     },
-  },
-  created() {
-    window.scroll(0, 0);
   },
 };
 </script>

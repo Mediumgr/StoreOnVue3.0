@@ -45,6 +45,9 @@ export default {
       posts: [],
     };
   },
+  created() {
+    this.$router.push({ name: "ProductDetails" });
+  },
   mounted() {
     this.currentPost = this.product.selectedPost;
     this.posts = this.product.posts;

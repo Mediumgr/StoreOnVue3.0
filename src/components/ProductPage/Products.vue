@@ -13,11 +13,6 @@
       ></product-items>
     </div>
     <div class="viewAllBlock">
-      <nav class="listed__pages">
-        <span><i class="fas fa-angle-left left__pink__arrow"></i></span>
-        <span class="numberOfPages" v-for="n in 3" :key="n">{{ n }}</span>
-        <span><i class="fas fa-angle-right right__pink__arrow"></i></span>
-      </nav>
       <button
         :style="styleButton"
         class="view__all__button"
@@ -79,6 +74,8 @@ export default {
   data() {
     return {
       counter: 0,
+      currentPage: 1,
+      displayedItems: 9,
       cart: "Add to Cart",
       disable: false,
       error:
@@ -101,6 +98,7 @@ export default {
     },
   },
   created() {
+    window.scroll(0, 0);
     this.$store.dispatch("getProducts").catch((error) => {
       this.$router.push({ name: "ErrorDisplay", params: { error: error } });
     });
@@ -110,3 +108,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.active {
+  background: rgb(230, 2, 199);
+}
+</style>

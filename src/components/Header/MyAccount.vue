@@ -52,6 +52,7 @@ export default {
 <style lang="scss">
 .loginInput {
   padding: 0 10px;
+  height: 20px;
   margin: 10px;
   border: 1px solid #f16d7f;
 }
@@ -60,6 +61,7 @@ export default {
 }
 .absolutLogin {
   position: absolute;
-  left: -8px;
+  margin-top: 2px;
+  background: #fcbbc4;
 }
 </style>

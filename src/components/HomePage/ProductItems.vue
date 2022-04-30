@@ -34,6 +34,7 @@
 </template>
 
 <script>
+//mixins changeRating()  with ProductDetails component
 export default {
   name: "ProductItems",
   props: {

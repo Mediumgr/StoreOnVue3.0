@@ -10,7 +10,7 @@
     <div class="flex__name__product">
       <span class="rebox__text">{{ cartItem.name }}</span>
       <div>
-        <i v-for="n in 5" :key="n" class="fas fa-star fa-sm stars"></i>
+        <i v-for="n in 5" :key="n" class="fas fa-star fa-sm star"></i>
       </div>
       <div class="price__for__order">
         {{ cartItem.quantity }} {{ cartItem.name }}:

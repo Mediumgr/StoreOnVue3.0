@@ -14,7 +14,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    this.$router.push({ name: "ProductDelivery" });
+  },
+};
 </script>
 
 <style lang="scss" scoped>

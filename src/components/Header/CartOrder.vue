@@ -80,7 +80,10 @@ export default {
   },
   created() {
     this.$store.dispatch("cartFetch").catch((error) => {
-      this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+      this.$router.push({
+        name: "ErrorDisplay",
+        params: { error: error },
+      });
     });
   },
 };

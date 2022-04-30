@@ -6,7 +6,8 @@ const routes = [
     name: "MainPage",
     component: () =>
       import(
-        /* webpackChunkName: "MainPage"*/ "../components/HomePage/MainPage"
+        /* webpackChunkName: "MainPage"*/
+        "../components/HomePage/MainPage"
       ),
   },
   {
@@ -15,15 +16,28 @@ const routes = [
     name: "ProductDetails",
     component: () =>
       import(
-        /* webpackChunkName: "ProductDetails"*/ "../views/Product/ProductDetails"
+        /* webpackChunkName: "ProductDetails"*/
+        "../views/Product/ProductDetails"
       ),
+    children: [
+      {
+        path: "delivery",
+        name: "ProductDelivery",
+        component: () =>
+          import(
+            /* webpackChunkName: "ProductDetails"*/
+            "../views/Product/ProductDelivery"
+          ),
+      },
+    ],
   },
   {
     path: "/products",
     name: "ProductPage",
     component: () =>
       import(
-        /* webpackChunkName: "Products"*/ "../components/ProductPage/Products.vue"
+        /* webpackChunkName: "Products"*/
+        "../components/ProductPage/Products.vue"
       ),
   },
   {
@@ -32,8 +46,18 @@ const routes = [
     name: "ErrorDisplay",
     component: () =>
       import(
-        /* webpackChunkName: "ErrorDisplay"*/
+        /* webpackChunkName: "ErrorDisplay" */
         "../views/Product/ErrorDisplay"
+      ),
+  },
+  {
+    path: "/404/:resource",
+    props: true,
+    name: "NotFound",
+    component: () =>
+      import(
+        /* webpackChunkName: "NotFound"*/
+        "../views/Product/NotFound"
       ),
   },
 ];

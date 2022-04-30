@@ -1,10 +1,10 @@
 import { createStore } from "vuex";
 import EventService from "@/services/EventService.js";
+import router from "@/router";
 
 export default createStore({
   state: {
     products: [],
-    length: null,
     cart: [],
     product: [],
     filtered: [],
@@ -13,9 +13,6 @@ export default createStore({
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
-    },
-    LENGTH_OF_PRODUCTS_DATABASE(state, payload) {
-      state.length = payload;
     },
     SET_EXTRA_PRODUCTS(state, products) {
       state.extraProducts = products;
@@ -39,7 +36,6 @@ export default createStore({
         .then((response) => {
           commit("SET_PRODUCTS", response.data);
           commit("FILTER_PRODUCTS", response.data);
-          commit("LENGTH_OF_PRODUCTS_DATABASE", response.data.length);
         })
         .catch((error) => {
           throw error;
@@ -60,14 +56,20 @@ export default createStore({
           throw error;
         });
     },
-    getProduct({ commit, dispatch, state }, id) {
-      if (id < state.length) {
+    getProduct({ commit, dispatch }, id) {
+      //id товара (от 1 до 9) меньше или ровно 9 (кол-ву товаров в products db.json)
+      if (id <= 9) {
         return EventService.getProduct(id)
           .then((response) => {
             commit("SET_PRODUCT", response.data);
           })
-          .catch((error) => {
-            throw error;
+          .catch(() => {
+            router.push({
+              name: "NotFound",
+              params: {
+                resource: "product",
+              },
+            });
           });
       } else dispatch("getExtraProduct", id);
     },
@@ -76,8 +78,13 @@ export default createStore({
         .then((response) => {
           commit("SET_PRODUCT", response.data);
         })
-        .catch((error) => {
-          throw error;
+        .catch(() => {
+          router.push({
+            name: "NotFound",
+            params: {
+              resource: "product",
+            },
+          });
         });
     },
     cartFetch({ state }) {

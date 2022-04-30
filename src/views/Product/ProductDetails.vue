@@ -7,7 +7,7 @@
           :key="variant"
           :src="require(`@/assets/img/${variant}`)"
           alt="photo"
-          class="blueJacket"
+          class="styleImageVariant"
           @mouseover="changeImage(variant)"
         />
       </div>
@@ -24,6 +24,7 @@
           <p class="price">
             <span> &#36;{{ product.price }}</span>
             <span>
+              <i class="fas fa-thumbs-up fa-xs"></i>
               <i
                 ref="star"
                 @click="changeRating(n)"
@@ -60,7 +61,7 @@ import ProductDelivery from "@/views/Product/ProductDelivery.vue";
 import { mapGetters, mapState } from "vuex";
 
 export default {
-  //mixins changeRating() / addProductToCart  with ProductItems component
+  //mixins changeRating()  with ProductItems component
   name: "ProductDetails",
   props: {
     id: {
@@ -84,6 +85,7 @@ export default {
       this.$store.state.product.img = variant; //Изменяю state - не очень...через created .then(() => не получается)
     },
     changeRating(n) {
+      debugger;
       for (let i = 0; i < n; i++) {
         this.$refs.star[i].classList.value = "fas fa-star fa-sm star";
       }
@@ -96,7 +98,7 @@ export default {
     addProductToCart(product) {
       this.$store
         .dispatch("postToCart", {
-          img: product.img,
+          img: product.variants[0],
           id: product.id,
           name: product.name,
           price: product.price,
@@ -118,14 +120,9 @@ export default {
     },
   },
   created() {
-    this.$store
-      .dispatch("getProduct", +this.id)
-      .then(() => {
-        window.scroll(0, 0);
-      })
-      .catch((error) => {
-        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-      });
+    this.$store.dispatch("getProduct", +this.id).then(() => {
+      window.scroll(0, 0);
+    });
   },
 };
 </script>
@@ -137,14 +134,14 @@ export default {
   padding-right: 15px;
 }
 
-.blueJacket {
+.styleImageVariant {
   width: 65px;
   height: 70px;
   margin-bottom: 15px;
   cursor: pointer;
 }
 
-.blueJacket:hover {
+.styleImageVariant:hover {
   outline: 2px solid #f16d7f;
 }
 .info {
@@ -155,14 +152,6 @@ export default {
 }
 .flex-box {
   width: 400px;
-}
-
-.price {
-  .fa,
-  .fas {
-    font-weight: 100;
-    cursor: pointer;
-  }
 }
 
 .product-img {
