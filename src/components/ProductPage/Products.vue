@@ -1,5 +1,5 @@
 <template>
-  <div class="content__product center">
+  <div class="content__product center" v-if="filtered.length">
     <left-aside></left-aside>
     <option-products></option-products>
     <div class="block__of__product">

@@ -9,6 +9,7 @@ export default createStore({
     product: [],
     filtered: [],
     extraProducts: [],
+    user: null,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -28,6 +29,9 @@ export default createStore({
     },
     CONCAT_ALL_PRODUCTS(state) {
       state.products = state.products.concat(state.extraProducts);
+    },
+    USER(state, payload) {
+      state.user = payload;
     },
   },
   actions: {
@@ -137,6 +141,9 @@ export default createStore({
         regexp.test(product.name)
       );
       commit("FILTER_PRODUCTS", filtered);
+    },
+    user({ commit }, payload) {
+      commit("USER", payload);
     },
   },
   getters: {

@@ -41,6 +41,24 @@ const routes = [
       ),
   },
   {
+    path: "/checkout",
+    name: "CheckOut",
+    component: () =>
+      import(
+        /* webpackChunkName: "CheckOut"*/
+        "../components/CheckOut/CheckOut"
+      ),
+  },
+  {
+    path: "/gotocart",
+    name: "GoToCart",
+    component: () =>
+      import(
+        /* webpackChunkName: "GoToCart"*/
+        "../components/CartComp/GoToCart"
+      ),
+  },
+  {
     path: "/error/:error",
     props: true,
     name: "ErrorDisplay",

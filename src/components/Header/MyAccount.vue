@@ -20,6 +20,7 @@
         class="loginInput"
         label="Type your name:"
         v-model.capitalize="name"
+        @changeClass="changeClass"
       ></login-input>
     </div>
   </div>
@@ -44,6 +45,9 @@ export default {
       this.currentRow === "down"
         ? (this.currentRow = "up")
         : (this.currentRow = "down");
+    },
+    changeClass() {
+      this.currentRow = "down";
     },
   },
 };

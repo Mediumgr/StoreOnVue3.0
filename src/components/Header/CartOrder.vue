@@ -31,14 +31,16 @@
           <div class="styleForTotal">Total:</div>
           <div class="dollars">{{ totalPrice }}&#36;</div>
         </div>
-        <form action="#" class="checkout__go">
-          <div class="flex__button__checkout">
+        <div class="checkout__go">
+          <div class="flex__button__checkout" @click="goToCheckout">
             <input type="submit" value="CHECKOUT" class="styleForCheckout" />
           </div>
-          <form action="###" class="flex__button__card">
-            <input type="submit" value="GO TO CART" class="styleForCard" />
-          </form>
-        </form>
+          <router-link :to="{ name: 'GoToCart' }">
+            <div class="flex__button__card">
+              <input type="submit" value="GO TO CART" class="styleForCard" />
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -70,6 +72,9 @@ export default {
           this.$router.push({ name: "ErrorDisplay", params: { error: error } });
         });
       }
+    },
+    goToCheckout() {
+      this.$router.push({ name: "CheckOut" });
     },
   },
   computed: {
@@ -105,5 +110,8 @@ export default {
   font-weight: 400;
   display: flex;
   justify-content: center;
+}
+
+.goToCheckout {
 }
 </style>

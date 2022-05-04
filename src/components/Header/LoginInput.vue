@@ -10,7 +10,14 @@
     />
     <button class="button" @click.stop="submit">login</button>
   </div>
-  <div v-if="flashMessage" class="flash">{{ flashMessage }}</div>
+  <div v-if="flashMessage" class="flash">
+    {{ flashMessage
+    }}<i
+      class="fa-solid fa-arrow-right-from-bracket logout"
+      :class="none"
+      @click="logOut"
+    ></i>
+  </div>
 </template>
 
 <script>
@@ -18,7 +25,7 @@
 
 export default {
   inheritAttrs: false,
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "changeClass"],
   props: {
     label: {
       type: String,
@@ -32,11 +39,11 @@ export default {
   data() {
     return {
       flashMessage: "",
-      flash: true,
       classObject: {
         login: true,
         unLogin: false,
       },
+      none: false,
     };
   },
   methods: {
@@ -51,9 +58,20 @@ export default {
     submit() {
       this.flashMessage = `You are logged in as ${this.modelValue}`;
       localStorage.setItem("Login", JSON.stringify(`${this.modelValue}`));
+      this.$store.commit("USER", this.modelValue);
       this.classObject.unLogin = true;
       this.classObject.login = false;
       /*       await firebase.database().ref(`/users/orders`).push("Имя"); */
+    },
+    logOut() {
+      let answer = window.confirm("Do you really want to logout ?");
+      if (answer) {
+        localStorage.clear();
+        this.flashMessage = "";
+        this.$store.commit("USER", null);
+        this.none = true;
+        this.$emit("changeClass");
+      }
     },
   },
   created() {
@@ -73,7 +91,14 @@ export default {
   justify-content: space-between;
   flex-direction: column;
 }
+.logout {
+  padding-left: 5px;
+  cursor: pointer;
+}
 .unLogin {
+  display: none;
+}
+.none {
   display: none;
 }
 .label {
