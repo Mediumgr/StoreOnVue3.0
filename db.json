@@ -651,5 +651,13 @@
       }
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "img": "blondgirl.png",
+      "id": 5,
+      "name": "Blouse",
+      "price": 25,
+      "quantity": 1
+    }
+  ]
 }

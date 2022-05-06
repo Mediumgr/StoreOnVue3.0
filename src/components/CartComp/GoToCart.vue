@@ -7,12 +7,17 @@
       </h3>
     </div>
   </div>
-  <cart-products
-    v-for="product in cart"
-    :key="product"
-    :product="product"
-    @remove="remove"
-  ></cart-products>
+  <template v-for="product in cart" :key="product">
+    <cart-products
+      v-if="cart.length"
+      :product="product"
+      @remove="remove"
+    ></cart-products>
+  </template>
+  <div v-if="cart.length === 0" class="emptyProducts">
+    There is no products in your cart, you can add it
+    <router-link :to="{ name: 'ProductPage' }" class="here"> here</router-link>
+  </div>
   <form>
     <div class="choose center">
       <div>
@@ -66,7 +71,8 @@
 <script>
 import CartProducts from "@/components/CartComp/CartProducts.vue";
 import { mapState } from "vuex";
-/* import NProgress from "nprogress"; */
+import NProgress from "nprogress";
+
 export default {
   components: {
     CartProducts,
@@ -86,7 +92,26 @@ export default {
   computed: {
     ...mapState(["cart"]),
   },
+  created() {
+    NProgress.start();
+    if (this.$store.state.cart) {
+      NProgress.done();
+    }
+  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.emptyProducts {
+  display: flex;
+  justify-content: center;
+  height: 110px;
+  align-items: center;
+  color: red;
+}
+
+.here {
+  color: blue;
+  padding-left: 3px;
+}
+</style>

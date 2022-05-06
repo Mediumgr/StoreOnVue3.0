@@ -3,14 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "@/assets/styles/style.scss";
-import CartOrder from "@/components/Header/CartOrder.vue";
 import "nprogress/nprogress.css";
+
 /* import firebase from "firebase/compat/app";
 import database from "firebase/compat/database"; */
-
-const app = createApp({});
-
-app.component("cart-order", CartOrder);
 
 createApp(App).use(store).use(router).mount("#app");
 

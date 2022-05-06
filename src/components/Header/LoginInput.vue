@@ -15,17 +15,26 @@
     }}<i
       class="fa-solid fa-arrow-right-from-bracket logout"
       :class="none"
-      @click="logOut"
+      @click="open = true"
     ></i>
   </div>
+  <modal-exit-window
+    v-if="open"
+    @confirm="confirm"
+    @close="open = false"
+  ></modal-exit-window>
 </template>
 
 <script>
 /* import firebase from "firebase/compat/app"; */
+import ModalExitWindow from "@/views/ModalWindow/ModalExitWindow.vue";
 
 export default {
   inheritAttrs: false,
   emits: ["update:modelValue", "changeClass"],
+  components: {
+    ModalExitWindow,
+  },
   props: {
     label: {
       type: String,
@@ -44,6 +53,7 @@ export default {
         unLogin: false,
       },
       none: false,
+      open: false,
     };
   },
   methods: {
@@ -63,15 +73,12 @@ export default {
       this.classObject.login = false;
       /*       await firebase.database().ref(`/users/orders`).push("Имя"); */
     },
-    logOut() {
-      let answer = window.confirm("Do you really want to logout ?");
-      if (answer) {
-        localStorage.clear();
-        this.flashMessage = "";
-        this.$store.commit("USER", null);
-        this.none = true;
-        this.$emit("changeClass");
-      }
+    confirm() {
+      localStorage.clear();
+      this.flashMessage = "";
+      this.$store.commit("USER", null);
+      this.none = true;
+      this.$emit("changeClass");
     },
   },
   created() {

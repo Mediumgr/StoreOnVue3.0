@@ -1,48 +1,57 @@
 <template>
   <section class="center">
-    <div class="product__data__line" v-if="product">
-      <div class="img__product__for__guy">
-        <img
-          :src="require(`@/assets/img/${product.img}`)"
-          alt="photo"
-          class="image"
-        />
-      </div>
-      <div class="mango__color__size">
-        <h3 class="text__mango">{{ product.name }}</h3>
-        <div class="color__size">
-          <p class="color">Color: <span class="font">Red</span></p>
-          <p class="size">Size: <span class="font">XII</span></p>
+    <div class="product__data__line">
+      <div class="myProduct">
+        <div class="img__product__for__guy">
+          <img
+            :src="require(`@/assets/img/${product.img}`)"
+            alt="photo"
+            class="image"
+          />
+        </div>
+        <div class="mango__color__size">
+          <h3 class="text__mango">{{ product.name }}</h3>
+          <div class="color__size">
+            <p class="size">Size: <span class="font">XII</span></p>
+          </div>
         </div>
       </div>
-      <div class="cost">{{ product.price }}</div>
-      <div class="how__many">
-        <input
-          type="number"
-          min="1"
-          max="50"
-          class="digits"
-          v-model="quantity"
-        />
+      <div class="myProductDescription">
+        <div class="cost">{{ product.price }} &#36;</div>
+        <div class="how__many">
+          <input
+            type="number"
+            min="1"
+            max="50"
+            class="digits"
+            v-model="quantity"
+          />
+        </div>
+        <div class="free__word">FREE</div>
+        <div class="total">{{ price }} &#36;</div>
+        <div class="times__circle" @click="openModal">
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <Teleport to="body">
+          <modal-window
+            v-if="open"
+            @close="open = false"
+            @remove="$emit('remove', this.product)"
+          ></modal-window>
+        </Teleport>
       </div>
-      <div class="free__word">FREE</div>
-      <div class="total">{{ price }}</div>
-      <div class="times__circle" @click="remove(product)">
-        <i class="fas fa-times-circle"></i>
-      </div>
-    </div>
-    <div v-if="!product" class="emptyProducts">
-      There is no products in your cart, you can add it
-      <router-link :to="{ name: 'ProductPage' }" class="here">
-        here</router-link
-      >
     </div>
   </section>
 </template>
 
 <script>
+import ModalWindow from "@/views/ModalWindow/ModalWindow.vue";
+
 export default {
   emits: ["remove"],
+  components: {
+    ModalWindow,
+  },
   props: {
     product: {
       type: Object,
@@ -52,14 +61,12 @@ export default {
   data() {
     return {
       quantity: this.product.quantity,
+      open: false,
     };
   },
   methods: {
-    remove(product) {
-      let answer = window.confirm("Вы желаете удалить товар?");
-      if (answer) {
-        this.$emit("remove", product);
-      }
+    openModal() {
+      this.open = true;
     },
   },
   computed: {
@@ -76,16 +83,16 @@ export default {
   height: 115px;
 }
 
-.emptyProducts {
+.myProduct {
   display: flex;
-  justify-content: center;
-  height: 110px;
-  align-items: center;
-  color: red;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.here {
-  color: blue;
-  padding-left: 3px;
+.myProductDescription {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 524px;
 }
 </style>

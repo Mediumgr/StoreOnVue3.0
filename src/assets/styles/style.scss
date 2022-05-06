@@ -1246,6 +1246,7 @@ a {
 
 .product__data__line {
     display: flex;
+    justify-content: space-between;
     margin-top: 22px;
     align-items: center;
     padding-bottom: 25px;
@@ -1258,12 +1259,6 @@ a {
 
 .color__size {
     margin-top: 38px;
-}
-
-.color {
-    font-size: 13px;
-    color: rgba(87, 87, 87, 1);
-    line-height: 20px;
 }
 
 .size {
@@ -1280,15 +1275,9 @@ a {
 }
 
 .cost {
-    margin-left: 330px;
-    width: 30px;
     font-size: 13px;
     color: rgba(101, 101, 101, 1);
     line-height: 20px;
-}
-
-.how__many {
-    margin-left: 100px;
 }
 
 .digits {
@@ -1303,17 +1292,12 @@ a {
 }
 
 .free__word {
-    margin-right: 90px;
-    margin-left: 90px;
-    width: 30px;
     font-size: 13px;
     color: rgba(101, 101, 101, 1);
     line-height: 20px;
 }
 
 .total {
-    margin-right: 93px;
-    width: 30px;
     font-size: 13px;
     color: rgba(101, 101, 101, 1);
     line-height: 20px;
