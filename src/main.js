@@ -7,7 +7,6 @@ import "nprogress/nprogress.css";
 
 /* import firebase from "firebase/compat/app";
 import database from "firebase/compat/database"; */
-
 createApp(App).use(store).use(router).mount("#app");
 
 /* firebase.initializeApp({

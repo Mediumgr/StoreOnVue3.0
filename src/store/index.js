@@ -128,6 +128,13 @@ export default createStore({
           throw error;
         });
     },
+    //КАК ЕЩЕ СДЕЛАТЬ МЕТОД, ЧТОБЫ УДАЛЯЛ ВСЕ ИМЕЮЩИЕСЯ ТОВАРЫ МАГАЗИНА ИЗ КОРЗИНЫ, НО НЕ ПАДАЛ СЕРВЕР?(НА 2-3 РАЗ ПРИ ПОПЫТКЕ УДАЛИТЬ ВСЕ ТОВАРЫ ПАДАЕТ СЕРВАК):
+    clearCart({ state }) {
+      state.cart.forEach((element) => {
+        return EventService.deleteProduct(element);
+      });
+      state.cart.splice(0, state.cart.length);
+    },
     updateQuantity({ state }, payload) {
       let existingProduct = state.cart.find((item) => item.id === payload.id);
       existingProduct.quantity--;

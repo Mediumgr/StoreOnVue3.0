@@ -18,59 +18,72 @@
     There is no products in your cart, you can add it
     <router-link :to="{ name: 'ProductPage' }" class="here"> here</router-link>
   </div>
-  <form>
-    <div class="choose center">
-      <div>
-        <button class="push">CLEAR SHOPPING CART</button>
-      </div>
-      <div>
+  <div class="choose center">
+    <div>
+      <button class="push" @click="clearCart">CLEAR SHOPPING CART</button>
+    </div>
+    <div>
+      <router-link :to="{ name: 'ProductPage' }">
         <button class="push">CONTINUE SHOPPING</button>
+      </router-link>
+    </div>
+  </div>
+  <div class="fill__your__information center">
+    <div class="shipping" v-if="!shipMessage">
+      <h2 class="shipping__address">Shipping Address</h2>
+      <select class="city" v-model="select">
+        <option value="Russia">Russia</option>
+        <option value="Spain">Spain</option>
+        <option value="US">United States</option>
+        <option value="Canada">Canada</option>
+      </select>
+      <input
+        required
+        type="text"
+        placeholder="State"
+        class="state"
+        v-model="state"
+      />
+      <input
+        required
+        type="number"
+        placeholder="Postcode / Zip"
+        class="zip"
+        v-model="zip"
+      />
+      <button class="get__quote" @click="shippingAddress">send info</button>
+    </div>
+    <div class="shipMessage" v-else v-html="shipMessage"></div>
+    <div class="coupon">
+      <h2 class="coupon__discount">coupon discount</h2>
+      <p class="enter__coupon">
+        <label for="state">Enter your coupon code if you have one</label>
+      </p>
+      <input
+        type="text"
+        id="state"
+        placeholder="State"
+        class="state"
+        v-model.lazy="coupon"
+      />
+      <div class="flexCoupon">
+        <span v-if="show" class="coupon">{{ message }}</span>
+        <button class="apply__coupon" @click="findCoupon">Apply coupon</button>
       </div>
     </div>
-  </form>
-  <form>
-    <div class="fill__your__information center">
-      <div class="shipping">
-        <h2 class="shipping__address">Shipping Address</h2>
-        <select class="city">
-          <option value="Russia">Russia</option>
-          <option value="Spain">Spain</option>
-          <option value="US">United States</option>
-        </select>
-        <input required type="text" placeholder="State" class="state" />
-        <input
-          required
-          type="number"
-          placeholder="Postcode / Zip"
-          class="zip"
-        />
-        <button class="get__quote">get a quote</button>
-      </div>
-      <div class="coupon">
-        <h2 class="coupon__discount">coupon discount</h2>
-        <p class="enter__coupon">
-          <label for="state">Enter your coupon code if you have one</label>
-        </p>
-        <input type="text" id="state" placeholder="State" class="state" />
-        <button class="apply__coupon">Apply coupon</button>
-      </div>
-      <div class="amount">
-        <p class="sub__total">
-          Sub total <span class="sub__amount">TOTAL</span>
-        </p>
-        <p class="grand__total">
-          GRAND TOTAL <span class="total__amount">$900</span>
-        </p>
-        <div class="line__amount"></div>
-        <button class="proceed">proceed to checkout</button>
-      </div>
+    <div class="amount">
+      <p class="grand__total">
+        TOTAL <span class="total__amount">{{ totalPrice }} &#36;</span>
+      </p>
+      <div class="line__amount"></div>
+      <button class="proceed">proceed to checkout</button>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
 import CartProducts from "@/components/CartComp/CartProducts.vue";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import NProgress from "nprogress";
 
 export default {
@@ -80,6 +93,13 @@ export default {
   data() {
     return {
       details: ["unite Price", "quantity", "shipping", "subtotal", "action"],
+      coupon: "",
+      show: false,
+      message: "",
+      state: "",
+      zip: "",
+      select: "",
+      shipMessage: "",
     };
   },
   methods: {
@@ -88,9 +108,26 @@ export default {
         this.$router.push({ name: "ErrorDisplay", params: { error: error } });
       });
     },
+    clearCart() {
+      this.$store.dispatch("clearCart").catch((error) => {
+        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+      });
+    },
+    findCoupon() {
+      if (this.coupon !== "") {
+        this.message = "Sorry, such coupon doesn't find..";
+      } else {
+        this.message = "Please, input your coupon";
+      }
+      this.show = true;
+    },
+    shippingAddress() {
+      this.shipMessage = `<div style="color: rgb(241, 109, 127)">SHIPPING ADDRESS:</div> <div>Country: ${this.select}, State: ${this.state}, Zip: ${this.zip}</div>`;
+    },
   },
   computed: {
     ...mapState(["cart"]),
+    ...mapGetters(["totalPrice"]),
   },
   created() {
     NProgress.start();
@@ -113,5 +150,24 @@ export default {
 .here {
   color: blue;
   padding-left: 3px;
+}
+
+.flexCoupon {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 65px;
+}
+
+.coupon {
+  color: red;
+}
+
+.shipMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  flex-direction: column;
 }
 </style>

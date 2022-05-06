@@ -657,7 +657,28 @@
       "id": 5,
       "name": "Blouse",
       "price": 25,
+      "quantity": 3
+    },
+    {
+      "img": "guyjacket.png",
+      "id": 6,
+      "name": "Blazer",
+      "price": 40,
+      "quantity": 3
+    },
+    {
+      "img": "guyshorts.png",
+      "id": 8,
+      "name": "Shorts",
+      "price": 35,
       "quantity": 1
+    },
+    {
+      "img": "9.jpg",
+      "id": 9,
+      "name": "Jumper",
+      "price": 35,
+      "quantity": 2
     }
   ]
 }
