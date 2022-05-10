@@ -24,6 +24,16 @@ export default createStore({
     ADD_PRODUCT_TO_CART(state, product) {
       state.cart.push(product);
     },
+    UPDATE_PRODUCT_IN_CART(state, product) {
+      let found = state.cart.find((item) => item.id === product.id);
+      state.cart.splice(state.cart.indexOf(found), 1, product);
+    },
+    DELETE_PRODUCT_IN_CART(state, payload) {
+      state.cart.splice(state.cart.indexOf(payload), 1);
+    },
+    CLEAR_CART(state) {
+      state.cart.splice(0, state.cart.length);
+    },
     FILTER_PRODUCTS(state, payload) {
       state.filtered = payload;
     },
@@ -119,28 +129,30 @@ export default createStore({
         });
       }
     },
-    remove({ state }, payload) {
+    updateProduct({ commit }, updatedProduct) {
+      return EventService.putToCart(updatedProduct)
+        .then((response) => {
+          commit("UPDATE_PRODUCT_IN_CART", response.data);
+        })
+        .catch((error) => {
+          throw error;
+        });
+    },
+    remove({ commit }, payload) {
       return EventService.deleteProduct(payload)
         .then(() => {
-          state.cart.splice(state.cart.indexOf(payload), 1);
+          commit("DELETE_PRODUCT_IN_CART", payload);
         })
         .catch((error) => {
           throw error;
         });
     },
     //КАК ЕЩЕ СДЕЛАТЬ МЕТОД, ЧТОБЫ УДАЛЯЛ ВСЕ ИМЕЮЩИЕСЯ ТОВАРЫ МАГАЗИНА ИЗ КОРЗИНЫ, НО НЕ ПАДАЛ СЕРВЕР?(НА 2-3 РАЗ ПРИ ПОПЫТКЕ УДАЛИТЬ ВСЕ ТОВАРЫ ПАДАЕТ СЕРВАК):
-    clearCart({ state }) {
+    clearCart({ state, commit }) {
       state.cart.forEach((element) => {
         return EventService.deleteProduct(element);
       });
-      state.cart.splice(0, state.cart.length);
-    },
-    updateQuantity({ state }, payload) {
-      let existingProduct = state.cart.find((item) => item.id === payload.id);
-      existingProduct.quantity--;
-      return EventService.putToCart(existingProduct).catch((error) => {
-        throw error;
-      });
+      commit("CLEAR_CART");
     },
     filterProducts({ state, commit }, payload) {
       let regexp = new RegExp(payload, "i");

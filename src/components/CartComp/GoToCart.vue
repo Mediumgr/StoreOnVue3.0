@@ -9,9 +9,9 @@
   </div>
   <template v-for="product in cart" :key="product">
     <cart-products
-      v-if="cart.length"
+      v-if="cart.length !== 0"
       :product="product"
-      @remove="remove"
+      @remove="removeProduct"
     ></cart-products>
   </template>
   <div v-if="cart.length === 0" class="emptyProducts">
@@ -32,10 +32,9 @@
     <div class="shipping" v-if="!shipMessage">
       <h2 class="shipping__address">Shipping Address</h2>
       <select class="city" v-model="select">
-        <option value="Russia">Russia</option>
-        <option value="Spain">Spain</option>
-        <option value="US">United States</option>
-        <option value="Canada">Canada</option>
+        <option value="country" v-for="country in countries" :key="country">
+          {{ country }}
+        </option>
       </select>
       <input
         required
@@ -76,23 +75,35 @@
         TOTAL <span class="total__amount">{{ totalPrice }} &#36;</span>
       </p>
       <div class="line__amount"></div>
-      <button class="proceed">proceed to checkout</button>
+      <button class="proceed" @click="pushToCheckOut">
+        proceed to checkout
+      </button>
     </div>
   </div>
+  <Teleport to="body">
+    <modal-window
+      v-if="open"
+      @close="open = false"
+      @remove="remove"
+    ></modal-window>
+  </Teleport>
 </template>
 
 <script>
 import CartProducts from "@/components/CartComp/CartProducts.vue";
+import ModalWindow from "@/views/ModalWindow/ModalWindow.vue";
 import { mapGetters, mapState } from "vuex";
 import NProgress from "nprogress";
 
 export default {
   components: {
     CartProducts,
+    ModalWindow,
   },
   data() {
     return {
       details: ["unite Price", "quantity", "shipping", "subtotal", "action"],
+      countries: ["Russia", "Spain", "United States", "Canada"],
       coupon: "",
       show: false,
       message: "",
@@ -100,13 +111,27 @@ export default {
       zip: "",
       select: "",
       shipMessage: "",
+      open: false,
+      product: null,
     };
   },
   methods: {
-    remove(product) {
-      this.$store.dispatch("remove", product).catch((error) => {
-        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-      });
+    removeProduct(product) {
+      this.product = product;
+      this.open = true;
+    },
+    remove() {
+      this.$store
+        .dispatch("remove", this.product)
+        .then(() => {
+          this.open = false;
+        })
+        .catch((error) => {
+          this.$router.push({
+            name: "ErrorDisplay",
+            params: { erro1r: error },
+          });
+        });
     },
     clearCart() {
       this.$store.dispatch("clearCart").catch((error) => {
@@ -123,6 +148,10 @@ export default {
     },
     shippingAddress() {
       this.shipMessage = `<div style="color: rgb(241, 109, 127)">SHIPPING ADDRESS:</div> <div>Country: ${this.select}, State: ${this.state}, Zip: ${this.zip}</div>`;
+    },
+    pushToCheckOut() {
+      this.$router.push({ name: "CheckOut" });
+      window.scroll(0, 0);
     },
   },
   computed: {

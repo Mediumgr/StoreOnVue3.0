@@ -50,6 +50,15 @@ const routes = [
       ),
   },
   {
+    path: "/single",
+    name: "SinglePage",
+    component: () =>
+      import(
+        /* webpackChunkName: "SinglePage"*/
+        "../components/Single/SinglePage"
+      ),
+  },
+  {
     path: "/gotocart",
     name: "GoToCart",
     component: () =>

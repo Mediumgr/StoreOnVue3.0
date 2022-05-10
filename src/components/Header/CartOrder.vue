@@ -24,7 +24,7 @@
           v-for="item of cart"
           :key="item"
           :cart-item="item"
-          @remove="remove"
+          @remove="removeProduct"
         >
         </cart-item>
         <div class="your__total__amount">
@@ -44,34 +44,47 @@
       </div>
     </div>
   </div>
+  <Teleport to="body">
+    <modal-window
+      v-if="open"
+      @close="open = false"
+      @remove="remove"
+    ></modal-window>
+  </Teleport>
 </template>
 
 <script>
 import CartItem from "@/components/Header/CartItem.vue";
+import ModalWindow from "@/views/ModalWindow/ModalWindow.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "CardOrder",
   components: {
     CartItem,
+    ModalWindow,
   },
   data() {
     return {
       showCart: false,
+      product: null,
+      open: false,
     };
   },
   methods: {
-    remove(product) {
-      if (product.quantity === 1) {
-        this.$store.dispatch("remove", product).catch((error) => {
+    removeProduct(product) {
+      this.product = product;
+      this.open = true;
+    },
+    remove() {
+      this.$store
+        .dispatch("remove", this.product)
+        .then(() => {
+          this.open = false;
+        })
+        .catch((error) => {
           this.$router.push({ name: "ErrorDisplay", params: { error: error } });
         });
-      }
-      if (product.quantity > 1) {
-        this.$store.dispatch("updateQuantity", product).catch((error) => {
-          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-        });
-      }
     },
     goToCheckout() {
       this.$router.push({ name: "CheckOut" });

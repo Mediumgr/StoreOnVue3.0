@@ -106,7 +106,10 @@ export default {
           quantity: 1,
         })
         .then(() => {
-          this.message = `Added ${this.cartProductsAmount} pcs`;
+          this.message = "Added successfully";
+          setTimeout(() => {
+            this.message = "";
+          }, 1500);
         })
         .catch((error) => {
           this.$router.push({ name: "ErrorDisplay", params: { error: error } });

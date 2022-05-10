@@ -29,29 +29,17 @@
         </div>
         <div class="free__word">FREE</div>
         <div class="total">{{ price }} &#36;</div>
-        <div class="times__circle" @click="openModal">
+        <div class="times__circle" @click="$emit('remove', this.product)">
           <i class="fas fa-times-circle"></i>
         </div>
-        <Teleport to="body">
-          <modal-window
-            v-if="open"
-            @close="open = false"
-            @remove="$emit('remove', this.product)"
-          ></modal-window>
-        </Teleport>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import ModalWindow from "@/views/ModalWindow/ModalWindow.vue";
-
 export default {
   emits: ["remove"],
-  components: {
-    ModalWindow,
-  },
   props: {
     product: {
       type: Object,
@@ -61,17 +49,18 @@ export default {
   data() {
     return {
       quantity: this.product.quantity,
-      open: false,
     };
   },
-  methods: {
-    openModal() {
-      this.open = true;
-    },
-  },
+  methods: {},
   computed: {
     price() {
       return this.quantity * this.product.price;
+    },
+  },
+  watch: {
+    quantity(newValue) {
+      let updatedProduct = { ...this.product, quantity: newValue };
+      this.$store.dispatch("updateProduct", updatedProduct);
     },
   },
 };

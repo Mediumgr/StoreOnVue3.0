@@ -653,32 +653,18 @@
   ],
   "cart": [
     {
-      "img": "blondgirl.png",
-      "id": 5,
+      "img": "girlinred.png",
+      "id": 2,
       "name": "Blouse",
-      "price": 25,
-      "quantity": 3
+      "price": 30,
+      "quantity": 8
     },
     {
-      "img": "guyjacket.png",
-      "id": 6,
-      "name": "Blazer",
-      "price": 40,
-      "quantity": 3
-    },
-    {
-      "img": "guyshorts.png",
-      "id": 8,
-      "name": "Shorts",
+      "img": "girlwhite.png",
+      "id": 4,
+      "name": "Blouse",
       "price": 35,
-      "quantity": 1
-    },
-    {
-      "img": "9.jpg",
-      "id": 9,
-      "name": "Jumper",
-      "price": 35,
-      "quantity": 2
+      "quantity": 4
     }
   ]
 }

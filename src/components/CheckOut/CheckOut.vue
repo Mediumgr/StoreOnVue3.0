@@ -93,12 +93,19 @@
           </div>
         </div>
       </div>
-      <div v-else class="modalWindow">
+      <div v-else class="loginText">
         {{ message }}
         <i
           class="fa-solid fa-arrow-right-from-bracket logout"
-          @click="logOut"
+          @click="open = true"
         ></i>
+        <Teleport to="body">
+          <modal-exit-window
+            v-if="open"
+            @close="open = false"
+            @confirm="logOut"
+          ></modal-exit-window>
+        </Teleport>
       </div>
     </details>
     <details class="Common__details">
@@ -148,8 +155,13 @@
 </template>
 
 <script>
+import ModalExitWindow from "@/views/ModalWindow/ModalExitWindow.vue";
 import NProgress from "nprogress";
+
 export default {
+  components: {
+    ModalExitWindow,
+  },
   data() {
     return {
       picked: "guest",
@@ -157,6 +169,7 @@ export default {
       email: "",
       phone: "",
       name: "",
+      open: false,
       display: {
         none: false,
         block: true,
@@ -198,15 +211,13 @@ export default {
       }
     },
     logOut() {
-      let answer = window.confirm("Do you really want to logout ?");
-      if (answer) {
-        this.$store.commit("USER", null);
-        localStorage.clear();
-        this.display.block = true;
-        this.registerClass.none = true;
-        this.registerClass.block = false;
-        this.picked = "guest";
-      }
+      this.$store.commit("USER", null);
+      localStorage.clear();
+      this.display.block = true;
+      this.registerClass.none = true;
+      this.registerClass.block = false;
+      this.picked = "guest";
+      this.open = false;
     },
     register() {
       if (
@@ -219,6 +230,15 @@ export default {
       ) {
         this.$store.commit("USER", this.name);
         localStorage.setItem("Login", JSON.stringify(this.name));
+      }
+      if (!this.name) {
+        this.errorNameMessage = "Please, type your name";
+      }
+      if (!this.email) {
+        this.errorEmailMessage = "Please, type your email";
+      }
+      if (!this.phone) {
+        this.errorPhoneMessage = "Please, type your phone";
       }
     },
   },
@@ -272,8 +292,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modalWindow {
-  color: blue;
+.loginText {
+  color: rgb(68, 21, 21);
   margin-top: 10px;
 }
 
