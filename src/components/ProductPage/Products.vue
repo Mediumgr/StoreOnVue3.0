@@ -1,11 +1,11 @@
 <template>
-  <div class="content__product center" v-if="filtered.length">
+  <div
+    class="content__product center"
+    v-if="filtered.length && loading === false"
+  >
     <left-aside></left-aside>
     <option-products></option-products>
     <div class="block__of__product">
-      <div class="noConcatProducts center" v-if="!filtered.length">
-        {{ error }}
-      </div>
       <product-items
         v-for="item of filtered"
         :key="item.id"
@@ -20,6 +20,27 @@
       >
         View All
       </button>
+    </div>
+  </div>
+  <div class="content__product center" v-if="loading === true">
+    <left-aside></left-aside>
+    <option-products></option-products>
+    <div class="block__of__product">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="purple"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+  </div>
+  <div class="content__product center" v-if="!filtered.length">
+    <left-aside></left-aside>
+    <option-products></option-products>
+    <div class="block__of__product">
+      <div class="noConcatProducts center">
+        {{ error }}
+      </div>
     </div>
   </div>
   <div class="InformationCenter center">
@@ -110,7 +131,7 @@ export default {
       });
   },
   computed: {
-    ...mapState(["filtered"]),
+    ...mapState(["filtered", "loading"]),
   },
 };
 </script>

@@ -11,16 +11,26 @@ export default createStore({
     filtered: [],
     extraProducts: [],
     user: null,
+    loading: false,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
     },
-    FILTER_PRODUCTS(state, payload) {
+    FILL_OF_FILTER(state, payload) {
       state.filtered = payload;
+    },
+    FILTER_PRODUCTS_REGEXP(state, payload) {
+      let regexp = new RegExp(payload, "i");
+      state.filtered = state.products.filter((product) =>
+        regexp.test(product.name)
+      );
     },
     SET_EXTRA_PRODUCTS(state, products) {
       state.extraProducts = products;
+    },
+    PRODUCTS_ZEROING(state) {
+      state.products.length = 0;
     },
     SET_PRODUCT(state, product) {
       state.product = product;
@@ -50,7 +60,7 @@ export default createStore({
       return EventService.getProducts()
         .then((response) => {
           commit("SET_PRODUCTS", response.data);
-          commit("FILTER_PRODUCTS", response.data);
+          commit("FILL_OF_FILTER", response.data);
         })
         .catch((error) => {
           throw error;
@@ -65,10 +75,19 @@ export default createStore({
           commit("CONCAT_ALL_PRODUCTS");
         })
         .then(() => {
-          commit("FILTER_PRODUCTS", state.products);
+          commit("FILL_OF_FILTER", state.products);
         })
         .catch((error) => {
           throw error;
+        });
+    },
+    actionForFilter({ commit }) {
+      return EventService.getExtraProducts()
+        .then((response) => {
+          commit("SET_EXTRA_PRODUCTS", response.data);
+        })
+        .then(() => {
+          commit("CONCAT_ALL_PRODUCTS");
         });
     },
     getProduct({ commit, dispatch }, id) {
@@ -175,13 +194,6 @@ export default createStore({
       });
       commit("CLEAR_CART");
     },
-    filterProducts({ state, commit }, payload) {
-      let regexp = new RegExp(payload, "i");
-      let filtered = state.products.filter((product) =>
-        regexp.test(product.name)
-      );
-      commit("FILTER_PRODUCTS", filtered);
-    },
     user({ commit }, payload) {
       commit("USER", payload);
     },
@@ -191,6 +203,9 @@ export default createStore({
       state.cart.reduce((accum, item) => accum + item.quantity, 0),
     totalPrice: (state) =>
       state.cart.reduce((accum, item) => accum + item.price * item.quantity, 0),
+    filteredLength: (state) => {
+      return state.filtered.length;
+    },
   },
   modules: {
     additional,

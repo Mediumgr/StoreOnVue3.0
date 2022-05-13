@@ -573,10 +573,13 @@ a {
 }
 
 .noConcatProducts {
-    margin: 0 auto;
-    font-size: 20px;
-    text-align: center;
+    display: flex;
+    font-size: 22px;
+    align-items: center;
     color: #ff002f;
+    height: 270px;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .putToCart {

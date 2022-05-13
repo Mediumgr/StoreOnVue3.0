@@ -545,30 +545,30 @@
   ],
   "cart": [
     {
-      "img": "teenager.png",
-      "id": 1,
-      "name": "T-shirt",
-      "price": 25,
-      "quantity": 2,
-      "color": "White",
-      "size": "M"
-    },
-    {
-      "img": "guyjacket.png",
-      "id": 6,
-      "name": "Blazer",
-      "price": 40,
+      "img": "guyshorts.png",
+      "id": 8,
+      "name": "Shorts",
+      "price": 35,
       "quantity": 1,
-      "color": "Light blue",
+      "color": "Beige",
       "size": "S"
     },
     {
-      "img": "barberman.png",
-      "id": 3,
-      "name": "Jacket",
-      "price": 45,
+      "img": "pans.png",
+      "id": 7,
+      "name": "Pants",
+      "price": 50,
       "quantity": 1,
-      "color": "Blue",
+      "color": "Beige",
+      "size": "S"
+    },
+    {
+      "img": "girlinred.png",
+      "id": 2,
+      "name": "Blouse",
+      "price": 30,
+      "quantity": 1,
+      "color": "Red",
       "size": "S"
     }
   ]
