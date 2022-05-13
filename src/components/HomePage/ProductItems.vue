@@ -68,6 +68,8 @@ export default {
           name: product.name,
           price: product.price,
           quantity: 1,
+          color: product.description[4],
+          size: "S",
         })
         .then(() => {
           this.message = `Added ${++this.counter} pcs`;

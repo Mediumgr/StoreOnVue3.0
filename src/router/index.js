@@ -74,7 +74,7 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "ErrorDisplay" */
-        "../views/Product/ErrorDisplay"
+        "../views/NotFound/ErrorDisplay"
       ),
   },
   {
@@ -84,7 +84,16 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "NotFound"*/
-        "../views/Product/NotFound"
+        "../views/NotFound/NotFound"
+      ),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () =>
+      import(
+        /*  webpackChunkName: "NotFound" */
+        "../views/NotFound/NotFound"
       ),
   },
 ];
@@ -92,6 +101,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to) {
+    if (to) {
+      return {
+        top: 0,
+      };
+    }
+  },
 });
 
 export default router;

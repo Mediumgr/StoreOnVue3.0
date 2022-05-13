@@ -129,7 +129,7 @@ export default {
         .catch((error) => {
           this.$router.push({
             name: "ErrorDisplay",
-            params: { erro1r: error },
+            params: { error: error },
           });
         });
     },
@@ -151,7 +151,6 @@ export default {
     },
     pushToCheckOut() {
       this.$router.push({ name: "CheckOut" });
-      window.scroll(0, 0);
     },
   },
   computed: {

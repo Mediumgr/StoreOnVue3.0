@@ -102,9 +102,6 @@ export default {
     NProgress.start();
     this.$store
       .dispatch("getProducts")
-      .then(() => {
-        window.scroll(0, 0);
-      })
       .catch((error) => {
         this.$router.push({ name: "ErrorDisplay", params: { error: error } });
       })

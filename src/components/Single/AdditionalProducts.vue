@@ -4,88 +4,75 @@
       <span
         ><img
           class="product__img__2"
-          :src="require('@/assets/img/black-girl.png')"
+          :src="require(`@/assets/img/${product.img}`)"
           alt="photo"
       /></span>
     </div>
     <div class="bottom">
-      <a href="#" class="text__mango">BLAZE LEGGINGS</a>
+      <span class="text__mango">{{ product.name }}</span>
       <p class="price">
-        &#36;52.00<img
-          class="product__star"
-          :src="require('@/assets/img/star.png')"
-          alt="star"
-        />
+        <span> &#36;{{ product.price }}</span>
+        <span>
+          <i class="fas fa-thumbs-up fa-xs"></i>
+          <i
+            ref="star"
+            @click="changeRating(n)"
+            v-for="n in 5"
+            :key="n"
+            class="fas fa-star fa-sm"
+          ></i
+        ></span>
       </p>
     </div>
-    <a href="#" class="add__cart"
-      ><img :src="require('@/assets/img/white_bin.png')" alt="buy" />Add to
-      Cart</a
-    >
-  </div>
-  <div class="product__next">
-    <div class="skirt__girl">
-      <a href="#"
-        ><img
-          class="product__img__2"
-          :src="require('@/assets/img/secondgirl.png')"
-          alt="photo"
-      /></a>
-    </div>
-    <div class="bottom">
-      <a href="#" class="text__mango">ALEXA SWEATER</a>
-      <p class="price">&#36;52.00</p>
-    </div>
-    <button class="add__cart" @click="addToCart">
-      <img :src="require('@/assets/img/white_bin.png')" alt="buy" />Add to Cart
-    </button>
-  </div>
-  <div class="product__next">
-    <div class="blouse__girl">
-      <a href="#"
-        ><img
-          class="product__img__2"
-          :src="require('@/assets/img/third.png')"
-          alt="photo"
-      /></a>
-    </div>
-    <div class="bottom">
-      <a href="#" class="text__mango">AGNES TOP</a>
-      <p class="price">
-        &#36;52.00<img
-          class="product__star"
-          :src="require('@/assets/img/star.png')"
-          alt="star"
-        />
-      </p>
-    </div>
-    <a href="#" class="add__cart"
-      ><img :src="require('@/assets/img/white_bin.png')" alt="buy" />Add to
-      Cart</a
-    >
-  </div>
-  <div class="product__next">
-    <div class="sweater__girl">
-      <a href="#"
-        ><img
-          class="product__img__2"
-          :src="require('@/assets/img/forthgirl.png')"
-          alt="photo"
-      /></a>
-    </div>
-    <div class="bottom">
-      <a href="#" class="text__mango">SYLVA SWEATER</a>
-      <p class="price">&#36;52.00</p>
-    </div>
-    <a href="#" class="add__cart"
-      ><img :src="require('@/assets/img/white_bin.png')" alt="buy" />Add to
-      Cart</a
-    >
+    <p class="add__cart" @click="addProductToCart(product)">
+      <img :src="require('@/assets/img/w_b.png')" alt="buy" />{{ message }}
+    </p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    product: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      counter: 0,
+      message: "Add to Cart",
+    };
+  },
+  methods: {
+    changeRating(n) {
+      for (let i = 0; i < n; i++) {
+        this.$refs.star[i].classList.value = "fas fa-star fa-sm star";
+      }
+      if (n <= this.$refs.star.length) {
+        for (let i = n; i < this.$refs.star.length; i++) {
+          this.$refs.star[i].classList.value = "fas fa-star fa-sm";
+        }
+      }
+    },
+    addProductToCart(product) {
+      this.$store
+        .dispatch("postToCart", {
+          img: product.img,
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        })
+        .then(() => {
+          this.message = `Added ${++this.counter} pcs`;
+        })
+        .catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

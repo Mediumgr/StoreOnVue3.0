@@ -81,7 +81,8 @@ a {
         border-radius: 5px;
         background-color: #ffffff;
         padding: 5px 20px 20px 20px;
-        right: 15px;
+        right: -80px;
+        top: 43px;
 
         .order__first {
             padding: 15px 0 15px;
@@ -99,8 +100,8 @@ a {
             }
 
             .flex__name__product {
-                padding: 0 55px 0 15px;
-                width: 85px;
+                padding: 0 10px 0 15px;
+                width: 145px;
 
                 .rebox__text {
                     color: #222222;
@@ -1725,6 +1726,22 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.buyAdded {
+    @extend %same__font__style;
+    cursor: pointer;
+    height: 55px;
+    width: 537px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(239, 91, 112, 1);
+    border: 1px solid rgba(239, 91, 112, 1);
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 40px;
 }
 
 .buy:hover {

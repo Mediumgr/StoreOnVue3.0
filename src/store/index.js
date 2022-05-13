@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import EventService from "@/services/EventService.js";
 import router from "@/router";
+import additional from "./additional";
 
 export default createStore({
   state: {
@@ -14,6 +15,9 @@ export default createStore({
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    FILTER_PRODUCTS(state, payload) {
+      state.filtered = payload;
     },
     SET_EXTRA_PRODUCTS(state, products) {
       state.extraProducts = products;
@@ -33,9 +37,6 @@ export default createStore({
     },
     CLEAR_CART(state) {
       state.cart.splice(0, state.cart.length);
-    },
-    FILTER_PRODUCTS(state, payload) {
-      state.filtered = payload;
     },
     CONCAT_ALL_PRODUCTS(state) {
       state.products = state.products.concat(state.extraProducts);
@@ -124,6 +125,26 @@ export default createStore({
           });
       } else {
         existingProduct.quantity++;
+        existingProduct.size = payload.size;
+        return EventService.putToCart(existingProduct).catch((error) => {
+          throw error;
+        });
+      }
+    },
+    postMochinoToCart({ state, commit }, payload) {
+      let existingProduct = state.cart.find(
+        (product) => product.id === payload.id
+      );
+      if (!existingProduct) {
+        return EventService.postToCart(payload)
+          .then((response) => {
+            commit("ADD_PRODUCT_TO_CART", response.data);
+          })
+          .catch((error) => {
+            throw error;
+          });
+      } else {
+        existingProduct.quantity += payload.quantity;
         return EventService.putToCart(existingProduct).catch((error) => {
           throw error;
         });
@@ -171,5 +192,7 @@ export default createStore({
     totalPrice: (state) =>
       state.cart.reduce((accum, item) => accum + item.price * item.quantity, 0),
   },
-  modules: {},
+  modules: {
+    additional,
+  },
 });

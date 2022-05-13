@@ -15,7 +15,7 @@
         <div class="flex-box">
           <img
             class="product-img"
-            :src="require(`/src/assets/img/${product.img}`)"
+            :src="require(`@/assets/img/${product.img}`)"
             alt="photo"
           />
         </div>
@@ -45,7 +45,11 @@
         >
           {{ tab }}
         </button>
-        <component :product="product" :is="currentComponent"></component>
+        <component
+          :product="product"
+          :is="currentComponent"
+          @sizeEmit="sizeReceived"
+        ></component>
       </div>
     </div>
     <button class="putToCart" @click="addProductToCart(product)">
@@ -79,6 +83,7 @@ export default {
       currentTab: "Description",
       tabs: ["Description", "Delivery"],
       message: "",
+      size: "",
     };
   },
   methods: {
@@ -104,6 +109,8 @@ export default {
           name: product.name,
           price: product.price,
           quantity: 1,
+          size: this.size,
+          color: product.description[4],
         })
         .then(() => {
           this.message = "Added successfully";
@@ -115,6 +122,9 @@ export default {
           this.$router.push({ name: "ErrorDisplay", params: { error: error } });
         });
     },
+    sizeReceived(sizeEmited) {
+      this.size = sizeEmited;
+    },
   },
   computed: {
     ...mapState(["product"]),
@@ -125,14 +135,9 @@ export default {
   },
   created() {
     NProgress.start();
-    this.$store
-      .dispatch("getProduct", +this.id)
-      .then(() => {
-        window.scroll(0, 0);
-      })
-      .finally(() => {
-        NProgress.done();
-      });
+    this.$store.dispatch("getProduct", +this.id).finally(() => {
+      NProgress.done();
+    });
   },
 };
 </script>

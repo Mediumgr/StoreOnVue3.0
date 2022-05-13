@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="amount__total">$561</div>
+      <div class="amount__total">150&#36;</div>
       <div class="line__after__amount"></div>
       <div class="form__block">
         <div class="common__form">
@@ -75,20 +75,20 @@
               <input
                 required="required"
                 type="text"
-                value="1"
                 placeholder="1"
                 class="choose__quantity"
+                v-model.number="quantity"
               />
             </div>
           </div>
         </div>
-        <div class="button__form">
-          <button class="buy">
+        <div class="button__form" @click="addToCart">
+          <button :class="btnClass">
             <img
               :src="require('@/assets/img/cart__pink.png')"
               alt="cart"
               class="pink__bin"
-            />Add to Cart
+            />{{ message }}
           </button>
         </div>
       </div>
@@ -96,14 +96,21 @@
     <div class="you__may">you may like also</div>
   </div>
   <div class="foto__block__3 center">
-    <additional-products></additional-products>
+    <additional-products
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+    ></additional-products>
   </div>
 </template>
 
 <script>
 import AdditionalProducts from "@/components/Single/AdditionalProducts.vue";
+import NProgress from "nprogress";
+import { mapGetters } from "vuex";
 
 export default {
+  name: "SinglePage",
   components: {
     AdditionalProducts,
   },
@@ -115,12 +122,35 @@ export default {
       styleColor: "square-white",
       sizes: ["XXL", "M", "S"],
       yourSize: "S",
+      quantity: 1,
+      message: "Add to Cart",
+      btnClass: "buy",
     };
   },
   methods: {
     addToCart() {
-      console.log("addedtocart");
+      this.$store
+        .dispatch("postMochinoToCart", {
+          img: "nice__girl.png",
+          id: 23,
+          name: "MOSCHINO",
+          price: 150,
+          quantity: this.quantity,
+          size: this.yourSize,
+          color: this.color,
+        })
+        .then(() => {
+          this.message = "Successfully added";
+          this.btnClass = "buyAdded";
+          setTimeout(() => {
+            this.message = "Add to Cart";
+            this.btnClass = "buy";
+          }, 1500);
+        });
     },
+  },
+  computed: {
+    ...mapGetters(["products"]),
   },
   watch: {
     select(newValue) {
@@ -135,6 +165,12 @@ export default {
           this.styleColor = "square-black";
       }
     },
+  },
+  created() {
+    NProgress.start();
+    this.$store.dispatch("fetchAdditionalProducts").finally(() => {
+      NProgress.done();
+    });
   },
 };
 </script>

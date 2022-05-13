@@ -20,13 +20,31 @@
     <div class="product__order" v-show="showCart">
       <p v-if="!cart.length" class="cartItem">No products in your cart</p>
       <div v-else>
-        <cart-item
-          v-for="item of cart"
-          :key="item"
-          :cart-item="item"
-          @remove="removeProduct"
-        >
-        </cart-item>
+        <template v-for="item of cart">
+          <cart-item
+            v-if="cart.length < 3"
+            :key="item"
+            :cart-item="item"
+            @remove="removeProduct"
+          >
+          </cart-item>
+        </template>
+        <template v-for="(item, index) of cart">
+          <cart-item
+            v-if="cart.length > 2 && index < 2"
+            :key="item"
+            :cart-item="item"
+            @remove="removeProduct"
+          >
+          </cart-item>
+        </template>
+        <div v-show="cart.length > 2" class="seeMore">
+          <router-link :to="{ name: 'GoToCart' }">
+            Go to cart to see more<i
+              class="fa-solid fa-arrow-right-to-bracket iconLong"
+            ></i>
+          </router-link>
+        </div>
         <div class="your__total__amount">
           <div class="styleForTotal">Total:</div>
           <div class="dollars">{{ totalPrice }}&#36;</div>
@@ -123,5 +141,20 @@ export default {
   font-weight: 400;
   display: flex;
   justify-content: center;
+}
+.seeMore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
+
+.iconLong {
+  padding-left: 5px;
+  padding-top: 3px;
 }
 </style>

@@ -8,11 +8,21 @@
             alt="photo"
             class="image"
           />
+          <router-link
+            :to="{ name: 'ProductDetails', params: { id: product.id } }"
+          >
+            <div class="changeSize">change size here</div>
+          </router-link>
         </div>
         <div class="mango__color__size">
           <h3 class="text__mango">{{ product.name }}</h3>
           <div class="color__size">
-            <p class="size">Size: <span class="font">XII</span></p>
+            <p class="size">
+              Size: <span class="font">{{ product.size }}</span>
+            </p>
+            <p class="size">
+              Color: <span class="font">{{ product.color }}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -83,5 +93,11 @@ export default {
   justify-content: space-between;
   flex-wrap: wrap;
   width: 524px;
+}
+.changeSize {
+  font-size: 11px;
+  text-align: center;
+  color: rgb(132, 66, 52);
+  cursor: pointer;
 }
 </style>
