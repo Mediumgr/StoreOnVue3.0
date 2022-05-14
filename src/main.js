@@ -1,23 +1,21 @@
+/* import "vuetify/styles"; */
 import { createApp } from "vue";
+import { createVuetify } from "vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+/* import vuetify from "./plugins/vuetify"; */
+import { loadFonts } from "./plugins/webfontloader";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
 import "@/assets/styles/style.scss";
 import "nprogress/nprogress.css";
 
-/* import firebase from "firebase/compat/app";
-import database from "firebase/compat/database"; */
-createApp(App).use(store).use(router).mount("#app");
+loadFonts();
 
-/* firebase.initializeApp({
-  apiKey: "AIzaSyBwydN0FiMzsaMGj_u0s4TeOtcqA87KIQE",
-  authDomain: "vue3-be226.firebaseapp.com",
-  databaseURL: "https://vue3-be226-default-rtdb.firebaseio.com",
-  projectId: "vue3-be226",
-  storageBucket: "vue3-be226.appspot.com",
-  messagingSenderId: "503474516404",
-  appId: "1:503474516404:web:f0f3692d1a947dfcd4c2e1",
-  measurementId: "G-RK6CKD3QVK",
+const vuetify = createVuetify({
+  components,
+  directives,
 });
- */
-/* export { firebase, database }; */
+
+createApp(App).use(router).use(store).use(vuetify).mount("#app");

@@ -95,21 +95,22 @@ export default {
       this.current === 1 ? (this.current = 2) : (this.current = 1);
     },
     filter() {
-      this.$store.state.loading = true;
-      setTimeout(() => {
-        this.$store.dispatch("getProducts");
-        this.$store
-          .dispatch("actionForFilter")
-          .then(() => {
-            this.$store.commit("FILTER_PRODUCTS_REGEXP", this.userSearch);
-            this.$store.commit("PRODUCTS_ZEROING");
-          })
-          .then(() => {
-            this.message = `Found products: ${this.$store.getters.filteredLength}`;
-            debugger;
-            this.$store.state.loading = false;
-          });
-      }, 3000);
+      this.$store.commit("setLoading", true);
+      this.$store
+        .dispatch("getProducts")
+        .then(() => {
+          this.$store
+            .dispatch("actionForFilter")
+            .then(() => {
+              this.$store.commit("FILTER_PRODUCTS_REGEXP", this.userSearch);
+            })
+            .then(() => {
+              this.message = `Found products: ${this.$store.getters.filteredLength}`;
+            });
+        })
+        .finally(() => {
+          this.$store.commit("setLoading", false);
+        });
     },
   },
   watch: {

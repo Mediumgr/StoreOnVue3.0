@@ -12,7 +12,7 @@
         :product="item"
       ></product-items>
     </div>
-    <div class="viewAllBlock">
+    <div class="viewAllBlock" v-show="filtered.length !== 18">
       <button
         :style="styleButton"
         class="view__all__button"
@@ -31,6 +31,7 @@
         :width="7"
         color="purple"
         indeterminate
+        class="loading"
       ></v-progress-circular>
     </div>
   </div>
@@ -88,7 +89,7 @@ import ProductItems from "@/components/HomePage/ProductItems.vue";
 import LeftAside from "@/components/ProductPage/LeftAside.vue";
 import OptionProducts from "@/components/ProductPage/OptionProducts.vue";
 import NProgress from "nprogress";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "ProductPage",
@@ -131,7 +132,8 @@ export default {
       });
   },
   computed: {
-    ...mapState(["filtered", "loading"]),
+    ...mapState(["filtered"]),
+    ...mapGetters(["loading"]),
   },
 };
 </script>

@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import EventService from "@/services/EventService.js";
 import router from "@/router";
 import additional from "./additional";
+import loading from "./loading";
 
 export default createStore({
   state: {
@@ -10,8 +11,6 @@ export default createStore({
     product: [],
     filtered: [],
     extraProducts: [],
-    user: null,
-    loading: false,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -28,9 +27,6 @@ export default createStore({
     },
     SET_EXTRA_PRODUCTS(state, products) {
       state.extraProducts = products;
-    },
-    PRODUCTS_ZEROING(state) {
-      state.products.length = 0;
     },
     SET_PRODUCT(state, product) {
       state.product = product;
@@ -209,5 +205,6 @@ export default createStore({
   },
   modules: {
     additional,
+    loading,
   },
 });
