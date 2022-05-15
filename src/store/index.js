@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import EventService from "@/services/EventService.js";
 import router from "@/router";
 import additional from "./additional";
+import loading from "./loading";
 
 export default createStore({
   state: {
@@ -209,5 +210,6 @@ export default createStore({
   },
   modules: {
     additional,
+    loading,
   },
 });
