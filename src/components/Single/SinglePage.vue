@@ -1,19 +1,16 @@
 <template>
-  <div class="outside__chairgirl">
-    <div class="left__arrow__single">
-      <a href="#" class="color__arrow">
-        <i class="fas fa-chevron-left"></i>
-      </a>
-    </div>
-    <div class="chair__girl">
-      <img :src="require('@/assets/img/nice__girl.png')" alt="foto" />
-    </div>
-    <div class="right__arrow__single">
-      <a href="#" class="color__arrow">
-        <i class="fas fa-chevron-right"></i>
-      </a>
-    </div>
-  </div>
+  <swiper
+    :cssMode="true"
+    navigation
+    :pagination="{ clickable: true }"
+    :keyboard="true"
+    :modules="modules"
+    class="mySwiper"
+  >
+    <swiper-slide v-for="slide in slides" :key="slide"
+      ><img :src="require(`@/assets/img/${slide}`)" alt="foto"
+    /></swiper-slide>
+  </swiper>
   <div class="women__content center">
     <div class="women__block">
       <div class="women__collection">women collection</div>
@@ -108,14 +105,22 @@
 import AdditionalProducts from "@/components/Single/AdditionalProducts.vue";
 import NProgress from "nprogress";
 import { mapGetters } from "vuex";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Keyboard } from "swiper";
 
 export default {
   name: "SinglePage",
   components: {
     AdditionalProducts,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
+      modules: [Navigation, Pagination, Keyboard],
       colors: ["White", "Red", "Black"],
       color: "White",
       select: "White",
@@ -125,6 +130,7 @@ export default {
       quantity: 1,
       message: "Add to Cart",
       btnClass: "buy",
+      slides: ["white.png", "red.png", "black3.png"],
     };
   },
   methods: {
@@ -175,7 +181,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
 .square-red {
   color: rgb(239, 91, 112);
 }
@@ -184,5 +190,49 @@ export default {
 }
 .square-black {
   color: rgb(0, 0, 0);
+}
+.swiper {
+  height: 777px;
+  width: 100%;
+  background-color: rgba(247, 247, 247, 1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-wrapper {
+  height: 90%;
+}
+
+.swiper-slide img {
+  display: block;
+  height: 688px;
+  width: 597px;
+  object-fit: cover;
+}
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 100px;
+}
+
+.swiper-slide {
+  background: #f7f7f7;
 }
 </style>

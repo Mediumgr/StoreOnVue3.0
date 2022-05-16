@@ -25,14 +25,8 @@
   <div class="content__product center" v-if="loading === true">
     <left-aside></left-aside>
     <option-products></option-products>
-    <div class="block__of__product">
-      <v-progress-circular
-        :size="70"
-        :width="7"
-        color="purple"
-        indeterminate
-        class="loading"
-      ></v-progress-circular>
+    <div class="block__of__spinner">
+      <i class="fa-solid fa-spinner fa-spin fa-2xl"></i>
     </div>
   </div>
   <div class="content__product center" v-if="!filtered.length">
@@ -141,5 +135,17 @@ export default {
 <style scoped>
 .active {
   background: rgb(230, 2, 199);
+}
+
+.block__of__spinner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 150px 0 50px 294px;
+  align-items: center;
+}
+
+.fa-spinner {
+  margin: 0 auto;
 }
 </style>

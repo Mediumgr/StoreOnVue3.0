@@ -1516,40 +1516,10 @@ a {
     }
 }
 
-.outside__chairgirl {
-    height: 777px;
-    width: 100%;
-    background-color: rgba(247, 247, 247, 1);
-    display: flex;
-    justify-content: space-between;
-
-    .left__arrow__single {
-        width: 47px;
-        height: 47px;
-        margin-top: 318px;
-        background-color: rgba(164, 164, 164, 1);
-        align-items: center;
-        display: flex;
-        justify-content: center;
-
-        .color__arrow {
-            color: white;
-        }
-    }
-
-    .chair__girl {
-        height: 724px;
-        width: 597px;
-    }
-}
-
-.right__arrow__single {
-    @extend .left__arrow__single;
-}
-
 .women__content {
     position: relative;
     top: -88px;
+    z-index: 3;
 
     .women__block {
         flex-direction: column;

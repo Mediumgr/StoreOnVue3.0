@@ -55,11 +55,18 @@
     <div class="price__product">
       <div class="price__data">price</div>
       <div class="scroll__price">
-        <img :src="require('@/assets/img/priceRange.svg')" alt="price" />
+        <Slider
+          v-model="value"
+          :min="0"
+          :max="450"
+          :step="5"
+          :tooltipPosition="'bottom'"
+          :format="(v) => `$${Math.round(v)}`"
+        />
       </div>
       <div class="limited__price">
-        <div class="common__limit">$52</div>
-        <div class="common__limit">$400</div>
+        <div class="common__limit">$0</div>
+        <div class="common__limit">$450</div>
       </div>
     </div>
   </div>
@@ -85,13 +92,19 @@
 </template>
 
 <script>
+import Slider from "@vueform/slider";
+
 export default {
+  components: {
+    Slider,
+  },
   data() {
     return {
       numbers: ["09", "08", "07", "06", "05"],
+      value: [0, 80],
     };
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style src="@vueform/slider/themes/default.css"></style>
