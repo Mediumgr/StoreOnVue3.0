@@ -14,26 +14,16 @@
   <div class="women__content center">
     <div class="women__block">
       <div class="women__collection">women collection</div>
-      <div class="slider"></div>
-      <div class="mochino">Moschino Cheap And Chic</div>
-      <div class="star">
-        <img :src="require('@/assets/img/star.png')" alt="stars" />
+      <div class="women__bar slider">
+        <div
+          class="women__bar_thin"
+          v-for="n in womens.length"
+          :key="n"
+          @click="changeAdvertising(n)"
+          :class="{ active: activeClass === n }"
+        ></div>
       </div>
-      <div class="text__product">
-        Fashion designers tried to make this summer bright and filled it with
-        art. Also this season, among the new fashion trends, there are also
-        well-forgotten old ones, even such as crinolines and bustles. They could
-        be found on models in many fashion collections.
-        <div class="material__designer">
-          <div class="material">
-            MATERIAL:<span class="common__style"> COTTON</span>
-          </div>
-          <div class="designer">
-            DESIGNER:<span class="common__style"> BINBURHAN</span>
-          </div>
-        </div>
-      </div>
-      <div class="amount__total">150&#36;</div>
+      <collection-offer :women="women"></collection-offer>
       <div class="line__after__amount"></div>
       <div class="form__block">
         <div class="common__form">
@@ -103,6 +93,7 @@
 
 <script>
 import AdditionalProducts from "@/components/Single/AdditionalProducts.vue";
+import CollectionOffer from "@/components/Single/CollectionOffer.vue";
 import NProgress from "nprogress";
 import { mapGetters } from "vuex";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -117,6 +108,7 @@ export default {
     AdditionalProducts,
     Swiper,
     SwiperSlide,
+    CollectionOffer,
   },
   data() {
     return {
@@ -131,6 +123,37 @@ export default {
       message: "Add to Cart",
       btnClass: "buy",
       slides: ["white.png", "red.png", "black3.png"],
+      activeClass: 1,
+      womens: [
+        {
+          id: 1,
+          description:
+            "Fashion designers tried to make this summer bright and filled it with art. Also this season, among the new fashion trends, there are also well-forgotten old ones, even such as crinolines and bustles. They could",
+          designer: "BINBURHAN",
+          price: "150",
+        },
+        {
+          id: 2,
+          description:
+            "Stunning and amazing red leggings in addition to the leather black jacket made of eco-leather 'Stendhal'",
+          designer: "BROWN",
+          price: "200",
+        },
+        {
+          id: 3,
+          description:
+            "Women's leggings are made of insulated material that perfectly wicks away moisture and are designed for comfort during long outdoor workouts. The model stretches well and feels good on the body.",
+          designer: "SIMONS",
+          price: "225",
+        },
+      ],
+      women: {
+        id: 1,
+        description:
+          "Fashion designers tried to make this summer bright and filled it with art. Also this season, among the new fashion trends, there are also well-forgotten old ones, even such as crinolines and bustles. They could",
+        designer: "BINBURHAN",
+        price: "150",
+      },
     };
   },
   methods: {
@@ -153,6 +176,10 @@ export default {
             this.btnClass = "buy";
           }, 1500);
         });
+    },
+    changeAdvertising(index) {
+      this.activeClass = index;
+      this.women = this.womens[index - 1];
     },
   },
   computed: {
@@ -181,7 +208,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .square-red {
   color: rgb(239, 91, 112);
 }
@@ -197,6 +224,7 @@ export default {
   background-color: rgba(247, 247, 247, 1);
   display: flex;
   justify-content: space-between;
+  z-index: 0;
 }
 
 .swiper-slide {
@@ -219,20 +247,45 @@ export default {
 
 .swiper-wrapper {
   height: 90%;
+  z-index: 0;
 }
 
 .swiper-slide img {
   display: block;
-  height: 688px;
+  height: 707px;
   width: 597px;
-  object-fit: cover;
-}
-.swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: 100px;
+  top: -40px;
+  position: relative;
 }
 
 .swiper-slide {
   background: #f7f7f7;
+}
+
+.slider {
+  position: relative;
+  top: -30px;
+  right: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -2px;
+  cursor: pointer;
+}
+
+.women__bar {
+  width: 147px;
+  padding-left: 130px;
+  justify-content: space-between;
+  display: flex;
+  padding-top: 30px;
+  &_thin {
+    width: 38px;
+    height: 3px;
+    background-color: rgba(214, 214, 214, 1);
+  }
+}
+
+.active {
+  background-color: #f16d7f;
 }
 </style>

@@ -119,11 +119,9 @@
         <img src="@/assets/img/github.jpg" alt="github" class="github" />
       </a>
       <nav class="icons">
-        <a><i class="fab fa-facebook-f"></i></a>
-        <a><i class="fab fa-twitter"></i></a>
-        <a><i class="fab fa-linkedin-in"></i></a>
-        <a><i class="fab fa-pinterest-p"></i></a>
-        <a><i class="fab fa-google-plus-g"></i></a>
+        <a v-for="(link, index) in links" :key="link"
+          ><i :class="['fab', links[index]]"></i
+        ></a>
       </nav>
     </div>
   </footer>
@@ -134,6 +132,13 @@ export default {
   data() {
     return {
       activeClass: 1,
+      links: [
+        "fa-facebook-f",
+        "fa-twitter",
+        "fa-linkedin-in",
+        "fa-pinterest-p",
+        "fa-google-plus-g",
+      ],
       peoples: ["Men", "Women", "Child", "Apparel", "Browse All"],
       description: ["Home", "Shop", "About", "How It works", "Contact"],
       conditions: [

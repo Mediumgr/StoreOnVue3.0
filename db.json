@@ -545,15 +545,6 @@
   ],
   "cart": [
     {
-      "img": "guyshorts.png",
-      "id": 8,
-      "name": "Shorts",
-      "price": 35,
-      "quantity": 1,
-      "color": "Beige",
-      "size": "S"
-    },
-    {
       "img": "pans.png",
       "id": 7,
       "name": "Pants",
@@ -563,40 +554,10 @@
       "size": "S"
     },
     {
-      "img": "girlinred.png",
-      "id": 2,
-      "name": "Blouse",
-      "price": 30,
-      "quantity": 1,
-      "color": "Red",
-      "size": "S"
-    },
-    {
       "img": "third.png",
       "id": 21,
       "name": "SWEATER",
       "price": 65,
-      "quantity": 1
-    },
-    {
-      "img": "forthgirl.png",
-      "id": 22,
-      "name": "SWEATER",
-      "price": 70,
-      "quantity": 1
-    },
-    {
-      "img": "secondgirl.png",
-      "id": 20,
-      "name": "DRESS",
-      "price": 60,
-      "quantity": 1
-    },
-    {
-      "img": "black-girl.png",
-      "id": 19,
-      "name": "SWEATER",
-      "price": 50,
       "quantity": 1
     }
   ]

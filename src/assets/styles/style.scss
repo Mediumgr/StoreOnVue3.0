@@ -1516,9 +1516,16 @@ a {
     }
 }
 
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal{
+  bottom: 80px !important; 
+}
+
 .women__content {
     position: relative;
-    top: -88px;
+    top: -78px;
     z-index: 3;
 
     .women__block {
@@ -1546,17 +1553,6 @@ a {
             margin-left: auto;
             margin-right: auto;
             padding-bottom: 15px;
-        }
-
-        .slider {
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: -2px;
-            justify-content: center;
-            display: flex;
-            height: 3px;
-            width: 63px;
-            background-color: rgba(239, 91, 112, 1);
         }
 
         .mochino {

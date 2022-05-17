@@ -5,6 +5,18 @@
   >
     <left-aside></left-aside>
     <option-products></option-products>
+    <router-link :to="{ name: 'SinglePage' }">
+      <div class="our-offer" :style="styles" v-if="screenWidth < 1481">
+        <i class="fa-solid fa-circle-chevron-left fa-xl"></i>
+        <button class="raise">OFFER</button>
+      </div>
+    </router-link>
+    <router-link :to="{ name: 'SinglePage' }">
+      <div class="our-offer" :style="styles" v-if="screenWidth >= 1481">
+        <button class="raise">Offer</button>
+        <i class="fa-solid fa-circle-chevron-right fa-xl"></i>
+      </div>
+    </router-link>
     <div class="block__of__product">
       <product-items
         v-for="item of filtered"
@@ -100,6 +112,8 @@ export default {
       styleButton: {
         display: "block",
       },
+      top: null,
+      screenWidth: null,
     };
   },
   methods: {
@@ -116,23 +130,34 @@ export default {
   },
   created() {
     NProgress.start();
+    this.$store.commit("setLoading", true);
     this.$store
       .dispatch("getProducts")
       .catch((error) => {
         this.$router.push({ name: "ErrorDisplay", params: { error: error } });
       })
       .finally(() => {
+        this.$store.commit("setLoading", false);
         NProgress.done();
       });
   },
   computed: {
     ...mapState(["filtered"]),
     ...mapGetters(["loading"]),
+    styles() {
+      return {
+        top: `${this.top - 5}px`,
+      };
+    },
+  },
+  mounted() {
+    this.top = document.documentElement.clientHeight / 2;
+    this.screenWidth = document.documentElement.clientWidth;
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .active {
   background: rgb(230, 2, 199);
 }
@@ -147,5 +172,45 @@ export default {
 
 .fa-spinner {
   margin: 0 auto;
+}
+
+.raise {
+  background: none;
+  outline: none;
+  overflow: hidden;
+  border: none;
+  color: #f16d7f;
+  font: inherit;
+  padding: 0.5em 0.5em;
+  cursor: pointer;
+}
+
+.our-offer {
+  position: fixed;
+  cursor: pointer;
+  color: #f16d7f;
+  transition: 0.8s;
+}
+
+@media (max-width: 1480px) {
+  .our-offer {
+    left: 300px;
+    &:hover,
+    &:focus {
+      transform: translateX(-0.3em);
+      color: #83ee7d;
+    }
+  }
+}
+
+@media (min-width: 1481px) {
+  .our-offer {
+    right: 85px;
+    &:hover,
+    &:focus {
+      transform: translateX(0.3em);
+      color: #83ee7d;
+    }
+  }
 }
 </style>
