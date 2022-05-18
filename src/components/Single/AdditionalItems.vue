@@ -4,10 +4,15 @@
       <span
         ><img
           class="product__img__2"
-          :src="require(`@/assets/img/${product.img}`)"
+          :src="require(`@/assets/img/${product.variants[0]}`)"
           alt="photo"
       /></span>
     </div>
+    <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }">
+      <span class="description"
+        >Description <i class="fa-solid fa-circle-arrow-right fa-xs arrow"></i>
+      </span>
+    </router-link>
     <div class="bottom">
       <span class="text__mango">{{ product.name }}</span>
       <p class="price">
@@ -58,11 +63,13 @@ export default {
     addProductToCart(product) {
       this.$store
         .dispatch("postToCart", {
-          img: product.img,
+          img: product.variants[0],
           id: product.id,
           name: product.name,
           price: product.price,
           quantity: 1,
+          color: product.description[4],
+          size: "S",
         })
         .then(() => {
           this.message = `Added ${++this.counter} pcs`;

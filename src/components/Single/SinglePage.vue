@@ -33,7 +33,7 @@
               <select
                 required="required"
                 class="choose__color"
-                v-model="select"
+                v-model="selectColor"
               >
                 <option v-for="color in colors" :key="color">
                   {{ color }}
@@ -83,16 +83,16 @@
     <div class="you__may">you may like also</div>
   </div>
   <div class="foto__block__3 center">
-    <additional-products
-      v-for="product in products"
+    <additional-items
+      v-for="product in additionalProducts"
       :key="product.id"
       :product="product"
-    ></additional-products>
+    ></additional-items>
   </div>
 </template>
 
 <script>
-import AdditionalProducts from "@/components/Single/AdditionalProducts.vue";
+import AdditionalItems from "@/components/Single/AdditionalItems.vue";
 import CollectionOffer from "@/components/Single/CollectionOffer.vue";
 import NProgress from "nprogress";
 import { mapGetters } from "vuex";
@@ -105,7 +105,7 @@ import { Navigation, Pagination, Keyboard } from "swiper";
 export default {
   name: "SinglePage",
   components: {
-    AdditionalProducts,
+    AdditionalItems,
     Swiper,
     SwiperSlide,
     CollectionOffer,
@@ -114,8 +114,7 @@ export default {
     return {
       modules: [Navigation, Pagination, Keyboard],
       colors: ["White", "Red", "Black"],
-      color: "White",
-      select: "White",
+      selectColor: "White",
       styleColor: "square-white",
       sizes: ["XXL", "M", "S"],
       yourSize: "S",
@@ -123,6 +122,9 @@ export default {
       message: "Add to Cart",
       btnClass: "buy",
       slides: ["white.png", "red.png", "black3.png"],
+      image: "white.png",
+      id: 23,
+      price: 150,
       activeClass: 1,
       womens: [
         {
@@ -158,15 +160,16 @@ export default {
   },
   methods: {
     addToCart() {
+      console.log(this.slide);
       this.$store
         .dispatch("postMochinoToCart", {
-          img: "nice__girl.png",
-          id: 23,
+          img: this.image,
+          id: this.id,
           name: "MOSCHINO",
-          price: 150,
+          price: this.price,
           quantity: this.quantity,
+          color: this.selectColor,
           size: this.yourSize,
-          color: this.color,
         })
         .then(() => {
           this.message = "Successfully added";
@@ -183,19 +186,28 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["products"]),
+    ...mapGetters(["additionalProducts"]),
   },
   watch: {
-    select(newValue) {
+    selectColor(newValue) {
       switch (newValue) {
         case "White":
           this.styleColor = "square-white";
+          this.image = this.slides[0];
+          this.price = 150;
+          this.id = 23;
           break;
         case "Red":
           this.styleColor = "square-red";
+          this.image = this.slides[1];
+          this.price = 200;
+          this.id = 24;
           break;
         case "Black":
           this.styleColor = "square-black";
+          this.image = this.slides[2];
+          this.price = 225;
+          this.id = 25;
       }
     },
   },
@@ -277,7 +289,7 @@ export default {
   padding-left: 130px;
   justify-content: space-between;
   display: flex;
-  padding-top: 30px;
+  padding-top: 40px;
   &_thin {
     width: 38px;
     height: 3px;

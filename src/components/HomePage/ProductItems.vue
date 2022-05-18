@@ -3,7 +3,7 @@
     <span
       ><img
         class="product-item__img"
-        :src="require(`@/assets/img/${product.img}`)"
+        :src="require(`@/assets/img/${product.variants[0]}`)"
         alt="photo"
     /></span>
     <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }">
@@ -63,7 +63,7 @@ export default {
     addProductToCart(product) {
       this.$store
         .dispatch("postToCart", {
-          img: product.img,
+          img: product.variants[0],
           id: product.id,
           name: product.name,
           price: product.price,

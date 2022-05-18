@@ -1,5 +1,5 @@
 <template>
-  <div class="product-detail" v-if="product">
+  <div class="product-detail" v-if="product && loading === false">
     <div class="flex">
       <div class="goodContainer">
         <img
@@ -57,6 +57,9 @@
     </button>
     <span class="cartAdded" v-if="cartProductsAmount !== 0">{{ message }}</span>
   </div>
+  <div class="block__of__spinner" v-if="loading === true">
+    <i class="fa-solid fa-spinner fa-spin fa-2xl"></i>
+  </div>
 </template>
 
 <script>
@@ -104,7 +107,7 @@ export default {
     addProductToCart(product) {
       this.$store
         .dispatch("postToCart", {
-          img: product.variants[0],
+          img: product.img,
           id: product.id,
           name: product.name,
           price: product.price,
@@ -128,15 +131,17 @@ export default {
   },
   computed: {
     ...mapState(["product"]),
-    ...mapGetters(["cartProductsAmount"]),
+    ...mapGetters(["cartProductsAmount", "loading"]),
     currentComponent() {
       return "product-" + this.currentTab.toLowerCase();
     },
   },
   created() {
     NProgress.start();
+    this.$store.commit("setLoading", true);
     this.$store.dispatch("getProduct", +this.id).finally(() => {
       NProgress.done();
+      this.$store.commit("setLoading", false);
     });
   },
 };
@@ -176,5 +181,17 @@ export default {
 
 .block {
   padding-left: 20px;
+}
+
+.block__of__spinner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 250px 0 350px 0;
+  align-items: center;
+}
+
+.fa-spinner {
+  margin: 0 auto;
 }
 </style>

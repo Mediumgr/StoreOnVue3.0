@@ -18,11 +18,17 @@ export default {
   getExtraProducts() {
     return apiClient.get("/extraProducts");
   },
+  fetchAdditionalProducts() {
+    return apiClient.get("/additionalProducts");
+  },
   getProduct(id) {
     return apiClient.get(`/products/${id}`);
   },
   getExtraProduct(id) {
     return apiClient.get(`/extraProducts/${id}`);
+  },
+  getAdditionalProduct(id) {
+    return apiClient.get(`/additionalProducts/${id}`);
   },
   cartFetch() {
     return apiClient.get("/cart");

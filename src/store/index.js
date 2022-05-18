@@ -1,8 +1,7 @@
 import { createStore } from "vuex";
 import EventService from "@/services/EventService.js";
 import router from "@/router";
-import additional from "./additional";
-import loading from "./loading";
+import shared from "./loading";
 
 export default createStore({
   state: {
@@ -11,8 +10,8 @@ export default createStore({
     product: [],
     filtered: [],
     extraProducts: [],
+    additionalProducts: [],
     user: null,
-    loading: false,
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -55,6 +54,9 @@ export default createStore({
     USER(state, payload) {
       state.user = payload;
     },
+    ADDITIONAL_PRODUCTS(state, payload) {
+      state.additionalProducts = payload;
+    },
   },
   actions: {
     getProducts({ commit }) {
@@ -82,6 +84,15 @@ export default createStore({
           throw error;
         });
     },
+    fetchAdditionalProducts({ commit }) {
+      return EventService.fetchAdditionalProducts()
+        .then((response) => {
+          commit("ADDITIONAL_PRODUCTS", response.data);
+        })
+        .catch((error) => {
+          throw error;
+        });
+    },
     actionForFilter({ commit }) {
       return EventService.getExtraProducts()
         .then((response) => {
@@ -92,7 +103,7 @@ export default createStore({
         });
     },
     getProduct({ commit, dispatch }, id) {
-      //id товара (от 1 до 9) меньше или ровно 9 (кол-ву товаров в products db.json)
+      //id товара (от 1 до 9 = кол-ву товаров в db.json)
       if (id <= 9) {
         return EventService.getProduct(id)
           .then((response) => {
@@ -106,10 +117,37 @@ export default createStore({
               },
             });
           });
-      } else dispatch("getExtraProduct", id);
+      }
+      //id товара (от 10 до 18 = кол-ву товаров в db.json)
+      if (id > 9 && id < 19) {
+        debugger;
+        console.log(id);
+        dispatch("getExtraProduct", id);
+      }
+      //id товара (от 19 до 22 = кол-ву товаров в db.json)
+      if (id > 18 && id < 23) {
+        dispatch("getAdditionalProduct", id);
+      }
+      if (id > 22 && id < 26) {
+        // ДОБАВИТЬ ПРОДУКТЫ ИЗ СЛАЙДЕРА
+      }
     },
     getExtraProduct({ commit }, id) {
       return EventService.getExtraProduct(id)
+        .then((response) => {
+          commit("SET_PRODUCT", response.data);
+        })
+        .catch(() => {
+          router.push({
+            name: "NotFound",
+            params: {
+              resource: "product",
+            },
+          });
+        });
+    },
+    getAdditionalProduct({ commit }, id) {
+      return EventService.getAdditionalProduct(id)
         .then((response) => {
           commit("SET_PRODUCT", response.data);
         })
@@ -179,13 +217,17 @@ export default createStore({
           throw error;
         });
     },
-    remove({ commit }, payload) {
+    remove({ commit, state }, payload) {
+      state.loading = true;
       return EventService.deleteProduct(payload)
         .then(() => {
           commit("DELETE_PRODUCT_IN_CART", payload);
         })
         .catch((error) => {
           throw error;
+        })
+        .finally(() => {
+          state.loading = false;
         });
     },
     //КАК ЕЩЕ СДЕЛАТЬ МЕТОД, ЧТОБЫ УДАЛЯЛ ВСЕ ИМЕЮЩИЕСЯ ТОВАРЫ МАГАЗИНА ИЗ КОРЗИНЫ, НО НЕ ПАДАЛ СЕРВЕР?(НА 2-3 РАЗ ПРИ ПОПЫТКЕ УДАЛИТЬ ВСЕ ТОВАРЫ ПАДАЕТ СЕРВАК):
@@ -207,9 +249,11 @@ export default createStore({
     filteredLength: (state) => {
       return state.filtered.length;
     },
+    additionalProducts(state) {
+      return state.additionalProducts;
+    },
   },
   modules: {
-    additional,
-    loading,
+    shared,
   },
 });

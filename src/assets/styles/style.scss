@@ -1519,8 +1519,8 @@ a {
 .swiper-pagination-fraction,
 .swiper-pagination-custom,
 .swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal{
-  bottom: 80px !important; 
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 80px !important;
 }
 
 .women__content {
@@ -1548,11 +1548,9 @@ a {
             text-align: center;
             line-height: 24px;
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(234, 234, 234, 1);
             width: 148px;
             margin-left: auto;
             margin-right: auto;
-            padding-bottom: 15px;
         }
 
         .mochino {
@@ -1752,11 +1750,15 @@ a {
                 filter: brightness(40%);
             }
 
-            & .add__cart {
+            .description {
+                opacity: 1;
+            }
+
+            .add__cart {
                 display: flex;
             }
 
-            & .product__star {
+            .product__star {
                 display: block;
             }
         }

@@ -19,12 +19,12 @@
     </div>
     <div class="product__order" v-show="showCart">
       <p v-if="!cart.length" class="cartItem">No products in your cart</p>
-      <div v-else>
+      <div v-if="cart.length">
         <template v-for="item of cart">
           <cart-item
             v-if="cart.length < 3"
-            :key="item"
-            :cart-item="item"
+            :key="item.id"
+            :cartItem="item"
             @remove="removeProduct"
           >
           </cart-item>
@@ -32,8 +32,8 @@
         <template v-for="(item, index) of cart">
           <cart-item
             v-if="cart.length > 2 && index < 2"
-            :key="item"
-            :cart-item="item"
+            :key="item.id"
+            :cartItem="item"
             @remove="removeProduct"
           >
           </cart-item>

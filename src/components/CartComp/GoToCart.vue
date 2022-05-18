@@ -134,9 +134,12 @@ export default {
         });
     },
     clearCart() {
-      this.$store.dispatch("clearCart").catch((error) => {
-        this.$router.push({ name: "ErrorDisplay", params: { error: error } });
-      });
+      let answer = window.confirm("Are you sure to delete all products ?");
+      if (answer) {
+        this.$store.dispatch("clearCart").catch((error) => {
+          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        });
+      }
     },
     findCoupon() {
       if (this.coupon !== "") {
