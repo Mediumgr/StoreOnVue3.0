@@ -125,28 +125,28 @@ export default {
       image: "white.png",
       id: 23,
       price: 150,
-      activeClass: 1,
+      activeClass: 2,
       womens: [
         {
           id: 1,
           description:
-            "Fashion designers tried to make this summer bright and filled it with art. Also this season, among the new fashion trends, there are also well-forgotten old ones, even such as crinolines and bustles. They could",
+            "Fashion designers tried to make this summer bright and filled it with art. Also this season, among the new fashion trends, there are also well-forgotten old ones, even such as crinolines and bustles.",
           designer: "BINBURHAN",
-          price: "150",
+          price: 150,
         },
         {
           id: 2,
           description:
             "Stunning and amazing red leggings in addition to the leather black jacket made of eco-leather 'Stendhal'",
           designer: "BROWN",
-          price: "200",
+          price: 200,
         },
         {
           id: 3,
           description:
             "Women's leggings are made of insulated material that perfectly wicks away moisture and are designed for comfort during long outdoor workouts. The model stretches well and feels good on the body.",
           designer: "SIMONS",
-          price: "225",
+          price: 225,
         },
       ],
       women: {
@@ -160,7 +160,6 @@ export default {
   },
   methods: {
     addToCart() {
-      console.log(this.slide);
       this.$store
         .dispatch("postMochinoToCart", {
           img: this.image,
@@ -287,7 +286,7 @@ export default {
 .women__bar {
   width: 147px;
   padding-left: 130px;
-  justify-content: space-between;
+  justify-content: center;
   display: flex;
   padding-top: 40px;
   &_thin {

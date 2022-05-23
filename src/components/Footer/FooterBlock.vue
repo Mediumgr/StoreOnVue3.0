@@ -58,13 +58,13 @@
   <div class="last__page center">
     <div class="left__side__bottom">
       <div class="bottom__logo">
-        <a href="#" class="logo">
+        <router-link :to="{ name: 'MainPage' }" class="logo">
           <img
             class="logo__img"
             src="@/assets/img/logo.png"
             alt="logo"
-          />BRAN<span>D</span>
-        </a>
+          />BRAN<span>D</span></router-link
+        >
       </div>
       <div class="bottom__page">
         <div class="upper__text">
@@ -84,28 +84,39 @@
     <div class="company">
       <h2 class="style__pink">Company</h2>
       <div class="column__company">
-        <a class="company__style" v-for="desc in description" :key="desc">
+        <router-link
+          :to="{ name: 'CheckOut' }"
+          class="company__style"
+          v-for="desc in description"
+          :key="desc"
+        >
           {{ desc }}
-        </a>
+        </router-link>
       </div>
     </div>
     <div class="information">
       <h2 class="style__pink">Information</h2>
       <div class="column__company">
-        <a
+        <router-link
+          :to="{ name: 'CheckOut' }"
           class="company__style"
           v-for="condition in conditions"
           :key="condition"
-          >{{ condition }}
-        </a>
+        >
+          {{ condition }}
+        </router-link>
       </div>
     </div>
     <div class="Shop">
       <h2 class="style__pink">Shop Category</h2>
       <div class="column__company">
-        <a class="company__style" v-for="people in peoples" :key="people">
-          {{ people }}
-        </a>
+        <router-link
+          :to="{ name: 'ProductPage' }"
+          v-for="people in peoples"
+          :key="people"
+          class="company__style"
+          >{{ people }}</router-link
+        >
       </div>
     </div>
   </div>

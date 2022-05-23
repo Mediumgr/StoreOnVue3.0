@@ -555,7 +555,7 @@
         "19.1.jpg"
       ],
       "description": [
-        "DRESS WITH TROUSERS",
+        "DRESS & TROUSERS",
         "Model: 8VP8348",
         "Compound: 50 % viscose, 50 % polyester",
         "Line: Women",
@@ -581,8 +581,8 @@
       "price": 60,
       "variants": [
         "secondgirl.png",
-        "20.1.jpg",
-        "20.2.jpg"
+        "20.1.png",
+        "20.2.png"
       ],
       "description": [
         "DRESS",
@@ -607,20 +607,20 @@
     {
       "img": "third.png",
       "id": 21,
-      "name": "SWEATER",
+      "name": "PANTS",
       "price": 65,
       "variants": [
         "third.png",
-        "poloneck.jpg",
-        "poloneck2.jpg"
+        "21.1.jpg",
+        "21.2.jpg"
       ],
       "description": [
-        "Poloneck",
-        "Model: 5B641011M/47885N/1000N",
-        "Compound: 80% cotton, 20% polyester, spandex",
-        "Line: Basic",
-        "Black",
-        "Black padded oversized hoodie with lining. The model has four deep pockets with waterproof zippers and a voluminous hood with drawstrings."
+        "HIGH-WAIST PANTS",
+        "Model: 13725644OR",
+        "Compound: 100% Viscose",
+        "Line: Modern",
+        "Beige",
+        "Knitted, light jersey, no appliqués, multi-colour pattern, regular fit at the waist, elasticated waistband, straight fit"
       ],
       "posts": [
         {
@@ -637,20 +637,20 @@
     {
       "img": "forthgirl.png",
       "id": 22,
-      "name": "SWEATER",
+      "name": "Leggins",
       "price": 70,
       "variants": [
         "forthgirl.png",
-        "poloneck.jpg",
-        "poloneck2.jpg"
+        "22.1.jpg",
+        "22.2.jpg"
       ],
       "description": [
-        "Poloneck",
-        "Model: 5B641011M/47885N/1000N",
-        "Compound: 80% cotton, 20% polyester, spandex",
+        "Black shiny leggings",
+        "Model: Mint Velvet",
+        "Compound: 100% spandex",
         "Line: Basic",
         "Black",
-        "Black padded oversized hoodie with lining. The model has four deep pockets with waterproof zippers and a voluminous hood with drawstrings."
+        "High rise leggings for comfort and optimal support!"
       ],
       "posts": [
         {
@@ -665,5 +665,107 @@
       ]
     }
   ],
-  "cart": []
+  "sliderProducts": [
+    {
+      "img": "white.png",
+      "id": 23,
+      "name": "MOSCHINO",
+      "price": 150,
+      "variants": [
+        "white.png",
+        "23.1.jpg",
+        "23.2.jpg"
+      ],
+      "description": [
+        "Leggins White",
+        "Model: 8VP8348",
+        "Compound: 100% polyester",
+        "Line: MOSCHINO",
+        "White",
+        "Fashion designers tried to make this summer bright and filled it with art. Also this season, among the new fashion trends, there are also well-forgotten old ones, even such as crinolines and bustles."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes"
+        }
+      ]
+    },
+    {
+      "img": "red.png",
+      "id": 24,
+      "name": "MOSCHINO",
+      "price": 200,
+      "variants": [
+        "red.png",
+        "24.1.png",
+        "24.2.png"
+      ],
+      "description": [
+        "Leggins Red",
+        "Model: Veronica",
+        "Compound: 100% polyester",
+        "Line: MOSCHINO",
+        "Red",
+        "Stunning and amazing red leggings in addition to the leather black jacket made of eco-leather 'Stendhal'."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes"
+        }
+      ]
+    },
+    {
+      "img": "black3.png",
+      "id": 25,
+      "name": "MOSCHINO",
+      "price": 225,
+      "variants": [
+        "black3.png",
+        "25.1.jpg",
+        "25.2.jpg"
+      ],
+      "description": [
+        "Leggins Black",
+        "Model: GHS004250",
+        "Compound: 100 % polyester",
+        "Line: MOSCHINO",
+        "Black",
+        "Women's leggings are made of insulated material that perfectly wicks away moisture and are designed for comfort during long outdoor workouts. The model stretches well and feels good on the body."
+      ],
+      "posts": [
+        {
+          "id": 1,
+          "title": "Payment",
+          "content": "<div><p>Payment for the order in cash to the courier upon delivery of the goods.You can pay the order to the courier in cash in rubles directly at the time of delivery or by credit card</p></div>"
+        },
+        {
+          "id": 2,
+          "title": "Sizes"
+        }
+      ]
+    }
+  ],
+  "cart": [
+    {
+      "img": "girlinred.png",
+      "id": 2,
+      "name": "Blouse",
+      "price": 30,
+      "quantity": 1,
+      "color": "Red",
+      "size": "S"
+    }
+  ]
 }

@@ -26,7 +26,6 @@
 </template>
 
 <script>
-/* import firebase from "firebase/compat/app"; */
 import ModalExitWindow from "@/views/ModalWindow/ModalExitWindow.vue";
 
 export default {
@@ -71,7 +70,6 @@ export default {
       this.$store.commit("USER", this.modelValue);
       this.classObject.unLogin = true;
       this.classObject.login = false;
-      /*       await firebase.database().ref(`/users/orders`).push("Имя"); */
     },
     confirm() {
       localStorage.clear();

@@ -1,7 +1,7 @@
 <template>
   <div class="errorBlock">
     <h4>Oops!</h4>
-    <p>{{ error }}</p>
+    <p class="error">{{ error }}</p>
     <router-link :to="{ name: 'MainPage' }" class="back"
       >Back to the home page</router-link
     >
@@ -17,9 +17,6 @@ export default {
       default: "The page you are looking for not exist",
     },
   },
-  created() {
-    window.scroll(0, 0);
-  },
 };
 </script>
 
@@ -33,5 +30,8 @@ export default {
 }
 .back {
   padding-top: 40px;
+}
+.error {
+  padding-top: 45px;
 }
 </style>

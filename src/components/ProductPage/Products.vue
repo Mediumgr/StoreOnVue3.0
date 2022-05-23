@@ -118,6 +118,7 @@ export default {
   },
   methods: {
     viewAllProducts() {
+      this.$store.commit("setLoading", true);
       this.$store
         .dispatch("getExtraProducts")
         .then(() => {
@@ -125,6 +126,9 @@ export default {
         })
         .catch((error) => {
           this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+        })
+        .finally(() => {
+          this.$store.commit("setLoading", false);
         });
     },
   },

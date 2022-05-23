@@ -48,7 +48,7 @@ export default createStore({
     CLEAR_CART(state) {
       state.cart.splice(0, state.cart.length);
     },
-    CONCAT_ALL_PRODUCTS(state) {
+    CONCAT_EXTRA_PRODUCTS(state) {
       state.products = state.products.concat(state.extraProducts);
     },
     USER(state, payload) {
@@ -75,7 +75,7 @@ export default createStore({
           commit("SET_EXTRA_PRODUCTS", response.data);
         })
         .then(() => {
-          commit("CONCAT_ALL_PRODUCTS");
+          commit("CONCAT_EXTRA_PRODUCTS");
         })
         .then(() => {
           commit("FILL_OF_FILTER", state.products);
@@ -94,18 +94,18 @@ export default createStore({
         });
     },
     actionForFilter({ commit }) {
-      return EventService.getExtraProducts()
+      EventService.getExtraProducts()
         .then((response) => {
           commit("SET_EXTRA_PRODUCTS", response.data);
         })
         .then(() => {
-          commit("CONCAT_ALL_PRODUCTS");
+          commit("CONCAT_EXTRA_PRODUCTS");
         });
     },
     getProduct({ commit, dispatch }, id) {
       //id товара (от 1 до 9 = кол-ву товаров в db.json)
       if (id <= 9) {
-        return EventService.getProduct(id)
+        EventService.getProduct(id)
           .then((response) => {
             commit("SET_PRODUCT", response.data);
           })
@@ -120,20 +120,18 @@ export default createStore({
       }
       //id товара (от 10 до 18 = кол-ву товаров в db.json)
       if (id > 9 && id < 19) {
-        debugger;
-        console.log(id);
         dispatch("getExtraProduct", id);
       }
       //id товара (от 19 до 22 = кол-ву товаров в db.json)
       if (id > 18 && id < 23) {
         dispatch("getAdditionalProduct", id);
       }
-      if (id > 22 && id < 26) {
-        // ДОБАВИТЬ ПРОДУКТЫ ИЗ СЛАЙДЕРА
+      if (id > 22) {
+        dispatch("getSlidersProduct", id);
       }
     },
     getExtraProduct({ commit }, id) {
-      return EventService.getExtraProduct(id)
+      EventService.getExtraProduct(id)
         .then((response) => {
           commit("SET_PRODUCT", response.data);
         })
@@ -147,7 +145,21 @@ export default createStore({
         });
     },
     getAdditionalProduct({ commit }, id) {
-      return EventService.getAdditionalProduct(id)
+      EventService.getAdditionalProduct(id)
+        .then((response) => {
+          commit("SET_PRODUCT", response.data);
+        })
+        .catch(() => {
+          router.push({
+            name: "NotFound",
+            params: {
+              resource: "product",
+            },
+          });
+        });
+    },
+    getSlidersProduct({ commit }, id) {
+      EventService.getSlidersProduct(id)
         .then((response) => {
           commit("SET_PRODUCT", response.data);
         })
@@ -230,10 +242,12 @@ export default createStore({
           state.loading = false;
         });
     },
-    //КАК ЕЩЕ СДЕЛАТЬ МЕТОД, ЧТОБЫ УДАЛЯЛ ВСЕ ИМЕЮЩИЕСЯ ТОВАРЫ МАГАЗИНА ИЗ КОРЗИНЫ, НО НЕ ПАДАЛ СЕРВЕР?(НА 2-3 РАЗ ПРИ ПОПЫТКЕ УДАЛИТЬ ВСЕ ТОВАРЫ ПАДАЕТ СЕРВАК):
+    //КАК ЕЩЕ СДЕЛАТЬ МЕТОД, ЧТОБЫ УДАЛЯЛ ВСЕ ИМЕЮЩИЕСЯ ТОВАРЫ МАГАЗИНА ИЗ КОРЗИНЫ, НО НЕ ПАДАЛ СЕРВЕР?(НА ВТОРОЙ ИЛИ ТРЕТИЙ РАЗ ПРИ ПОПЫТКЕ УДАЛИТЬ ВСЕ ТОВАРЫ (ЕСЛИ ИХ МНОГО В КОРЗИНЕ), ТО ПАДАЕТ СЕРВАК):
     clearCart({ state, commit }) {
       state.cart.forEach((element) => {
-        return EventService.deleteProduct(element);
+        return EventService.deleteProduct(element).catch((error) => {
+          throw error;
+        });
       });
       commit("CLEAR_CART");
     },

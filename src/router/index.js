@@ -89,11 +89,11 @@ const routes = [
   },
   {
     path: "/:pathMatch(.*)*",
-    name: "NotFound",
+    name: "ErrorDisplay",
     component: () =>
       import(
-        /*  webpackChunkName: "NotFound" */
-        "../views/NotFound/NotFound"
+        /*  webpackChunkName: "ErrorDisplay" */
+        "../views/NotFound/ErrorDisplay"
       ),
   },
 ];

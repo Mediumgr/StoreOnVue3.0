@@ -2,16 +2,20 @@
   <div class="nav">
     <ul class="menu center">
       <li class="menu__list">
-        <a href="#" class="menu__link">Home</a>
+        <router-link :to="{ name: 'MainPage' }" class="menu__link"
+          >Home</router-link
+        >
       </li>
       <li class="menu__list">
-        <a href="#" class="menu__link">Women</a>
+        <p class="menu__link">Women</p>
         <div class="drop">
           <div class="drop__flex">
             <h3 class="drop__h3">Women</h3>
             <ul class="drop__ul">
               <li v-for="cloth in clothes" :key="cloth">
-                <a href="#" class="drop__a">{{ cloth }}</a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  cloth
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -19,17 +23,17 @@
             <h3 class="drop__h3">Women</h3>
             <ul class="drop__ul">
               <li v-for="good in goods" :key="good">
-                <a href="#" class="drop__a">
-                  {{ good }}
-                </a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  good
+                }}</router-link>
               </li>
             </ul>
             <h3 class="drop__h3">Women</h3>
             <ul class="drop__ul">
               <li v-for="output in outputs" :key="output">
-                <a href="#" class="drop__a">
-                  {{ output }}
-                </a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  output
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -37,7 +41,9 @@
             <h3 class="drop__h3">Best Sale</h3>
             <ul class="drop__ul">
               <li v-for="good in goods" :key="good">
-                <a href="#" class="drop__a">{{ good }}</a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  good
+                }}</router-link>
               </li>
             </ul>
             <div class="sale">
@@ -47,18 +53,20 @@
         </div>
       </li>
       <li class="menu__list" v-for="sale in bestSale" :key="sale">
-        <a href="#" class="menu__link">
-          {{ sale }}
-        </a>
+        <router-link :to="{ name: 'ProductPage' }" class="menu__link">{{
+          sale
+        }}</router-link>
       </li>
       <li class="menu__list">
-        <a href="#" class="menu__link">Hot Deals</a>
+        <p class="menu__link">Hot Deals</p>
         <div class="drop drop__last">
           <div class="drop__flex">
             <h3 class="drop__h3">Best Sale</h3>
             <ul class="drop__ul">
               <li v-for="cloth in clothes" :key="cloth">
-                <a href="#" class="drop__a">{{ cloth }}</a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  cloth
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -66,17 +74,17 @@
             <h3 class="drop__h3">Clearance</h3>
             <ul class="drop__ul">
               <li v-for="good in goods" :key="good">
-                <a href="#" class="drop__a">
-                  {{ good }}
-                </a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  good
+                }}</router-link>
               </li>
             </ul>
             <h3 class="drop__h3">Sale</h3>
             <ul class="drop__ul">
               <li v-for="output in outputs" :key="output">
-                <a href="#" class="drop__a">
-                  {{ output }}
-                </a>
+                <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                  output
+                }}</router-link>
               </li>
             </ul>
           </div>

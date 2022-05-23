@@ -67,10 +67,11 @@ import ProductDescription from "@/views/Product/ProductDescription.vue";
 import ProductDelivery from "@/views/Product/ProductDelivery.vue";
 import NProgress from "nprogress";
 import { mapGetters, mapState } from "vuex";
+import mixin from "@/mixins/Stars.vue";
 
 export default {
-  //mixins changeRating()  with ProductItems component
   name: "ProductDetails",
+  mixins: [mixin],
   props: {
     id: {
       type: String,
@@ -93,21 +94,10 @@ export default {
     changeImage(variant) {
       this.$store.state.product.img = variant; //Изменяю state - не очень...через created .then(() => не получается)
     },
-    changeRating(n) {
-      debugger;
-      for (let i = 0; i < n; i++) {
-        this.$refs.star[i].classList.value = "fas fa-star fa-sm star";
-      }
-      if (n <= this.$refs.star.length) {
-        for (let i = n; i < this.$refs.star.length; i++) {
-          this.$refs.star[i].classList.value = "fas fa-star fa-sm";
-        }
-      }
-    },
     addProductToCart(product) {
       this.$store
         .dispatch("postToCart", {
-          img: product.img,
+          img: product.variants[0],
           id: product.id,
           name: product.name,
           price: product.price,
