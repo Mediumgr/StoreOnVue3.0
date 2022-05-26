@@ -1,11 +1,8 @@
 <template>
   <brand-promo></brand-promo>
   <div class="products center">
-    <div class="noProducts center" v-if="!filtered.length">
-      {{ error }}
-    </div>
     <product-items
-      v-for="item of filtered"
+      v-for="item of mainPage"
       :key="item.id"
       :product="item"
     ></product-items>
@@ -35,16 +32,10 @@ export default {
     ProductItems,
     OfferDiscount,
   },
-  data() {
-    return {
-      error:
-        "The products you are looking for were not found. Enter the name of the product.",
-    };
-  },
   created() {
     NProgress.start();
     this.$store
-      .dispatch("getProducts")
+      .dispatch("getProductsForMainPage")
       .catch((error) => {
         this.$router.push({ name: "ErrorDisplay", params: { error: error } });
       })
@@ -53,7 +44,7 @@ export default {
       });
   },
   computed: {
-    ...mapState(["filtered"]),
+    ...mapState(["mainPage"]),
   },
 };
 </script>

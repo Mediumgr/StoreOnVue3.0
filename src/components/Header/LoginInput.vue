@@ -29,7 +29,6 @@
 import ModalExitWindow from "@/views/ModalWindow/ModalExitWindow.vue";
 
 export default {
-  inheritAttrs: false,
   emits: ["update:modelValue", "changeClass"],
   components: {
     ModalExitWindow,

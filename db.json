@@ -759,12 +759,30 @@
   ],
   "cart": [
     {
-      "img": "girlinred.png",
-      "id": 2,
-      "name": "Blouse",
-      "price": 30,
+      "img": "white.png",
+      "id": 23,
+      "name": "MOSCHINO",
+      "price": 150,
       "quantity": 1,
-      "color": "Red",
+      "color": "White",
+      "size": "S"
+    },
+    {
+      "img": "secondgirl.png",
+      "id": 20,
+      "name": "DRESS",
+      "price": 60,
+      "quantity": 1,
+      "color": "Snake print",
+      "size": "S"
+    },
+    {
+      "img": "third.png",
+      "id": 21,
+      "name": "PANTS",
+      "price": 65,
+      "quantity": 1,
+      "color": "Beige",
       "size": "S"
     }
   ]

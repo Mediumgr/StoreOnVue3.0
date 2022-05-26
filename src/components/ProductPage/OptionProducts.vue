@@ -73,19 +73,24 @@
   <div class="select__form">
     <form class="sorting__line">
       <div class="sort__by__name">
-        <div class="Sort">Sort By</div>
-        <select name="SortBy" id="SortBy" class="SortBy">
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-        </select>
+        <sort-by
+          label="Sort By"
+          :options="categories"
+          v-model="categories[0]"
+          name="SortBy"
+          id="SortBy"
+          class="SortBy"
+        ></sort-by>
       </div>
       <div class="page__sorting">
-        <div class="Sort">Show</div>
-        <select name="page" id="page" class="SortByNumber">
-          <option value="show__page" v-for="num in numbers" :key="num">
-            {{ num }}
-          </option>
-        </select>
+        <show-sex
+          name="page"
+          id="page"
+          class="SortByNumber"
+          :options="sex"
+          label="Show"
+          v-model="sex[0]"
+        ></show-sex>
       </div>
     </form>
   </div>
@@ -93,15 +98,21 @@
 
 <script>
 import Slider from "@vueform/slider";
+import SortBy from "@/components/ProductPage/SortBy.vue";
+import ShowSex from "@/components/ProductPage/ShowSex.vue";
 
 export default {
   components: {
     Slider,
+    SortBy,
+    ShowSex,
   },
   data() {
     return {
       numbers: ["09", "08", "07", "06", "05"],
       value: [0, 80],
+      categories: ["Name", "Price"],
+      sex: ["Men", "Women"],
     };
   },
 };

@@ -9,6 +9,7 @@ export default createStore({
     cart: [],
     product: [],
     filtered: [],
+    mainPage: [],
     extraProducts: [],
     additionalProducts: [],
     user: null,
@@ -20,11 +21,12 @@ export default createStore({
     FILL_OF_FILTER(state, payload) {
       state.filtered = payload;
     },
+    FILL_OF_MAIN_PAIGE(state, payload) {
+      state.mainPage = payload;
+    },
     FILTER_PRODUCTS_REGEXP(state, payload) {
       let regexp = new RegExp(payload, "i");
-      state.filtered = state.products.filter((product) =>
-        regexp.test(product.name)
-      );
+      state.filtered = state.products.filter((item) => regexp.test(item.name));
     },
     SET_EXTRA_PRODUCTS(state, products) {
       state.extraProducts = products;
@@ -69,6 +71,15 @@ export default createStore({
           throw error;
         });
     },
+    getProductsForMainPage({ commit }) {
+      return EventService.getProducts()
+        .then((response) => {
+          commit("FILL_OF_MAIN_PAIGE", response.data);
+        })
+        .catch((error) => {
+          throw error;
+        });
+    },
     getExtraProducts({ commit, state }) {
       return EventService.getExtraProducts()
         .then((response) => {
@@ -93,13 +104,26 @@ export default createStore({
           throw error;
         });
     },
-    actionForFilter({ commit }) {
-      EventService.getExtraProducts()
+    actionForFilter({ commit }, userSearch) {
+      commit("setLoading", true);
+      EventService.getProducts()
         .then((response) => {
-          commit("SET_EXTRA_PRODUCTS", response.data);
+          commit("SET_PRODUCTS", response.data);
         })
         .then(() => {
-          commit("CONCAT_EXTRA_PRODUCTS");
+          EventService.getExtraProducts()
+            .then((response) => {
+              commit("SET_EXTRA_PRODUCTS", response.data);
+            })
+            .then(() => {
+              commit("CONCAT_EXTRA_PRODUCTS");
+            })
+            .then(() => {
+              commit("FILTER_PRODUCTS_REGEXP", userSearch);
+            });
+        })
+        .finally(() => {
+          commit("setLoading", false);
         });
     },
     getProduct({ commit, dispatch }, id) {

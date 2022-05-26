@@ -475,6 +475,10 @@ a {
     text-transform: uppercase;
 }
 
+.slider-origin {
+   z-index: 0 !important;
+}
+
 .absolute__man,
 .absolute__woman {
     position: absolute;

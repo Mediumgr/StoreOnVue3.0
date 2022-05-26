@@ -24,7 +24,7 @@
         :product="item"
       ></product-items>
     </div>
-    <div class="viewAllBlock" v-show="filtered.length !== 18">
+    <div class="viewAllBlock" v-show="filtered.length !== productsLength">
       <button
         :style="styleButton"
         class="view__all__button"
@@ -114,18 +114,27 @@ export default {
       },
       top: null,
       screenWidth: null,
+      productsLength: 18, // length of all existed products in db.json (products + extraProducts)
     };
   },
   methods: {
     viewAllProducts() {
       this.$store.commit("setLoading", true);
       this.$store
-        .dispatch("getExtraProducts")
+        .dispatch("getProducts")
         .then(() => {
-          this.styleButton.display = "none";
+          this.$store.dispatch("getExtraProducts").then(() => {
+            window.scrollTo({
+              top: 1200,
+              behavior: "smooth",
+            });
+          });
         })
         .catch((error) => {
-          this.$router.push({ name: "ErrorDisplay", params: { error: error } });
+          this.$router.push({
+            name: "ErrorDisplay",
+            params: { error: error },
+          });
         })
         .finally(() => {
           this.$store.commit("setLoading", false);

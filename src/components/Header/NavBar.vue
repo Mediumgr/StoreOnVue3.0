@@ -46,7 +46,9 @@
           <img src="@/assets/img/search.png" alt="search" />
         </button>
       </form>
-      <span class="filtered">{{ message }}</span>
+      <span class="filtered" v-if="counter"
+        >Found products: {{ filteredLength }}</span
+      >
     </div>
     <div class="header__right">
       <cart-order></cart-order>
@@ -60,6 +62,7 @@
 import CartOrder from "@/components/Header/CartOrder.vue";
 import MyAccount from "@/components/Header/MyAccount.vue";
 import LineBar from "@/components/Header/LineBar.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "NavBar",
@@ -87,7 +90,7 @@ export default {
         "Jackets/vests",
       ],
       userSearch: "",
-      message: "",
+      counter: null,
     };
   },
   methods: {
@@ -95,23 +98,13 @@ export default {
       this.current === 1 ? (this.current = 2) : (this.current = 1);
     },
     filter() {
-      this.$store.commit("setLoading", true);
-      this.$store
-        .dispatch("getProducts")
-        .then(() => {
-          this.$store
-            .dispatch("actionForFilter")
-            .then(() => {
-              this.$store.commit("FILTER_PRODUCTS_REGEXP", this.userSearch);
-            })
-            .then(() => {
-              this.message = `Found products: ${this.$store.getters.filteredLength}`;
-            });
-        })
-        .finally(() => {
-          this.$store.commit("setLoading", false);
-        });
+      this.$store.dispatch("actionForFilter", this.userSearch).finally(() => {
+        this.counter = 1;
+      });
     },
+  },
+  computed: {
+    ...mapGetters(["filteredLength"]),
   },
   watch: {
     current(newValue) {
