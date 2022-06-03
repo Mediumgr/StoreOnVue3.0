@@ -4,7 +4,58 @@
     v-if="filtered.length && loading === false"
   >
     <left-aside></left-aside>
-    <option-products></option-products>
+    <div class="product__menu">
+      <trending-component></trending-component>
+      <div class="checkbox__block">
+        <div class="check__size">size</div>
+        <div class="checkbox__style__one">
+          <base-checkbox
+            v-model="checkOne[index]"
+            v-for="(label, index) in labelsOne"
+            :key="label"
+            :label="label"
+            class="checkbox"
+            @filterOnSizes="filterOnSizes"
+          ></base-checkbox>
+        </div>
+        <div class="checkbox__style__two">
+          <base-checkbox
+            v-model="checkTwo[index]"
+            v-for="(label, index) in labelsTwo"
+            :key="label"
+            :label="label"
+            :class="['checkbox', 'checkbox_' + label]"
+            @filterOnSizes="filterOnSizes"
+          ></base-checkbox>
+        </div>
+      </div>
+      <div class="price__product">
+        <div class="price__data">price</div>
+        <div class="scroll__price">
+          <slider
+            v-model.lazy="value"
+            :min="lowPrice"
+            :max="highPrice"
+            :step="5"
+            :tooltipPosition="'bottom'"
+            :format="(v) => `$${Math.round(v)}`"
+            @change="sliderChanged()"
+          />
+        </div>
+        <div class="limited__price">
+          <div class="common__limit">${{ lowPrice }}</div>
+          <div class="common__limit">${{ highPrice }}</div>
+        </div>
+      </div>
+    </div>
+    <option-products
+      v-model:sex="categorySex"
+      :sexCategories="categoriesForSex"
+      @newSexCategory="newSexCategory"
+      v-model:price="categoryPrice"
+      :priceCategories="categoriesForPrice"
+      @newPriceCategory="newPriceCategory"
+    ></option-products>
     <router-link :to="{ name: 'SinglePage' }">
       <div class="our-offer" :style="styles" v-if="screenWidth < 1481">
         <i class="fa-solid fa-circle-chevron-left fa-xl"></i>
@@ -17,9 +68,16 @@
         <i class="fa-solid fa-circle-chevron-right fa-xl"></i>
       </div>
     </router-link>
-    <div class="block__of__product">
+    <div class="block__of__product" v-if="!sliderProducts.length">
       <product-items
-        v-for="item of filtered"
+        v-for="item of felteredProducts"
+        :key="item.id"
+        :product="item"
+      ></product-items>
+    </div>
+    <div class="block__of__product" v-if="sliderProducts.length">
+      <product-items
+        v-for="item of sliderProducts"
         :key="item.id"
         :product="item"
       ></product-items>
@@ -50,63 +108,33 @@
       </div>
     </div>
   </div>
-  <div class="InformationCenter center">
-    <div class="blockInformationDelivery">
-      <div class="truckImg">
-        <img :src="require('@/assets/img/truck.png')" alt="truck" />
-      </div>
-      <div class="firstInfo">
-        <h3 class="free freeStyle">Free Delivery</h3>
-        <h4 class="delivery deliveryInformation">
-          Worldwide delivery on all. Authorit tively morph next-generation
-          innovtion with extensive models.
-        </h4>
-      </div>
-    </div>
-    <div class="blockInformationDiscount">
-      <div class="circleImg">
-        <img :src="require('@/assets/img/circle.png')" alt="discount" />
-      </div>
-      <div class="secondInfo">
-        <h3 class="sales salesStyle">Sales &amp; discounts</h3>
-        <h4 class="discounts salesInformation">
-          Worldwide delivery on all. Authorit tively morph next-generation
-          innovtion with extensive models.
-        </h4>
-      </div>
-    </div>
-    <div class="blockInformationQuality">
-      <div class="crownImg">
-        <img :src="require('@/assets/img/korona.png')" alt="crown" />
-      </div>
-      <div class="thirdInfo">
-        <h3 class="quality qualityStyle">Quality assurance</h3>
-        <h4 class="assurance qualityInformation">
-          Worldwide delivery on all. Authorit tively morph next-generation
-          innovtion with extensive models.
-        </h4>
-      </div>
-    </div>
-  </div>
+  <information-center></information-center>
 </template>
 
 <script>
 import ProductItems from "@/components/HomePage/ProductItems.vue";
 import LeftAside from "@/components/ProductPage/LeftAside.vue";
 import OptionProducts from "@/components/ProductPage/OptionProducts.vue";
+import BaseCheckbox from "@/components/ProductPage/BaseCheckbox.vue";
+import TrendingComponent from "@/components/ProductPage/TrendingComponent.vue";
+import InformationCenter from "@/components/ProductPage/InformationCenter.vue";
+import Slider from "@vueform/slider";
 import NProgress from "nprogress";
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ProductPage",
-  components: { ProductItems, LeftAside, OptionProducts },
+  components: {
+    ProductItems,
+    LeftAside,
+    TrendingComponent,
+    OptionProducts,
+    InformationCenter,
+    BaseCheckbox,
+    Slider,
+  },
   data() {
     return {
-      counter: 0,
-      currentPage: 1,
-      displayedItems: 9,
-      cart: "Add to Cart",
-      disable: false,
       error:
         "The products you are looking for were not found. Enter the name of the product.",
       styleButton: {
@@ -115,19 +143,35 @@ export default {
       top: null,
       screenWidth: null,
       productsLength: 18, // length of all existed products in db.json (products + extraProducts)
+      categoriesForSex: ["All", "men", "women"],
+      categorySex: "All",
+      categoriesForPrice: ["choose", "on increase", "on decrease"],
+      categoryPrice: "choose",
+      filteredCategory: [],
+      value: [0, 200],
+      lowPrice: 0,
+      highPrice: 250,
+      checkOne: [],
+      labelsOne: ["XXS", "XS", "S", "M"],
+      checkTwo: [],
+      labelsTwo: ["L", "XL", "XXL"],
+      productsIdArray: [],
+      sliderProducts: [],
     };
   },
   methods: {
     viewAllProducts() {
+      NProgress.start();
       this.$store.commit("setLoading", true);
       this.$store
         .dispatch("getProducts")
         .then(() => {
-          this.$store.dispatch("getExtraProducts").then(() => {
-            window.scrollTo({
-              top: 1200,
-              behavior: "smooth",
-            });
+          return this.$store.dispatch("getExtraProducts");
+        })
+        .then(() => {
+          window.scrollTo({
+            top: 1200,
+            behavior: "smooth",
           });
         })
         .catch((error) => {
@@ -137,8 +181,177 @@ export default {
           });
         })
         .finally(() => {
+          NProgress.done();
           this.$store.commit("setLoading", false);
         });
+    },
+    newSexCategory(category) {
+      NProgress.start();
+      this.$store.commit("setLoading", true);
+      this.filteredCategory = [];
+      this.$store
+        .dispatch("getProducts")
+        .then(() => {
+          return this.$store.dispatch("getExtraProducts");
+        })
+        .then(() => {
+          if (
+            (category !== "All" || category === "All") &&
+            this.productsIdArray.length === 0
+          ) {
+            this.filtered.map((product) => {
+              if (product.sex === category) {
+                this.filteredCategory.push(product);
+              }
+            });
+          }
+          if (category !== "All" && this.productsIdArray.length !== 0) {
+            this.productsIdArray.forEach((itemName) => {
+              this.filtered.map((product) => {
+                if (
+                  product.size.indexOf(itemName) !== -1 &&
+                  product.sex === category
+                ) {
+                  this.filteredCategory.push(product);
+                }
+              });
+            });
+          }
+          if (category === "All" && this.productsIdArray.length !== 0) {
+            this.productsIdArray.forEach((itemName) => {
+              this.filtered.map((product) => {
+                if (product.size.indexOf(itemName) !== -1) {
+                  this.filteredCategory.push(product);
+                }
+              });
+            });
+          }
+          this.filteredCategory = Array.from(new Set(this.filteredCategory));
+          this.categoryPrice = "choose";
+        })
+        .finally(() => {
+          NProgress.done();
+          this.$store.commit("setLoading", false);
+        });
+    },
+    newPriceCategory(emittedValue) {
+      NProgress.start();
+      this.$store.commit("setLoading", true);
+      this.$store
+        .dispatch("getProducts")
+        .then(() => {
+          return this.$store.dispatch("getExtraProducts");
+        })
+        .then(() => {
+          if (emittedValue === "on increase") {
+            if (this.filteredCategory.length) {
+              this.filteredCategory.sort((productA, productB) => {
+                return productA.price > productB.price ? 1 : -1;
+              });
+            } else {
+              this.filtered.sort((productA, productB) => {
+                return productA.price > productB.price ? 1 : -1;
+              });
+            }
+          }
+          if (emittedValue === "on decrease") {
+            if (this.filteredCategory.length) {
+              this.filteredCategory.sort((productA, productB) => {
+                return productA.price < productB.price ? 1 : -1;
+              });
+            } else {
+              this.filtered.sort((productA, productB) => {
+                return productA.price < productB.price ? 1 : -1;
+              });
+            }
+          }
+        })
+        .finally(() => {
+          NProgress.done();
+          this.$store.commit("setLoading", false);
+        });
+    },
+    filterOnSizes(productId) {
+      NProgress.start();
+      this.$store.commit("setLoading", true);
+      this.productsIdArray.push(productId);
+      this.productsIdArray = Array.from(new Set(this.productsIdArray));
+      this.checkOne.forEach((booleanItem, index) => {
+        if (
+          booleanItem === false &&
+          this.productsIdArray.includes(this.labelsOne[index])
+        ) {
+          this.productsIdArray.splice(
+            this.productsIdArray.indexOf(this.labelsOne[index]),
+            1
+          );
+        }
+      });
+      this.checkTwo.forEach((booleanItem, index) => {
+        if (
+          booleanItem === false &&
+          this.productsIdArray.includes(this.labelsTwo[index])
+        ) {
+          this.productsIdArray.splice(
+            this.productsIdArray.indexOf(this.labelsTwo[index]),
+            1
+          );
+        }
+      });
+      this.filteredCategory = [];
+      this.$store
+        .dispatch("getProducts")
+        .then(() => {
+          return this.$store.dispatch("getExtraProducts");
+        })
+        .then(() => {
+          if (this.categorySex === "All") {
+            this.productsIdArray.forEach((itemName) => {
+              this.filtered.map((product) => {
+                if (product.size.indexOf(itemName) !== -1) {
+                  this.filteredCategory.push(product);
+                }
+              });
+            });
+          }
+          if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
+            this.productsIdArray.forEach((itemName) => {
+              this.filtered.map((product) => {
+                if (
+                  product.size.indexOf(itemName) !== -1 &&
+                  product.sex === this.categorySex
+                ) {
+                  this.filteredCategory.push(product);
+                }
+              });
+            });
+          }
+          if (this.categorySex !== "All" && this.productsIdArray.length === 0) {
+            this.filtered.map((product) => {
+              if (product.sex === this.categorySex) {
+                this.filteredCategory.push(product);
+              }
+            });
+          }
+          this.filteredCategory = Array.from(new Set(this.filteredCategory));
+        })
+        .finally(() => {
+          NProgress.done();
+          this.$store.commit("setLoading", false);
+        });
+    },
+    sliderChanged() {
+      setTimeout(() => {
+        this.sliderProducts = [];
+        this.felteredProducts.filter((product) => {
+          if (
+            product.price >= this.value[0] &&
+            product.price <= this.value[1]
+          ) {
+            this.sliderProducts.push(product);
+          }
+        });
+      }, 0);
     },
   },
   created() {
@@ -155,12 +368,18 @@ export default {
       });
   },
   computed: {
-    ...mapState(["filtered"]),
-    ...mapGetters(["loading"]),
+    ...mapGetters(["loading", "filtered"]),
     styles() {
       return {
         top: `${this.top - 5}px`,
       };
+    },
+    felteredProducts() {
+      if (this.filteredCategory.length) {
+        return this.filteredCategory;
+      } else {
+        return this.filtered;
+      }
     },
   },
   mounted() {

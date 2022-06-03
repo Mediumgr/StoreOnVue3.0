@@ -290,6 +290,9 @@ export default createStore({
     additionalProducts(state) {
       return state.additionalProducts;
     },
+    filtered(state) {
+      return state.filtered;
+    },
   },
   modules: {
     shared,

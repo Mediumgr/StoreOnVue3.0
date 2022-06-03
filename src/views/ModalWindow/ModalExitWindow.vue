@@ -31,6 +31,7 @@
 <script>
 export default {
   emits: ["confirm", "close"],
+  name: "modal-exit-window",
 };
 </script>
 

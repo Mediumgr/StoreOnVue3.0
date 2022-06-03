@@ -73,14 +73,12 @@
 
 <script>
 import CartItem from "@/components/Header/CartItem.vue";
-import ModalWindow from "@/views/ModalWindow/ModalWindow.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "CardOrder",
   components: {
     CartItem,
-    ModalWindow,
   },
   data() {
     return {

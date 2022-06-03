@@ -54,42 +54,44 @@
               </h4>
               <button class="continue" @click="goAhead">continue</button>
             </div>
-            <div :class="registerClass">
-              <h3 class="already__registed">Registeration form</h3>
-              <h4 class="log__below">Please log in below</h4>
-              <label for="email__address" class="email__address"
-                >EMAIL ADDRESS<span class="snowflake">*</span></label
-              >
-              <input
-                type="email"
-                id="email__address"
-                class="email__input"
-                v-model.lazy.trim="email"
-              />
-              <span class="error">{{ errorEmailMessage }}</span>
-              <label for="phone" class="password"
-                >phone<span class="snowflake">*</span></label
-              >
-              <input
-                type="text"
-                id="phone"
-                class="email__input"
-                v-model.lazy.trim="phone"
-              />
-              <span class="error">{{ errorPhoneMessage }}</span>
-              <label for="name" class="password"
-                >name<span class="snowflake">*</span></label
-              >
-              <input
-                type="text"
-                id="name"
-                class="email__input"
-                v-model.lazy.trim="name"
-              />
-              <span class="error">{{ errorNameMessage }}</span>
-              <h4 class="Required__field">* Required Fileds</h4>
-              <button class="Log__in" @click="register">Register</button>
-            </div>
+            <form @submit.prevent="register" :class="registerClass">
+              <fieldset>
+                <legend class="already__registed">Registeration form</legend>
+                <h4 class="log__below">Please log in below</h4>
+                <label for="email__address" class="email__address"
+                  >EMAIL ADDRESS<span class="snowflake">*</span></label
+                >
+                <input
+                  type="email"
+                  id="email__address"
+                  class="email__input"
+                  v-model.lazy.trim="email"
+                />
+                <span class="error">{{ errorEmailMessage }}</span>
+                <label for="phone" class="password"
+                  >phone<span class="snowflake">*</span></label
+                >
+                <input
+                  type="text"
+                  id="phone"
+                  class="email__input"
+                  v-model.lazy.trim="phone"
+                />
+                <span class="error">{{ errorPhoneMessage }}</span>
+                <label for="name" class="password"
+                  >name<span class="snowflake">*</span></label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="email__input"
+                  v-model.lazy.trim="name"
+                />
+                <span class="error">{{ errorNameMessage }}</span>
+                <h4 class="Required__field">* Required Fileds</h4>
+                <button class="Log__in">Register</button>
+              </fieldset>
+            </form>
           </div>
         </div>
       </div>
@@ -155,13 +157,9 @@
 </template>
 
 <script>
-import ModalExitWindow from "@/views/ModalWindow/ModalExitWindow.vue";
 import NProgress from "nprogress";
 
 export default {
-  components: {
-    ModalExitWindow,
-  },
   data() {
     return {
       picked: "guest",
@@ -340,5 +338,11 @@ export default {
     background: #ff8b9d;
     transform: scale(0.9, 0.9);
   }
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 </style>

@@ -29,47 +29,55 @@
     </div>
   </div>
   <div class="fill__your__information center">
-    <div class="shipping" v-if="!shipMessage">
-      <h2 class="shipping__address">Shipping Address</h2>
-      <select class="city" v-model="select">
-        <option value="country" v-for="country in countries" :key="country">
-          {{ country }}
-        </option>
-      </select>
-      <input
-        required
-        type="text"
-        placeholder="State"
-        class="state"
-        v-model="state"
-      />
-      <input
-        required
-        type="number"
-        placeholder="Postcode / Zip"
-        class="zip"
-        v-model="zip"
-      />
-      <button class="get__quote" @click="shippingAddress">send info</button>
-    </div>
+    <form
+      @submit.prevent="shippingAddress"
+      class="shipping"
+      v-if="!shipMessage"
+    >
+      <fieldset>
+        <legend class="shipping__address">Shipping Address</legend>
+        <select class="city" v-model="select">
+          <option value="country" v-for="country in countries" :key="country">
+            {{ country }}
+          </option>
+        </select>
+        <input
+          required
+          type="text"
+          placeholder="State"
+          class="state"
+          v-model="state"
+        />
+        <input
+          required
+          type="number"
+          placeholder="Postcode / Zip"
+          class="zip"
+          v-model="zip"
+        />
+        <button class="get__quote">send info</button>
+      </fieldset>
+    </form>
     <div class="shipMessage" v-else v-html="shipMessage"></div>
-    <div class="coupon">
-      <h2 class="coupon__discount">coupon discount</h2>
-      <p class="enter__coupon">
-        <label for="state">Enter your coupon code if you have one</label>
-      </p>
-      <input
-        type="text"
-        id="state"
-        placeholder="State"
-        class="state"
-        v-model.lazy="coupon"
-      />
-      <div class="flexCoupon">
-        <span v-if="show" class="coupon">{{ message }}</span>
-        <button class="apply__coupon" @click="findCoupon">Apply coupon</button>
-      </div>
-    </div>
+    <form @submit.prevent="findCoupon" class="coupon">
+      <fieldset>
+        <legend class="coupon__discount">coupon discount</legend>
+        <p class="enter__coupon">
+          <label for="state">Enter your coupon code if you have one</label>
+        </p>
+        <input
+          type="text"
+          id="state"
+          placeholder="State"
+          class="state"
+          v-model.lazy="coupon"
+        />
+        <div class="flexCoupon">
+          <span v-if="show" class="coupon">{{ message }}</span>
+          <button class="apply__coupon">Apply coupon</button>
+        </div>
+      </fieldset>
+    </form>
     <div class="amount">
       <p class="grand__total">
         TOTAL <span class="total__amount">{{ totalPrice }} &#36;</span>
@@ -91,14 +99,12 @@
 
 <script>
 import CartProducts from "@/components/CartComp/CartProducts.vue";
-import ModalWindow from "@/views/ModalWindow/ModalWindow.vue";
 import { mapGetters, mapState } from "vuex";
 import NProgress from "nprogress";
 
 export default {
   components: {
     CartProducts,
-    ModalWindow,
   },
   data() {
     return {
@@ -200,5 +206,11 @@ export default {
   align-items: center;
   font-size: large;
   flex-direction: column;
+}
+
+fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
 </style>

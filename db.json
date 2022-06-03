@@ -10,6 +10,14 @@
         "teenager1.jpg",
         "teenager2.jpg"
       ],
+      "sex": "men",
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
       "description": [
         "Printed cotton T-shirt",
         "Model: 5B641011M/47885N/1000N",
@@ -40,6 +48,13 @@
         "girlinred1.jpg",
         "girlinred2.jpg"
       ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "XXS"
+      ],
       "description": [
         "BLOUSE",
         "Model: GBL001928",
@@ -64,11 +79,18 @@
       "img": "barberman.png",
       "id": 3,
       "name": "Jacket",
-      "price": 45,
+      "price": 35,
       "variants": [
         "barberman.png",
         "kurtka.jpg",
         "kurtka1.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "XXL",
+        "M",
+        "L",
+        "XL"
       ],
       "description": [
         "Long jacket with hood",
@@ -94,11 +116,18 @@
       "img": "girlwhite.png",
       "id": 4,
       "name": "Blouse",
-      "price": 35,
+      "price": 50,
       "variants": [
         "girlwhite.png",
         "girlwhite1.jpg",
         "girlwhite2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "M",
+        "L",
+        "S"
       ],
       "description": [
         "BLOUSE",
@@ -124,11 +153,17 @@
       "img": "blondgirl.png",
       "id": 5,
       "name": "Blouse",
-      "price": 25,
+      "price": 40,
       "variants": [
         "blondgirl.png",
         "blondgirl1.png",
         "blondgirl2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "S",
+        "M",
+        "L"
       ],
       "description": [
         "BLOUSE",
@@ -154,11 +189,19 @@
       "img": "guyjacket.png",
       "id": 6,
       "name": "Blazer",
-      "price": 40,
+      "price": 30,
       "variants": [
         "guyjacket.png",
         "jacket1.jpg",
         "jacket2.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
       ],
       "description": [
         "Blazer",
@@ -184,11 +227,17 @@
       "img": "pans.png",
       "id": 7,
       "name": "Pants",
-      "price": 50,
+      "price": 55,
       "variants": [
         "pans.png",
         "pans1.jpg",
         "pans2.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "L",
+        "XL",
+        "XXL"
       ],
       "description": [
         "Pants",
@@ -214,11 +263,17 @@
       "img": "guyshorts.png",
       "id": 8,
       "name": "Shorts",
-      "price": 35,
+      "price": 20,
       "variants": [
         "guyshorts.png",
         "guyshorts1.jpg",
         "guyshorts2.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "S",
+        "XXS",
+        "L"
       ],
       "description": [
         "Shorts",
@@ -244,11 +299,18 @@
       "img": "9.jpg",
       "id": 9,
       "name": "Jumper",
-      "price": 35,
+      "price": 75,
       "variants": [
         "9.jpg",
         "9-2.jpg",
         "9.1.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
       ],
       "description": [
         "Jumper",
@@ -276,11 +338,18 @@
       "img": "1.png",
       "id": 10,
       "name": "Poloneck",
-      "price": 75,
+      "price": 65,
       "variants": [
         "1.png",
         "poloneck.jpg",
         "poloneck2.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "S",
+        "M",
+        "XL",
+        "XXL"
       ],
       "description": [
         "Poloneck",
@@ -306,11 +375,16 @@
       "img": "2.png",
       "id": 11,
       "name": "Coat",
-      "price": 65,
+      "price": 24,
       "variants": [
         "2.png",
         "mango.jpg",
         "TAGLIATORE.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "M",
+        "XXL"
       ],
       "description": [
         "Coat",
@@ -336,11 +410,17 @@
       "img": "4.png",
       "id": 12,
       "name": "Floral T-shirt",
-      "price": 25,
+      "price": 55,
       "variants": [
         "4.png",
         "4.1.jpg",
         "4.2.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "S",
+        "M",
+        "L"
       ],
       "description": [
         "Floral T-shirt",
@@ -366,11 +446,18 @@
       "img": "13.jpg",
       "id": 13,
       "name": "Jeans",
-      "price": 85,
+      "price": 95,
       "variants": [
         "13.jpg",
         "13.1.jpg",
         "13.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "L",
+        "XXS",
+        "XXL"
       ],
       "description": [
         "Skinny jeans",
@@ -396,11 +483,17 @@
       "img": "6.png",
       "id": 14,
       "name": "Jacket",
-      "price": 75,
+      "price": 85,
       "variants": [
         "6.png",
         "14.jpeg",
         "14.1.jpeg"
+      ],
+      "sex": "men",
+      "size": [
+        "S",
+        "M",
+        "XL"
       ],
       "description": [
         "Men's jacket",
@@ -426,11 +519,19 @@
       "img": "15.jpg",
       "id": 15,
       "name": "Pajamas",
-      "price": 45,
+      "price": 72,
       "variants": [
         "15.jpg",
         "15.1.jpg",
         "15.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXS"
       ],
       "description": [
         "Women's Pajamas",
@@ -456,11 +557,18 @@
       "img": "16.jpg",
       "id": 16,
       "name": "Dress",
-      "price": 15,
+      "price": 48,
       "variants": [
         "16.jpg",
         "16.1.jpg",
         "16.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XXS"
       ],
       "description": [
         "Dress",
@@ -486,11 +594,17 @@
       "img": "17.jpg",
       "id": 17,
       "name": "Leggings",
-      "price": 85,
+      "price": 102,
       "variants": [
         "17.jpg",
         "17.1.jpg",
         "17.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "S",
+        "M",
+        "L"
       ],
       "description": [
         "Ribbed knit leggings",
@@ -516,11 +630,17 @@
       "img": "18.jpg",
       "id": 18,
       "name": "Pants",
-      "price": 55,
+      "price": 99,
       "variants": [
         "18.jpg",
         "18.1.jpg",
         "18.2.jpg"
+      ],
+      "sex": "men",
+      "size": [
+        "S",
+        "M",
+        "XXL"
       ],
       "description": [
         "Sports pants",
@@ -554,6 +674,12 @@
         "19.jpg",
         "19.1.jpg"
       ],
+      "sex": "women",
+      "size": [
+        "S",
+        "M",
+        "XS"
+      ],
       "description": [
         "DRESS & TROUSERS",
         "Model: 8VP8348",
@@ -578,11 +704,17 @@
       "img": "secondgirl.png",
       "id": 20,
       "name": "DRESS",
-      "price": 60,
+      "price": 40,
       "variants": [
         "secondgirl.png",
         "20.1.png",
         "20.2.png"
+      ],
+      "sex": "women",
+      "size": [
+        "S",
+        "M",
+        "L"
       ],
       "description": [
         "DRESS",
@@ -614,6 +746,12 @@
         "21.1.jpg",
         "21.2.jpg"
       ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "L",
+        "XXL"
+      ],
       "description": [
         "HIGH-WAIST PANTS",
         "Model: 13725644OR",
@@ -638,11 +776,18 @@
       "img": "forthgirl.png",
       "id": 22,
       "name": "Leggins",
-      "price": 70,
+      "price": 90,
       "variants": [
         "forthgirl.png",
         "22.1.jpg",
         "22.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "M",
+        "S",
+        "L"
       ],
       "description": [
         "Black shiny leggings",
@@ -670,11 +815,17 @@
       "img": "white.png",
       "id": 23,
       "name": "MOSCHINO",
-      "price": 150,
+      "price": 120,
       "variants": [
         "white.png",
         "23.1.jpg",
         "23.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "S",
+        "M"
       ],
       "description": [
         "Leggins White",
@@ -700,11 +851,17 @@
       "img": "red.png",
       "id": 24,
       "name": "MOSCHINO",
-      "price": 200,
+      "price": 140,
       "variants": [
         "red.png",
         "24.1.png",
         "24.2.png"
+      ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "S",
+        "M"
       ],
       "description": [
         "Leggins Red",
@@ -730,11 +887,17 @@
       "img": "black3.png",
       "id": 25,
       "name": "MOSCHINO",
-      "price": 225,
+      "price": 185,
       "variants": [
         "black3.png",
         "25.1.jpg",
         "25.2.jpg"
+      ],
+      "sex": "women",
+      "size": [
+        "XS",
+        "S",
+        "M"
       ],
       "description": [
         "Leggins Black",
@@ -759,30 +922,30 @@
   ],
   "cart": [
     {
-      "img": "white.png",
-      "id": 23,
-      "name": "MOSCHINO",
-      "price": 150,
-      "quantity": 1,
-      "color": "White",
-      "size": "S"
-    },
-    {
-      "img": "secondgirl.png",
-      "id": 20,
-      "name": "DRESS",
-      "price": 60,
-      "quantity": 1,
-      "color": "Snake print",
-      "size": "S"
-    },
-    {
-      "img": "third.png",
-      "id": 21,
-      "name": "PANTS",
-      "price": 65,
+      "img": "guyshorts.png",
+      "id": 8,
+      "name": "Shorts",
+      "price": 35,
       "quantity": 1,
       "color": "Beige",
+      "size": "S"
+    },
+    {
+      "img": "girlinred.png",
+      "id": 2,
+      "name": "Blouse",
+      "price": 30,
+      "quantity": 2,
+      "color": "Red",
+      "size": "S"
+    },
+    {
+      "img": "teenager.png",
+      "id": 1,
+      "name": "T-shirt",
+      "price": 25,
+      "quantity": 2,
+      "color": "White",
       "size": "S"
     }
   ]

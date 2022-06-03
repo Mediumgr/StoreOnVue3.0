@@ -476,7 +476,7 @@ a {
 }
 
 .slider-origin {
-   z-index: 0 !important;
+    z-index: 0 !important;
 }
 
 .absolute__man,
@@ -1372,6 +1372,7 @@ a {
     font-weight: bold;
     color: rgba(34, 34, 34, 1);
     text-transform: uppercase;
+    text-align: center;
 }
 
 .city {
@@ -1438,6 +1439,7 @@ a {
     color: rgba(34, 34, 34, 1);
     text-transform: uppercase;
     margin-bottom: 28px;
+    text-align: center;
 }
 
 .enter__coupon {
@@ -1774,20 +1776,8 @@ a {
     width: 100%;
 }
 
-summary::-webkit-details-marker {
-    display: none;
-}
-
 .category__menu {
     float: left;
-
-    .category {
-        @extend %same__details;
-        color: rgba(239, 91, 112, 1);
-        display: block;
-        cursor: pointer;
-        position: relative;
-    }
 
     .category__link {
         cursor: pointer;
@@ -1811,9 +1801,12 @@ summary::-webkit-details-marker {
         cursor: pointer;
         position: relative;
         color: rgba(111, 110, 110, 1);
+        &:hover {
+            color: rgb(239, 91, 112);
+        }
     }
 
-    .designer__details {
+    .designer__details, .category {
         @extend .brand__details;
     }
 }
@@ -1935,7 +1928,8 @@ summary::-webkit-details-marker {
     }
 
     .checkbox__style__two {
-        width: 192px;
+        padding-left: 7px;
+        width: 205px;
         display: flex;
         justify-content: space-between;
     }
@@ -1949,8 +1943,12 @@ summary::-webkit-details-marker {
     left: 8px;
 }
 
-.checkbox__XL {
-    padding-left: 19px;
+.checkbox_L {
+    margin-left: -7px;
+}
+
+.checkbox_XL {
+    margin-left: 18px;
 }
 
 .your__size {
@@ -1959,6 +1957,9 @@ summary::-webkit-details-marker {
     text-transform: uppercase;
     cursor: pointer;
     padding-bottom: 13px;
+    &_XXL {
+        margin-right: 17px;
+    }
 }
 
 .your__size:before {
@@ -2026,7 +2027,7 @@ input:checked + .your__size:before {
     }
 
     .SortBy {
-        width: 86px;
+        width: 115px;
         height: 30px;
         border: none;
         outline: none;
@@ -2042,7 +2043,7 @@ input:checked + .your__size:before {
     }
 
     .SortByNumber {
-        width: 63px;
+        width: 85px;
         height: 30px;
         border: none;
         outline: none;

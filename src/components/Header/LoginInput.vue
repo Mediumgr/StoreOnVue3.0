@@ -26,13 +26,8 @@
 </template>
 
 <script>
-import ModalExitWindow from "@/views/ModalWindow/ModalExitWindow.vue";
-
 export default {
   emits: ["update:modelValue", "changeClass"],
-  components: {
-    ModalExitWindow,
-  },
   props: {
     label: {
       type: String,

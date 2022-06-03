@@ -2,12 +2,19 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import components from "@/components/UI";
 import "@/assets/styles/style.scss";
 import "nprogress/nprogress.css";
 
+const app = createApp(App);
+
+components.forEach((component) => {
+  app.component(component.name, component);
+});
+
 /* import firebase from "firebase/compat/app";
 import database from "firebase/compat/database"; */
-createApp(App).use(store).use(router).mount("#app");
+app.use(store).use(router).mount("#app");
 
 /* firebase.initializeApp({
   apiKey: "AIzaSyBwydN0FiMzsaMGj_u0s4TeOtcqA87KIQE",

@@ -31,6 +31,7 @@
 <script>
 export default {
   emits: ["close", "remove"],
+  name: "modal-window",
 };
 </script>
 
