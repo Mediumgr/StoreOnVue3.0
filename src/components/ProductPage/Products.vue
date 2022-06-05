@@ -54,7 +54,7 @@
       @newSexCategory="newSexCategory"
       v-model:price="categoryPrice"
       :priceCategories="categoriesForPrice"
-      @newPriceCategory="newPriceCategory"
+      @newPriceCategory="filterPrice"
     ></option-products>
     <router-link :to="{ name: 'SinglePage' }">
       <div class="our-offer" :style="styles" v-if="screenWidth < 1481">
@@ -68,25 +68,24 @@
         <i class="fa-solid fa-circle-chevron-right fa-xl"></i>
       </div>
     </router-link>
-    <div class="block__of__product" v-if="!sliderProducts.length">
+    <div class="block__of__product" v-if="message === ''">
       <product-items
         v-for="item of felteredProducts"
         :key="item.id"
         :product="item"
       ></product-items>
     </div>
-    <div class="block__of__product" v-if="sliderProducts.length">
-      <product-items
-        v-for="item of sliderProducts"
-        :key="item.id"
-        :product="item"
-      ></product-items>
+    <div v-else class="block__of__product">
+      <div>{{ message }}</div>
     </div>
-    <div class="viewAllBlock" v-show="filtered.length !== productsLength">
+    <div
+      class="viewAllBlock"
+      v-show="felteredProducts.length !== productsLength"
+    >
       <button
         :style="styleButton"
         class="view__all__button"
-        @click.once="viewAllProducts"
+        @click="viewAllProducts"
       >
         View All
       </button>
@@ -156,124 +155,75 @@ export default {
       checkTwo: [],
       labelsTwo: ["L", "XL", "XXL"],
       productsIdArray: [],
-      sliderProducts: [],
+      message: "",
     };
   },
   methods: {
     viewAllProducts() {
-      NProgress.start();
-      this.$store.commit("setLoading", true);
-      this.$store
-        .dispatch("getProducts")
-        .then(() => {
-          return this.$store.dispatch("getExtraProducts");
-        })
-        .then(() => {
-          window.scrollTo({
-            top: 1200,
-            behavior: "smooth",
-          });
-        })
-        .catch((error) => {
-          this.$router.push({
-            name: "ErrorDisplay",
-            params: { error: error },
-          });
-        })
-        .finally(() => {
-          NProgress.done();
-          this.$store.commit("setLoading", false);
-        });
+      this.filteredCategory = this.filtered;
+      this.categoryPrice = "choose";
+      this.categorySex = "All";
+      this.value = [0, 200];
+      if (this.productsIdArray.length) {
+        for (let i = 0; i < this.checkOne.length; i++) {
+          this.checkOne[i] = false;
+        }
+        for (let i = 0; i < this.checkTwo.length; i++) {
+          this.checkTwo[i] = false;
+        }
+        this.productsIdArray.length = 0;
+      }
     },
     newSexCategory(category) {
-      NProgress.start();
-      this.$store.commit("setLoading", true);
       this.filteredCategory = [];
-      this.$store
-        .dispatch("getProducts")
-        .then(() => {
-          return this.$store.dispatch("getExtraProducts");
-        })
-        .then(() => {
-          if (
-            (category !== "All" || category === "All") &&
-            this.productsIdArray.length === 0
-          ) {
-            this.filtered.map((product) => {
-              if (product.sex === category) {
-                this.filteredCategory.push(product);
-              }
-            });
+      if (
+        (category === "All" || category !== "All") &&
+        this.productsIdArray.length === 0
+      ) {
+        this.filtered.map((product) => {
+          if (product.sex === category) {
+            this.filteredCategory.push(product);
           }
-          if (category !== "All" && this.productsIdArray.length !== 0) {
-            this.productsIdArray.forEach((itemName) => {
-              this.filtered.map((product) => {
-                if (
-                  product.size.indexOf(itemName) !== -1 &&
-                  product.sex === category
-                ) {
-                  this.filteredCategory.push(product);
-                }
-              });
-            });
-          }
-          if (category === "All" && this.productsIdArray.length !== 0) {
-            this.productsIdArray.forEach((itemName) => {
-              this.filtered.map((product) => {
-                if (product.size.indexOf(itemName) !== -1) {
-                  this.filteredCategory.push(product);
-                }
-              });
-            });
-          }
-          this.filteredCategory = Array.from(new Set(this.filteredCategory));
-          this.categoryPrice = "choose";
-        })
-        .finally(() => {
-          NProgress.done();
-          this.$store.commit("setLoading", false);
         });
+      }
+      if (category !== "All" && this.productsIdArray.length !== 0) {
+        this.productsIdArray.forEach((itemName) => {
+          this.filtered.map((product) => {
+            if (
+              product.size.indexOf(itemName) !== -1 &&
+              product.sex === category
+            ) {
+              this.filteredCategory.push(product);
+            }
+          });
+        });
+      }
+      if (category === "All" && this.productsIdArray.length !== 0) {
+        this.productsIdArray.forEach((itemName) => {
+          this.filtered.map((product) => {
+            if (product.size.indexOf(itemName) !== -1) {
+              this.filteredCategory.push(product);
+            }
+          });
+        });
+      }
+      this.filteredCategory = Array.from(new Set(this.filteredCategory));
+      this.categoryPrice = "choose";
     },
-    newPriceCategory(emittedValue) {
-      NProgress.start();
-      this.$store.commit("setLoading", true);
-      this.$store
-        .dispatch("getProducts")
-        .then(() => {
-          return this.$store.dispatch("getExtraProducts");
-        })
-        .then(() => {
-          if (emittedValue === "on increase") {
-            if (this.filteredCategory.length) {
-              this.filteredCategory.sort((productA, productB) => {
-                return productA.price > productB.price ? 1 : -1;
-              });
-            } else {
-              this.filtered.sort((productA, productB) => {
-                return productA.price > productB.price ? 1 : -1;
-              });
-            }
-          }
-          if (emittedValue === "on decrease") {
-            if (this.filteredCategory.length) {
-              this.filteredCategory.sort((productA, productB) => {
-                return productA.price < productB.price ? 1 : -1;
-              });
-            } else {
-              this.filtered.sort((productA, productB) => {
-                return productA.price < productB.price ? 1 : -1;
-              });
-            }
-          }
-        })
-        .finally(() => {
-          NProgress.done();
-          this.$store.commit("setLoading", false);
+    filterPrice(emittedValue) {
+      if (emittedValue === "on increase") {
+        this.filteredCategory.sort((productA, productB) => {
+          return productA.price > productB.price ? 1 : -1;
         });
+      }
+      if (emittedValue === "on decrease") {
+        this.filteredCategory.sort((productA, productB) => {
+          return productA.price < productB.price ? 1 : -1;
+        });
+      }
     },
     filterOnSizes(productId) {
-      NProgress.start();
-      this.$store.commit("setLoading", true);
+      this.categoryPrice = "choose";
       this.productsIdArray.push(productId);
       this.productsIdArray = Array.from(new Set(this.productsIdArray));
       this.checkOne.forEach((booleanItem, index) => {
@@ -299,56 +249,47 @@ export default {
         }
       });
       this.filteredCategory = [];
-      this.$store
-        .dispatch("getProducts")
-        .then(() => {
-          return this.$store.dispatch("getExtraProducts");
-        })
-        .then(() => {
-          if (this.categorySex === "All") {
-            this.productsIdArray.forEach((itemName) => {
-              this.filtered.map((product) => {
-                if (product.size.indexOf(itemName) !== -1) {
-                  this.filteredCategory.push(product);
-                }
-              });
-            });
-          }
-          if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
-            this.productsIdArray.forEach((itemName) => {
-              this.filtered.map((product) => {
-                if (
-                  product.size.indexOf(itemName) !== -1 &&
-                  product.sex === this.categorySex
-                ) {
-                  this.filteredCategory.push(product);
-                }
-              });
-            });
-          }
-          if (this.categorySex !== "All" && this.productsIdArray.length === 0) {
-            this.filtered.map((product) => {
-              if (product.sex === this.categorySex) {
-                this.filteredCategory.push(product);
-              }
-            });
-          }
-          this.filteredCategory = Array.from(new Set(this.filteredCategory));
-        })
-        .finally(() => {
-          NProgress.done();
-          this.$store.commit("setLoading", false);
+      if (this.categorySex === "All") {
+        this.productsIdArray.forEach((itemName) => {
+          this.filtered.map((product) => {
+            if (product.size.indexOf(itemName) !== -1) {
+              this.filteredCategory.push(product);
+            }
+          });
         });
+      }
+      if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
+        this.productsIdArray.forEach((itemName) => {
+          this.filtered.map((product) => {
+            if (
+              product.size.indexOf(itemName) !== -1 &&
+              product.sex === this.categorySex
+            ) {
+              this.filteredCategory.push(product);
+            }
+          });
+        });
+      }
+      if (this.categorySex !== "All" && this.productsIdArray.length === 0) {
+        this.filtered.map((product) => {
+          if (product.sex === this.categorySex) {
+            this.filteredCategory.push(product);
+          }
+        });
+      }
+      this.filteredCategory = Array.from(new Set(this.filteredCategory));
     },
     sliderChanged() {
       setTimeout(() => {
-        this.sliderProducts = [];
-        this.felteredProducts.filter((product) => {
+        this.filteredCategory = [];
+        this.filtered.filter((product) => {
           if (
             product.price >= this.value[0] &&
             product.price <= this.value[1]
           ) {
-            this.sliderProducts.push(product);
+            this.filteredCategory.push(product);
+          } else {
+            this.message = "The products with such prices were not found";
           }
         });
       }, 0);
@@ -359,6 +300,14 @@ export default {
     this.$store.commit("setLoading", true);
     this.$store
       .dispatch("getProducts")
+      .then(() => {
+        this.$store.dispatch("getExtraProducts");
+      })
+      .then(() => {
+        setTimeout(() => {
+          this.filteredCategory = this.filtered.slice(0, 9);
+        }, 0);
+      })
       .catch((error) => {
         this.$router.push({ name: "ErrorDisplay", params: { error: error } });
       })
