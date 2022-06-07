@@ -34,7 +34,7 @@
             min="1"
             max="50"
             class="digits"
-            v-model="quantity"
+            v-model.lazy="quantity"
           />
         </div>
         <div class="free__word">FREE</div>

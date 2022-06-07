@@ -1297,9 +1297,8 @@ a {
 }
 
 .digits {
-    width: 30px;
+    width: 40px;
     text-align: center;
-    padding-left: 10px;
     font-size: 13px;
     color: rgba(101, 101, 101, 1);
     line-height: 20px;
@@ -1679,6 +1678,12 @@ a {
     line-height: 24px;
 }
 
+.noSuchSizes {
+    @include same__font(24px, $fontFamily);
+    margin: 50px auto 0;
+    color: $colorPink;
+}
+
 .choose__quantity {
     outline: none;
     height: 31px;
@@ -1806,7 +1811,8 @@ a {
         }
     }
 
-    .designer__details, .category {
+    .designer__details,
+    .category {
         @extend .brand__details;
     }
 }
@@ -1921,18 +1927,11 @@ a {
 
     .checkbox__style__one {
         width: 236px;
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 10px;
-        overflow: hidden;
     }
+}
 
-    .checkbox__style__two {
-        padding-left: 7px;
-        width: 205px;
-        display: flex;
-        justify-content: space-between;
-    }
+input[id="XXS"] {
+    margin-right: 7px;
 }
 
 .checkbox {
@@ -1944,11 +1943,17 @@ a {
 }
 
 .checkbox_L {
-    margin-left: -7px;
+    margin-left: 7px;
+    margin-top: 13px;
 }
 
 .checkbox_XL {
     margin-left: 18px;
+    margin-top: 13px;
+}
+
+.checkbox_XXL {
+    margin-top: 13px;
 }
 
 .your__size {
@@ -1957,9 +1962,7 @@ a {
     text-transform: uppercase;
     cursor: pointer;
     padding-bottom: 13px;
-    &_XXL {
-        margin-right: 17px;
-    }
+    margin-right: 13px;
 }
 
 .your__size:before {
@@ -2393,4 +2396,37 @@ input:checked + .your__size:before {
 
 .Lorem {
     padding-top: 30px;
+}
+
+input[type="number"] {
+    position: relative;
+    margin: 0 0 1rem;
+    border-color: #bbb #ececec #ececec #bbb;
+}
+
+/* Spin Buttons modified */
+input[type="number"].mod::-webkit-outer-spin-button,
+input[type="number"].mod::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    background: #fff
+        url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAKUlEQVQYlWNgwAT/sYhhKPiPT+F/LJgEsHv37v+EMGkmkuImoh2NoQAANlcun/q4OoYAAAAASUVORK5CYII=)
+        no-repeat center center;
+    width: 1em;
+    border-left: 1px solid #bbb;
+    opacity: 0.5; /* shows Spin Buttons per default (Chrome >= 39) */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+input[type="number"].mod::-webkit-inner-spin-button:hover,
+input[type="number"].mod::-webkit-inner-spin-button:active {
+    box-shadow: 0 0 2px #0cf;
+    opacity: 0.8;
+}
+
+/* Override browser form filling */
+input:-webkit-autofill {
+    background: black;
+    color: red;
 }

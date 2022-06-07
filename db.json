@@ -668,7 +668,7 @@
       "img": "black-girl.png",
       "id": 19,
       "name": "DRESS WITH TROUSERS",
-      "price": 50,
+      "price": 40,
       "variants": [
         "black-girl.png",
         "19.jpg",
@@ -704,7 +704,7 @@
       "img": "secondgirl.png",
       "id": 20,
       "name": "DRESS",
-      "price": 40,
+      "price": 70,
       "variants": [
         "secondgirl.png",
         "20.1.png",
@@ -740,7 +740,7 @@
       "img": "third.png",
       "id": 21,
       "name": "PANTS",
-      "price": 65,
+      "price": 80,
       "variants": [
         "third.png",
         "21.1.jpg",
@@ -922,12 +922,57 @@
   ],
   "cart": [
     {
-      "img": "teenager.png",
-      "id": 1,
-      "name": "T-shirt",
-      "price": 25,
+      "img": "girlinred.png",
+      "id": 2,
+      "name": "Blouse",
+      "price": 30,
+      "quantity": 4,
+      "color": "Red",
+      "size": "S"
+    },
+    {
+      "img": "red.png",
+      "id": 24,
+      "name": "MOSCHINO",
+      "price": 200,
+      "quantity": 4,
+      "color": "Red",
+      "size": "XS"
+    },
+    {
+      "img": "third.png",
+      "id": 21,
+      "name": "PANTS",
+      "price": 80,
+      "quantity": 1,
+      "color": "Beige",
+      "size": "S"
+    },
+    {
+      "img": "black-girl.png",
+      "id": 19,
+      "name": "DRESS WITH TROUSERS",
+      "price": 40,
+      "quantity": 1,
+      "color": "Black",
+      "size": "S"
+    },
+    {
+      "img": "forthgirl.png",
+      "id": 22,
+      "name": "Leggins",
+      "price": 90,
+      "quantity": 1,
+      "color": "Black",
+      "size": "S"
+    },
+    {
+      "img": "secondgirl.png",
+      "id": 20,
+      "name": "DRESS",
+      "price": 70,
       "quantity": 2,
-      "color": "White",
+      "color": "Snake print",
       "size": "S"
     }
   ]

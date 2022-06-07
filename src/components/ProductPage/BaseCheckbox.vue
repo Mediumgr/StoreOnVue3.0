@@ -11,19 +11,11 @@
       },
     }"
   />
-  <label :for="label" :class="classObject" v-if="label">{{ label }}</label>
+  <label :for="label" class="your__size" v-if="label">{{ label }}</label>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      classObject: {
-        your__size: true,
-        your__size_XXL: this.label === "XXl",
-      },
-    };
-  },
   props: {
     label: {
       type: String,

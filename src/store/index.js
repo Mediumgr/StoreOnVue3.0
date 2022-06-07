@@ -59,6 +59,9 @@ export default createStore({
     ADDITIONAL_PRODUCTS(state, payload) {
       state.additionalProducts = payload;
     },
+    CONCAT_ADDITIONAL_AND_FILTERED(state) {
+      state.filtered = state.filtered.concat(state.additionalProducts);
+    },
   },
   actions: {
     getProducts({ commit }) {
