@@ -12,11 +12,19 @@ export default createStore({
     mainPage: [],
     extraProducts: [],
     additionalProducts: [],
+    slidersProducts: [],
     user: null,
+    userSearch: "",
   },
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    ADDITIONAL_PRODUCTS(state, payload) {
+      state.additionalProducts = payload;
+    },
+    SET_EXTRA_PRODUCTS(state, products) {
+      state.extraProducts = products;
     },
     FILL_OF_FILTER(state, payload) {
       state.filtered = payload;
@@ -27,12 +35,6 @@ export default createStore({
     FILTER_PRODUCTS_REGEXP(state, payload) {
       let regexp = new RegExp(payload, "i");
       state.filtered = state.products.filter((item) => regexp.test(item.name));
-    },
-    SET_EXTRA_PRODUCTS(state, products) {
-      state.extraProducts = products;
-    },
-    PRODUCTS_ZEROING(state) {
-      state.products.length = 0;
     },
     SET_PRODUCT(state, product) {
       state.product = product;
@@ -53,14 +55,21 @@ export default createStore({
     CONCAT_EXTRA_PRODUCTS(state) {
       state.products = state.products.concat(state.extraProducts);
     },
+    CONCAT_ADDITIONAL_PRODUCTS(state) {
+      state.products = state.filtered = state.products.concat(
+        state.additionalProducts
+      );
+    },
+    CONCAT_SLIDERS_PRODUCTS(state) {
+      state.products = state.filtered = state.products.concat(
+        state.slidersProducts
+      );
+    },
+    SET_PRODUCTS_FOR_SLIDERS(state, payload) {
+      state.slidersProducts = payload;
+    },
     USER(state, payload) {
       state.user = payload;
-    },
-    ADDITIONAL_PRODUCTS(state, payload) {
-      state.additionalProducts = payload;
-    },
-    CONCAT_ADDITIONAL_AND_FILTERED(state) {
-      state.filtered = state.filtered.concat(state.additionalProducts);
     },
   },
   actions: {
@@ -107,23 +116,30 @@ export default createStore({
           throw error;
         });
     },
-    actionForFilter({ commit }, userSearch) {
+    actionForFilter({ state, commit }, userSearch) {
+      state.userSearch = userSearch;
       commit("setLoading", true);
       EventService.getProducts()
         .then((response) => {
           commit("SET_PRODUCTS", response.data);
         })
         .then(() => {
-          EventService.getExtraProducts()
-            .then((response) => {
-              commit("SET_EXTRA_PRODUCTS", response.data);
-            })
-            .then(() => {
-              commit("CONCAT_EXTRA_PRODUCTS");
-            })
-            .then(() => {
-              commit("FILTER_PRODUCTS_REGEXP", userSearch);
-            });
+          return EventService.getExtraProducts();
+        })
+        .then((response) => {
+          commit("SET_EXTRA_PRODUCTS", response.data);
+        })
+        .then(() => {
+          commit("CONCAT_EXTRA_PRODUCTS");
+        })
+        .then(() => {
+          commit("CONCAT_ADDITIONAL_PRODUCTS");
+        })
+        .then(() => {
+          commit("CONCAT_SLIDERS_PRODUCTS");
+        })
+        .then(() => {
+          commit("FILTER_PRODUCTS_REGEXP", userSearch);
         })
         .finally(() => {
           commit("setLoading", false);
@@ -203,6 +219,15 @@ export default createStore({
       return EventService.cartFetch()
         .then((response) => {
           state.cart = response.data;
+        })
+        .catch((error) => {
+          throw error;
+        });
+    },
+    getSlidersProducts({ commit }) {
+      return EventService.getSlidersProducts()
+        .then((response) => {
+          commit("SET_PRODUCTS_FOR_SLIDERS", response.data);
         })
         .catch((error) => {
           throw error;
@@ -295,6 +320,15 @@ export default createStore({
     },
     filtered(state) {
       return state.filtered;
+    },
+    products(state) {
+      return state.products;
+    },
+    slidersProducts(state) {
+      return state.slidersProducts;
+    },
+    userInput(state) {
+      return state.userSearch;
     },
   },
   modules: {

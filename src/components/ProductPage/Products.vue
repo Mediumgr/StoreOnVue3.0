@@ -1,9 +1,13 @@
 <template>
   <div
     class="content__product center"
-    v-if="filtered.length && loading === false"
+    v-if="products.length && loading === false"
   >
-    <left-aside></left-aside>
+    <left-aside
+      @categoryFilter="categoryFilter"
+      @categoryBrand="categoryBrand"
+      @categoryMochino="categoryMochino"
+    ></left-aside>
     <div class="product__menu">
       <trending-component></trending-component>
       <div class="checkbox__block">
@@ -58,19 +62,49 @@
         <i class="fa-solid fa-circle-chevron-right fa-xl"></i>
       </div>
     </router-link>
-    <div class="block__of__product" v-if="message === ''">
+    <transition-group
+      appear
+      tag="div"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      :css="false"
+      class="block__of__product"
+      v-if="message === '' && userInput === ''"
+    >
       <product-items
-        v-for="item of felteredProducts"
+        :data-index="index"
+        v-for="(item, index) of felteredProducts"
         :key="item.id"
         :product="item"
       ></product-items>
-    </div>
-    <div v-else class="block__of__product">
+    </transition-group>
+    <div v-if="message !== ''" class="block__of__product">
       <div class="noSuchSizes">{{ message }}</div>
+    </div>
+    <transition-group
+      appear
+      tag="div"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      :css="false"
+      class="block__of__product"
+      v-if="userInput !== ''"
+    >
+      <product-items
+        v-for="(item, index) of filtered"
+        :data-index="index"
+        :key="item.id"
+        :product="item"
+      ></product-items>
+    </transition-group>
+    <div class="block__of__product" v-if="filteredLength === 0">
+      <div class="noSuchSizes">
+        No any products were found based on your request
+      </div>
     </div>
     <div
       class="viewAllBlock"
-      v-show="felteredProducts.length !== productsLength"
+      v-show="felteredProducts.length !== productsLength && userInput === ''"
     >
       <button
         :style="styleButton"
@@ -88,7 +122,7 @@
       <i class="fa-solid fa-spinner fa-spin fa-2xl"></i>
     </div>
   </div>
-  <div class="content__product center" v-if="!filtered.length">
+  <div class="content__product center" v-if="!products.length">
     <left-aside></left-aside>
     <option-products></option-products>
     <div class="block__of__product">
@@ -109,6 +143,7 @@ import TrendingComponent from "@/components/ProductPage/TrendingComponent.vue";
 import InformationCenter from "@/components/ProductPage/InformationCenter.vue";
 import Slider from "@vueform/slider";
 import NProgress from "nprogress";
+import Velocity from "velocity-animate";
 import { mapGetters } from "vuex";
 
 export default {
@@ -131,7 +166,7 @@ export default {
       },
       top: null,
       screenWidth: null,
-      productsLength: 22, // length of all products in db.json (products + extraProducts + additional)
+      productsLength: 25, // length of all products in db.json (products + extraProducts + additional + sliderProducts)
       categoriesForSex: ["All", "men", "women"],
       categorySex: "All",
       categoriesForPrice: ["choose", "on increase", "on decrease"],
@@ -148,7 +183,7 @@ export default {
   },
   methods: {
     viewAllProducts() {
-      this.filteredCategory = this.filtered;
+      this.filteredCategory = this.products;
       this.categoryPrice = "choose";
       this.categorySex = "All";
       this.value = [0, 200];
@@ -163,7 +198,7 @@ export default {
       this.message = "";
       this.filteredCategory = [];
       if (category !== "All" && this.productsIdArray.length === 0) {
-        this.filtered.map((product) => {
+        this.products.map((product) => {
           if (
             product.sex === category &&
             product.price >= this.value[0] &&
@@ -179,7 +214,7 @@ export default {
         }
       }
       if (category === "All" && this.productsIdArray.length === 0) {
-        this.filtered.map((product) => {
+        this.products.map((product) => {
           if (
             product.price >= this.value[0] &&
             product.price <= this.value[1]
@@ -195,7 +230,7 @@ export default {
       }
       if (category !== "All" && this.productsIdArray.length !== 0) {
         this.productsIdArray.forEach((itemName) => {
-          this.filtered.map((product) => {
+          this.products.map((product) => {
             if (
               product.size.indexOf(itemName) !== -1 &&
               product.sex === category &&
@@ -214,7 +249,7 @@ export default {
       }
       if (category === "All" && this.productsIdArray.length !== 0) {
         this.productsIdArray.forEach((itemName) => {
-          this.filtered.map((product) => {
+          this.products.map((product) => {
             if (
               product.size.indexOf(itemName) !== -1 &&
               product.price >= this.value[0] &&
@@ -240,7 +275,7 @@ export default {
             return productA.price > productB.price ? 1 : -1;
           });
         } else {
-          this.filtered.sort((productA, productB) => {
+          this.products.sort((productA, productB) => {
             return productA.price > productB.price ? 1 : -1;
           });
         }
@@ -251,7 +286,7 @@ export default {
             return productA.price < productB.price ? 1 : -1;
           });
         } else {
-          this.filtered.sort((productA, productB) => {
+          this.products.sort((productA, productB) => {
             return productA.price < productB.price ? 1 : -1;
           });
         }
@@ -277,7 +312,7 @@ export default {
       if (this.categorySex === "All" && this.productsIdArray.length !== 0) {
         {
           this.productsIdArray.forEach((itemName) => {
-            this.filtered.map((product) => {
+            this.products.map((product) => {
               if (
                 product.size.indexOf(itemName) !== -1 &&
                 product.price >= this.value[0] &&
@@ -294,7 +329,7 @@ export default {
       }
       if (this.categorySex === "All" && this.productsIdArray.length === 0) {
         {
-          this.filtered.map((product) => {
+          this.products.map((product) => {
             if (
               product.price >= this.value[0] &&
               product.price <= this.value[1]
@@ -310,7 +345,7 @@ export default {
       }
       if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
         this.productsIdArray.forEach((itemName) => {
-          this.filtered.map((product) => {
+          this.products.map((product) => {
             if (
               product.size.indexOf(itemName) !== -1 &&
               product.sex === this.categorySex &&
@@ -328,7 +363,7 @@ export default {
         }
       }
       if (this.categorySex !== "All" && this.productsIdArray.length === 0) {
-        this.filtered.map((product) => {
+        this.products.map((product) => {
           if (
             product.sex === this.categorySex &&
             product.price >= this.value[0] &&
@@ -351,7 +386,7 @@ export default {
         this.message = "";
         if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
           this.productsIdArray.forEach((itemName) => {
-            this.filtered.map((product) => {
+            this.products.map((product) => {
               if (
                 product.size.indexOf(itemName) !== -1 &&
                 product.sex === this.categorySex &&
@@ -371,7 +406,7 @@ export default {
         }
         if (this.categorySex === "All" && this.productsIdArray.length !== 0) {
           this.productsIdArray.forEach((itemName) => {
-            this.filtered.map((product) => {
+            this.products.map((product) => {
               if (
                 product.size.indexOf(itemName) !== -1 &&
                 product.price >= this.value[0] &&
@@ -389,7 +424,7 @@ export default {
           }
         }
         if (this.categorySex !== "All" && this.productsIdArray.length === 0) {
-          this.filtered.filter((product) => {
+          this.products.filter((product) => {
             if (
               product.price >= this.value[0] &&
               product.price <= this.value[1] &&
@@ -406,7 +441,7 @@ export default {
           }
         }
         if (this.categorySex === "All" && this.productsIdArray.length === 0) {
-          this.filtered.filter((product) => {
+          this.products.filter((product) => {
             if (
               product.price >= this.value[0] &&
               product.price <= this.value[1]
@@ -419,6 +454,29 @@ export default {
           }
         }
       }, 0);
+    },
+    categoryFilter(category) {
+      this.filteredCategory = category;
+    },
+    categoryBrand(category) {
+      this.filteredCategory = category;
+    },
+    categoryMochino(category) {
+      this.filteredCategory = category;
+    },
+    beforeEnter(el) {
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      const index = el.dataset.index || 1;
+      let delay = index * 100;
+      setTimeout(() => {
+        Velocity(
+          el,
+          { opacity: 1 },
+          { duration: 1000, easing: "transition.slideLeftIn", complete: done }
+        );
+      }, delay);
     },
   },
   created() {
@@ -434,10 +492,16 @@ export default {
         return this.$store.dispatch("fetchAdditionalProducts");
       })
       .then(() => {
-        this.$store.commit("CONCAT_ADDITIONAL_AND_FILTERED");
+        return this.$store.dispatch("getSlidersProducts");
       })
       .then(() => {
-        this.filteredCategory = this.filtered.slice(0, 9);
+        this.$store.commit("CONCAT_ADDITIONAL_PRODUCTS");
+      })
+      .then(() => {
+        this.$store.commit("CONCAT_SLIDERS_PRODUCTS");
+      })
+      .then(() => {
+        this.filteredCategory = this.products.slice(0, 9);
       })
       .catch((error) => {
         this.$router.push({ name: "ErrorDisplay", params: { error: error } });
@@ -448,7 +512,13 @@ export default {
       });
   },
   computed: {
-    ...mapGetters(["loading", "filtered"]),
+    ...mapGetters([
+      "loading",
+      "products",
+      "filtered",
+      "userInput",
+      "filteredLength",
+    ]),
     styles() {
       return {
         top: `${this.top - 5}px`,
@@ -458,7 +528,7 @@ export default {
       if (this.filteredCategory.length) {
         return this.filteredCategory;
       } else {
-        return this.filtered;
+        return this.products;
       }
     },
   },

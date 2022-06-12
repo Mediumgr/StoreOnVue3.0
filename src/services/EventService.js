@@ -30,6 +30,9 @@ export default {
   getAdditionalProduct(id) {
     return apiClient.get(`/additionalProducts/${id}`);
   },
+  getSlidersProducts() {
+    return apiClient.get("/sliderProducts");
+  },
   getSlidersProduct(id) {
     return apiClient.get(`/sliderProducts/${id}`);
   },

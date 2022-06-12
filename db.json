@@ -409,7 +409,7 @@
     {
       "img": "4.png",
       "id": 12,
-      "name": "Floral T-shirt",
+      "name": "T-shirt",
       "price": 55,
       "variants": [
         "4.png",
@@ -593,7 +593,7 @@
     {
       "img": "17.jpg",
       "id": 17,
-      "name": "Leggings",
+      "name": "Leggins",
       "price": 102,
       "variants": [
         "17.jpg",
@@ -667,7 +667,7 @@
     {
       "img": "black-girl.png",
       "id": 19,
-      "name": "DRESS WITH TROUSERS",
+      "name": "Dress",
       "price": 40,
       "variants": [
         "black-girl.png",
@@ -681,7 +681,7 @@
         "XS"
       ],
       "description": [
-        "DRESS & TROUSERS",
+        "DRESS",
         "Model: 8VP8348",
         "Compound: 50 % viscose, 50 % polyester",
         "Line: Women",
@@ -703,7 +703,7 @@
     {
       "img": "secondgirl.png",
       "id": 20,
-      "name": "DRESS",
+      "name": "Dress",
       "price": 70,
       "variants": [
         "secondgirl.png",
@@ -739,7 +739,7 @@
     {
       "img": "third.png",
       "id": 21,
-      "name": "PANTS",
+      "name": "Pants",
       "price": 80,
       "variants": [
         "third.png",
@@ -814,7 +814,7 @@
     {
       "img": "white.png",
       "id": 23,
-      "name": "MOSCHINO",
+      "name": "Moschino",
       "price": 120,
       "variants": [
         "white.png",
@@ -850,7 +850,7 @@
     {
       "img": "red.png",
       "id": 24,
-      "name": "MOSCHINO",
+      "name": "Moschino",
       "price": 140,
       "variants": [
         "red.png",
@@ -886,7 +886,7 @@
     {
       "img": "black3.png",
       "id": 25,
-      "name": "MOSCHINO",
+      "name": "Moschino",
       "price": 185,
       "variants": [
         "black3.png",
@@ -922,57 +922,12 @@
   ],
   "cart": [
     {
-      "img": "girlinred.png",
-      "id": 2,
-      "name": "Blouse",
-      "price": 30,
-      "quantity": 4,
-      "color": "Red",
-      "size": "S"
-    },
-    {
-      "img": "red.png",
-      "id": 24,
-      "name": "MOSCHINO",
-      "price": 200,
-      "quantity": 4,
-      "color": "Red",
-      "size": "XS"
-    },
-    {
-      "img": "third.png",
-      "id": 21,
-      "name": "PANTS",
-      "price": 80,
+      "img": "teenager.png",
+      "id": 1,
+      "name": "T-shirt",
+      "price": 25,
       "quantity": 1,
-      "color": "Beige",
-      "size": "S"
-    },
-    {
-      "img": "black-girl.png",
-      "id": 19,
-      "name": "DRESS WITH TROUSERS",
-      "price": 40,
-      "quantity": 1,
-      "color": "Black",
-      "size": "S"
-    },
-    {
-      "img": "forthgirl.png",
-      "id": 22,
-      "name": "Leggins",
-      "price": 90,
-      "quantity": 1,
-      "color": "Black",
-      "size": "S"
-    },
-    {
-      "img": "secondgirl.png",
-      "id": 20,
-      "name": "DRESS",
-      "price": 70,
-      "quantity": 2,
-      "color": "Snake print",
+      "color": "White",
       "size": "S"
     }
   ]

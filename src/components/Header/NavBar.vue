@@ -18,24 +18,48 @@
           <summary ref="summary" class="listed" @click="currentSummary">
             <span>Browse</span>
           </summary>
-          <div class="drop__browse">
-            <div>
-              <h3 class="drop__h3">Women</h3>
-              <ul class="drop__ul">
-                <li v-for="cloth in clothes" :key="cloth">
-                  <span class="drop__a">{{ cloth }}</span>
-                </li>
-              </ul>
+          <transition name="expand">
+            <div class="drop__browse" v-if="showList">
+              <div>
+                <h3 class="drop__h3">Women</h3>
+                <transition-group
+                  appear
+                  tag="ul"
+                  @before-enter="beforeEnter"
+                  @enter="enter"
+                  :css="false"
+                  class="drop__ul"
+                >
+                  <li v-for="cloth in clothes" :key="cloth">
+                    <router-link
+                      :to="{ name: 'ProductPage' }"
+                      class="drop__a"
+                      >{{ cloth }}</router-link
+                    >
+                  </li>
+                </transition-group>
+              </div>
+              <div>
+                <h3 class="drop__h3">Men</h3>
+                <transition-group
+                  appear
+                  tag="ul"
+                  @before-enter="beforeEnter"
+                  @enter="enter"
+                  :css="false"
+                  class="drop__ul"
+                >
+                  <li v-for="wear in outerWear" :key="wear">
+                    <router-link
+                      :to="{ name: 'ProductPage' }"
+                      class="drop__a"
+                      >{{ wear }}</router-link
+                    >
+                  </li>
+                </transition-group>
+              </div>
             </div>
-            <div>
-              <h3 class="drop__h3">Men</h3>
-              <ul class="drop__ul">
-                <li v-for="wear in outerWear" :key="wear">
-                  <span class="drop__a">{{ wear }}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          </transition>
         </details>
         <input
           v-model.trim="userSearch"
@@ -62,6 +86,7 @@
 import CartOrder from "@/components/Header/CartOrder.vue";
 import MyAccount from "@/components/Header/MyAccount.vue";
 import LineBar from "@/components/Header/LineBar.vue";
+import Velocity from "velocity-animate";
 import { mapGetters } from "vuex";
 
 export default {
@@ -70,6 +95,7 @@ export default {
   data() {
     return {
       current: 1,
+      showList: true,
       clothes: [
         "Dresses",
         "Tops",
@@ -96,11 +122,25 @@ export default {
   methods: {
     currentSummary() {
       this.current === 1 ? (this.current = 2) : (this.current = 1);
+      this.showList = false;
+      this.$nextTick(() => {
+        this.showList = true;
+      });
     },
     filter() {
       this.$store.dispatch("actionForFilter", this.userSearch).finally(() => {
         this.counter = 1;
       });
+    },
+    beforeEnter(el) {
+      el.style.height = 0;
+    },
+    enter(el, done) {
+      Velocity(
+        el,
+        { height: "28px" },
+        { duration: 1500, easing: "ease", complete: done }
+      );
     },
   },
   computed: {

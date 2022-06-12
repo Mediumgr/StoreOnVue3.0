@@ -1,5 +1,5 @@
 <template>
-  <div class="product-detail" v-if="product && loading === false">
+  <div class="product-detail" v-if="product.length !== 0 && loading === false">
     <div class="flex">
       <div class="goodContainer">
         <img
@@ -36,6 +36,7 @@
           </p>
         </div>
       </div>
+
       <div class="block">
         <button
           v-for="tab in tabs"
@@ -92,7 +93,7 @@ export default {
   },
   methods: {
     changeImage(variant) {
-      this.$store.state.product.img = variant; //Изменяю state - не очень...через created .then(() => не получается)
+      this.$store.state.product.img = variant;
     },
     addProductToCart(product) {
       this.$store

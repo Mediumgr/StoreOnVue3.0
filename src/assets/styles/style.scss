@@ -415,7 +415,7 @@ a {
     float: left;
     border-left: 12px solid #f16d7f;
     padding-left: 12px;
-    animation: fadeInUpBig; //animate.style
+    animation: fadeInUpBig;
     animation-duration: 1s;
 }
 
@@ -585,6 +585,8 @@ a {
     height: 270px;
     justify-content: center;
     margin: 0 auto;
+    animation: fadeInDownBig;
+    animation-duration: 1s;
 }
 
 .loading {
@@ -1682,6 +1684,8 @@ a {
     @include same__font(24px, $fontFamily);
     margin: 50px auto 0;
     color: $colorPink;
+    animation: fadeInLeftBig;
+    animation-duration: 1s;
 }
 
 .choose__quantity {
@@ -2429,4 +2433,22 @@ input[type="number"].mod::-webkit-inner-spin-button:active {
 input:-webkit-autofill {
     background: black;
     color: red;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.8s ease;
+}
+
+.expand-enter-from {
+    transform: translateY(30px);
+}
+
+.expand-enter-active {
+    transition: all 1.5s ease-out;
 }

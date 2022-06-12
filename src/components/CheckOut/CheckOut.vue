@@ -102,11 +102,13 @@
           @click="open = true"
         ></i>
         <Teleport to="body">
-          <modal-exit-window
-            v-if="open"
-            @close="open = false"
-            @confirm="logOut"
-          ></modal-exit-window>
+          <transition name="fade">
+            <modal-exit-window
+              v-if="open"
+              @close="open = false"
+              @confirm="logOut"
+            ></modal-exit-window>
+          </transition>
         </Teleport>
       </div>
     </details>

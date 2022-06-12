@@ -8,7 +8,7 @@
         alt="cart"
       />
       <img
-        v-if="cart.length"
+        v-else
         class="header__cart"
         src="@/assets/img/cart_full.png"
         alt="cart"
@@ -19,19 +19,10 @@
     </div>
     <div class="product__order" v-show="showCart">
       <p v-if="!cart.length" class="cartItem">No products in your cart</p>
-      <div v-if="cart.length">
-        <template v-for="item of cart">
-          <cart-item
-            v-if="cart.length < 3"
-            :key="item.id"
-            :cartItem="item"
-            @remove="removeProduct"
-          >
-          </cart-item>
-        </template>
+      <div v-else>
         <template v-for="(item, index) of cart">
           <cart-item
-            v-if="cart.length > 2 && index < 2"
+            v-if="cart.length && index < 2"
             :key="item.id"
             :cartItem="item"
             @remove="removeProduct"
@@ -63,11 +54,13 @@
     </div>
   </div>
   <Teleport to="body">
-    <modal-window
-      v-if="open"
-      @close="open = false"
-      @remove="remove"
-    ></modal-window>
+    <Transition name="fade">
+      <modal-window
+        v-if="open"
+        @close="open = false"
+        @remove="remove"
+      ></modal-window>
+    </Transition>
   </Teleport>
 </template>
 
