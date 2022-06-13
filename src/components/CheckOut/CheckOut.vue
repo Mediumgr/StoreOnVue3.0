@@ -7,6 +7,9 @@
       <span class="small__arrivals">New Arrivals</span>
     </nav>
   </div>
+  <router-link :to="{ name: 'SinglePage' }" class="floating-button">
+    <button class="raise">DON'T FORGET TO LOOK SPECIAL OFFER</button>
+  </router-link>
   <div class="Form__for__client center">
     <details class="Common__details">
       <summary class="CommonInformation">
@@ -346,5 +349,41 @@ fieldset {
   border: 0;
   margin: 0;
   padding: 0;
+}
+
+.raise {
+  background: none;
+  outline: none;
+  overflow: hidden;
+  border: none;
+  font: inherit;
+  padding: 0.5em 0.5em;
+  cursor: pointer;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.floating-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 45px;
+  margin: 30px auto 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  background: rgba(241, 109, 127, 1);
+  box-shadow: 0px 0px 15px 3px #f16d7f;
+  transition: 0.4s;
+}
+.floating-button:hover {
+  background: #2ee59d;
+  box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+  transform: translateY(-7px);
 }
 </style>

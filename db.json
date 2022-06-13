@@ -817,7 +817,7 @@
       "name": "Moschino",
       "price": 120,
       "variants": [
-        "white.png",
+        "white1.png",
         "23.1.jpg",
         "23.2.jpg"
       ],
@@ -853,7 +853,7 @@
       "name": "Moschino",
       "price": 140,
       "variants": [
-        "red.png",
+        "red1.png",
         "24.1.png",
         "24.2.png"
       ],
@@ -889,7 +889,7 @@
       "name": "Moschino",
       "price": 185,
       "variants": [
-        "black3.png",
+        "25.png",
         "25.1.jpg",
         "25.2.jpg"
       ],
@@ -922,12 +922,75 @@
   ],
   "cart": [
     {
+      "img": "white.png",
+      "id": 23,
+      "name": "MOSCHINO",
+      "price": 150,
+      "quantity": 2,
+      "color": "White",
+      "size": "S"
+    },
+    {
+      "img": "25.png",
+      "id": 25,
+      "name": "Moschino",
+      "price": 185,
+      "quantity": 3,
+      "color": "Black",
+      "size": "M"
+    },
+    {
+      "img": "red1.png",
+      "id": 24,
+      "name": "Moschino",
+      "price": 140,
+      "quantity": 1,
+      "color": "Red",
+      "size": "S"
+    },
+    {
+      "img": "barberman.png",
+      "id": 3,
+      "name": "Jacket",
+      "price": 35,
+      "quantity": 1,
+      "color": "Blue",
+      "size": "S"
+    },
+    {
+      "img": "girlinred.png",
+      "id": 2,
+      "name": "Blouse",
+      "price": 30,
+      "quantity": 1,
+      "color": "Red",
+      "size": "S"
+    },
+    {
       "img": "teenager.png",
       "id": 1,
       "name": "T-shirt",
       "price": 25,
       "quantity": 1,
       "color": "White",
+      "size": "S"
+    },
+    {
+      "img": "guyjacket.png",
+      "id": 6,
+      "name": "Blazer",
+      "price": 30,
+      "quantity": 4,
+      "color": "Light blue",
+      "size": "S"
+    },
+    {
+      "img": "third.png",
+      "id": 21,
+      "name": "Pants",
+      "price": 80,
+      "quantity": 1,
+      "color": "Beige",
       "size": "S"
     }
   ]

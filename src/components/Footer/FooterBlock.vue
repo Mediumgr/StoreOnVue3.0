@@ -2,26 +2,30 @@
   <div class="surfer">
     <div class="content center">
       <div>
-        <div
-          class="pre__bottom__block"
-          v-for="person in persons"
-          :key="person.id"
-        >
-          <div v-show="person.active" class="personActive">
-            <div class="foto">
-              <img
-                :src="require(`@/assets/img/${person.src}`)"
-                :alt="person.name"
-                class="img"
-              />
-            </div>
-            <div class="france">
-              <h3 class="text__france">&#171;{{ person.text }}&raquo;</h3>
-              <h3 class="guestName">{{ person.name }}</h3>
-              <h4 class="guestLocation">{{ person.location }}</h4>
+        <transition :key="renderComponent" appear name="fadeShow">
+          <div>
+            <div
+              class="pre__bottom__block"
+              v-for="person in persons"
+              :key="person.id"
+            >
+              <div v-show="person.active" class="personActive">
+                <div class="foto">
+                  <img
+                    :src="require(`@/assets/img/${person.src}`)"
+                    :alt="person.name"
+                    class="img"
+                  />
+                </div>
+                <div class="france">
+                  <h3 class="text__france">&#171;{{ person.text }}&raquo;</h3>
+                  <h3 class="guestName">{{ person.name }}</h3>
+                  <h4 class="guestLocation">{{ person.location }}</h4>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </transition>
         <div class="gorizontal__bar">
           <div
             class="bar"
@@ -143,6 +147,7 @@ export default {
   data() {
     return {
       activeClass: 1,
+      renderComponent: 0,
       links: [
         "fa-facebook-f",
         "fa-twitter",
@@ -199,6 +204,7 @@ export default {
         person.active = false;
       });
       this.persons[index - 1].active = true;
+      this.renderComponent += 1;
     },
     checkEmail() {
       this.correctEmail = this.email.test(this.userEmail);

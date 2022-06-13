@@ -294,7 +294,6 @@ export default createStore({
           state.loading = false;
         });
     },
-    //КАК ЕЩЕ СДЕЛАТЬ МЕТОД, ЧТОБЫ УДАЛЯЛ ВСЕ ИМЕЮЩИЕСЯ ТОВАРЫ МАГАЗИНА ИЗ КОРЗИНЫ, НО НЕ ПАДАЛ СЕРВЕР?(НА ВТОРОЙ ИЛИ ТРЕТИЙ РАЗ ПРИ ПОПЫТКЕ УДАЛИТЬ ВСЕ ТОВАРЫ (ЕСЛИ ИХ МНОГО В КОРЗИНЕ), ТО ПАДАЕТ СЕРВАК):
     clearCart({ state, commit }) {
       state.cart.forEach((element) => {
         return EventService.deleteProduct(element).catch((error) => {

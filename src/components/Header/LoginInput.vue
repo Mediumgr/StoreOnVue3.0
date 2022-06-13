@@ -18,11 +18,15 @@
       @click="open = true"
     ></i>
   </div>
-  <modal-exit-window
-    v-if="open"
-    @confirm="confirm"
-    @close="open = false"
-  ></modal-exit-window>
+  <Teleport to="body">
+    <transition name="fade">
+      <modal-exit-window
+        v-if="open"
+        @confirm="confirm"
+        @close="open = false"
+      ></modal-exit-window>
+    </transition>
+  </Teleport>
 </template>
 
 <script>

@@ -23,7 +23,11 @@
           :class="{ active: activeClass === n }"
         ></div>
       </div>
-      <collection-offer :women="women"></collection-offer>
+      <transition :key="renderComponent" appear name="fadeShow">
+        <div>
+          <collection-offer :women="women"></collection-offer>
+        </div>
+      </transition>
       <div class="line__after__amount"></div>
       <div class="form__block">
         <div class="common__form">
@@ -126,6 +130,7 @@ export default {
       id: 23,
       price: 150,
       activeClass: 2,
+      renderComponent: 0,
       womens: [
         {
           id: 1,
@@ -182,6 +187,7 @@ export default {
     changeAdvertising(index) {
       this.activeClass = index;
       this.women = this.womens[index - 1];
+      this.renderComponent += 1;
     },
   },
   computed: {
@@ -290,8 +296,8 @@ export default {
   display: flex;
   padding-top: 40px;
   &_thin {
-    width: 38px;
-    height: 3px;
+    width: 42px;
+    height: 4px;
     background-color: rgba(214, 214, 214, 1);
   }
 }

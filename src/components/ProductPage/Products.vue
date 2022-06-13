@@ -97,7 +97,10 @@
         :product="item"
       ></product-items>
     </transition-group>
-    <div class="block__of__product" v-if="filteredLength === 0">
+    <div
+      class="block__of__product"
+      v-if="filteredLength === 0 && message === ''"
+    >
       <div class="noSuchSizes">
         No any products were found based on your request
       </div>
@@ -120,15 +123,6 @@
     <option-products></option-products>
     <div class="block__of__spinner">
       <i class="fa-solid fa-spinner fa-spin fa-2xl"></i>
-    </div>
-  </div>
-  <div class="content__product center" v-if="!products.length">
-    <left-aside></left-aside>
-    <option-products></option-products>
-    <div class="block__of__product">
-      <div class="noConcatProducts center">
-        {{ error }}
-      </div>
     </div>
   </div>
   <information-center></information-center>
@@ -159,8 +153,6 @@ export default {
   },
   data() {
     return {
-      error:
-        "The products you are looking for were not found. Enter the name of the product.",
       styleButton: {
         display: "block",
       },

@@ -34,7 +34,8 @@
             min="1"
             max="50"
             class="digits"
-            v-model.lazy="quantity"
+            :value="modelValue"
+            @input="changeQuantity($event)"
           />
         </div>
         <div class="free__word">FREE</div>
@@ -49,28 +50,27 @@
 
 <script>
 export default {
-  emits: ["remove"],
+  emits: ["remove", "update:modelValue"],
   props: {
     product: {
       type: Object,
       default: () => {},
     },
-  },
-  data() {
-    return {
-      quantity: this.product.quantity,
-    };
-  },
-  methods: {},
-  computed: {
-    price() {
-      return this.quantity * this.product.price;
+    modelValue: {
+      type: Number,
+      default: 1,
     },
   },
-  watch: {
-    quantity(newValue) {
-      let updatedProduct = { ...this.product, quantity: newValue };
+  methods: {
+    changeQuantity(event) {
+      this.$emit("update:modelValue", +event.target.value);
+      let updatedProduct = { ...this.product, quantity: +event.target.value };
       this.$store.dispatch("updateProduct", updatedProduct);
+    },
+  },
+  computed: {
+    price() {
+      return this.modelValue * this.product.price;
     },
   },
 };

@@ -36,21 +36,24 @@
           </p>
         </div>
       </div>
-
       <div class="block">
         <button
-          v-for="tab in tabs"
+          v-for="(tab, index) in tabs"
           :key="tab"
           :class="['tabBtns', { active: currentTab === tab }]"
-          @click="currentTab = tab"
+          @click="currentChange(index)"
         >
           {{ tab }}
         </button>
-        <component
-          :product="product"
-          :is="currentComponent"
-          @sizeEmit="sizeReceived"
-        ></component>
+        <transition appear name="fadeShow" :key="renderComponent">
+          <div>
+            <component
+              :product="product"
+              :is="currentComponent"
+              @sizeEmit="sizeReceived"
+            ></component>
+          </div>
+        </transition>
       </div>
     </div>
     <button class="putToCart" @click="addProductToCart(product)">
@@ -89,6 +92,7 @@ export default {
       tabs: ["Description", "Delivery"],
       message: "",
       size: "",
+      renderComponent: 0,
     };
   },
   methods: {
@@ -118,6 +122,10 @@ export default {
     },
     sizeReceived(sizeEmited) {
       this.size = sizeEmited;
+    },
+    currentChange(index) {
+      this.renderComponent += 1;
+      this.currentTab = this.tabs[index];
     },
   },
   computed: {

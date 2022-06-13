@@ -7,27 +7,25 @@
       </h3>
     </div>
   </div>
-  <transition-group
-    appear
-    tag="div"
-    @before-enter="beforeEnter"
-    @enter="enter"
-    @leave="leave"
-    :css="false"
-    v-if="cart.length !== 0"
-  >
-    <cart-products
-      v-for="(product, index) in cart"
-      :key="product"
-      :data-index="index"
-      :product="product"
-      @remove="removeProduct"
-    ></cart-products>
-  </transition-group>
-  <div v-if="cart.length === 0" class="emptyProducts">
-    There is no products in your cart, you can add it
-    <router-link :to="{ name: 'ProductPage' }" class="here"> here</router-link>
-  </div>
+  <transition appear name="expandProducts" v-if="cart.length !== 0">
+    <div>
+      <cart-products
+        v-for="product in cart"
+        :key="product"
+        :product="product"
+        @remove="removeProduct"
+        v-model.number="product.quantity"
+      ></cart-products>
+    </div>
+  </transition>
+  <transition name="expand">
+    <div v-if="cart.length === 0" class="emptyProducts">
+      There is no products in your cart, you can add it
+      <router-link :to="{ name: 'ProductPage' }" class="here">
+        here</router-link
+      >
+    </div>
+  </transition>
   <div class="choose center">
     <div>
       <button class="push" @click="clearCart">CLEAR SHOPPING CART</button>
@@ -111,7 +109,6 @@
 
 <script>
 import CartProducts from "@/components/CartComp/CartProducts.vue";
-import Velocity from "velocity-animate";
 import { mapGetters, mapState } from "vuex";
 import NProgress from "nprogress";
 
@@ -173,27 +170,6 @@ export default {
     },
     pushToCheckOut() {
       this.$router.push({ name: "CheckOut" });
-    },
-    beforeEnter(el) {
-      el.style.opacity = 0;
-    },
-    enter(el, done) {
-      const index = el.dataset.index || 1;
-      let delay = index * 70;
-      setTimeout(() => {
-        Velocity(el, { opacity: 1 }, { duration: 1000, complete: done });
-      }, delay);
-    },
-    leave(el, done) {
-      const index = el.dataset.index || 1;
-      let delay = index * 70;
-      setTimeout(() => {
-        Velocity(
-          el,
-          { opacity: 0 },
-          { duration: 100, ease: [0.58, -0.02, 0, 0.98], complete: done }
-        );
-      }, delay);
     },
   },
   computed: {

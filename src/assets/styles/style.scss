@@ -2445,10 +2445,28 @@ input:-webkit-autofill {
     transition: opacity 0.8s ease;
 }
 
+.fadeShow-enter-from,
+.fadeShow-leave-to {
+    opacity: 0;
+}
+
+.fadeShow-enter-active,
+.fadeShow-leave-active {
+    transition: opacity 1s ease-in;
+}
+
 .expand-enter-from {
     transform: translateY(30px);
 }
 
 .expand-enter-active {
+    transition: all 1.5s ease-out;
+}
+
+.expandProducts-enter-from {
+    transform: translateX(-70px);
+}
+
+.expandProducts-enter-active {
     transition: all 1.5s ease-out;
 }
