@@ -110,4 +110,21 @@ const router = createRouter({
   },
 });
 
+const getTitleByRouteName = (routeName) => {
+  return {
+    MainPage: "MainPage",
+    ProductDetails: "Details",
+    ProductDelivery: "Delivery",
+    ProductPage: "Products",
+    CheckOut: "Checkout Page",
+    SinglePage: "Special Offer",
+    GoToCart: "Cart",
+    ErrorDisplay: "Error",
+    NotFound: "No such resoure",
+  }[routeName];
+};
+
+router.afterEach((to) => {
+  document.title = getTitleByRouteName(to.name);
+});
 export default router;
