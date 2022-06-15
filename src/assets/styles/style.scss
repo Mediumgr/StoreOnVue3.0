@@ -111,6 +111,12 @@ a {
                     padding-bottom: 10px;
                 }
 
+                .star {
+                    color: #f16d7f;
+                    font-weight: 800 !important;
+                    cursor: pointer;
+                }
+
                 .price__for__order {
                     color: #f16d7f;
                     font-size: 12px;
@@ -128,6 +134,10 @@ a {
             }
         }
     }
+}
+
+.slider-base, .slider-connects {
+    z-index: 0 !important;
 }
 
 .your__total__amount {

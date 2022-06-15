@@ -34,9 +34,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.stars {
-  color: #f16d7f;
-}
-</style>
