@@ -262,23 +262,25 @@ export default {
     },
     filterPrice(emittedValue) {
       if (emittedValue === "on increase") {
-        if (this.filteredCategory.length) {
+        if (this.filteredCategory.length && this.userInput === "") {
           this.filteredCategory.sort((productA, productB) => {
             return productA.price > productB.price ? 1 : -1;
           });
-        } else {
-          this.products.sort((productA, productB) => {
+        }
+        if (this.filtered.length && this.userInput !== "") {
+          this.filtered.sort((productA, productB) => {
             return productA.price > productB.price ? 1 : -1;
           });
         }
       }
       if (emittedValue === "on decrease") {
-        if (this.filteredCategory.length) {
+        if (this.filteredCategory.length && this.userInput === "") {
           this.filteredCategory.sort((productA, productB) => {
             return productA.price < productB.price ? 1 : -1;
           });
-        } else {
-          this.products.sort((productA, productB) => {
+        }
+        if (this.filtered.length && this.userInput !== "") {
+          this.filtered.sort((productA, productB) => {
             return productA.price < productB.price ? 1 : -1;
           });
         }
@@ -520,7 +522,7 @@ export default {
       if (this.filteredCategory.length) {
         return this.filteredCategory;
       } else {
-        return this.products;
+        return this.filtered;
       }
     },
   },
