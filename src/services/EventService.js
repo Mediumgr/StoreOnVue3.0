@@ -1,7 +1,5 @@
 import axios from "axios";
 
-//baseURL: "https://my-json-server.typicode.com/Mediumgr/StoreOnVue3.0",
-
 const apiClient = axios.create({
   baseURL: "https://protected-meadow-21837.herokuapp.com/",
   withCredentials: false,
