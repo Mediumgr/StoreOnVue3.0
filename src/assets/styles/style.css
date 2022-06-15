@@ -2862,12 +2862,33 @@ input:-webkit-autofill {
   transition: opacity 0.8s ease;
 }
 
+.fadeShow-enter-from,
+.fadeShow-leave-to {
+  opacity: 0;
+}
+
+.fadeShow-enter-active,
+.fadeShow-leave-active {
+  -webkit-transition: opacity 1s ease-in;
+  transition: opacity 1s ease-in;
+}
+
 .expand-enter-from {
   -webkit-transform: translateY(30px);
           transform: translateY(30px);
 }
 
 .expand-enter-active {
+  -webkit-transition: all 1.5s ease-out;
+  transition: all 1.5s ease-out;
+}
+
+.expandProducts-enter-from {
+  -webkit-transform: translateX(-70px);
+          transform: translateX(-70px);
+}
+
+.expandProducts-enter-active {
   -webkit-transition: all 1.5s ease-out;
   transition: all 1.5s ease-out;
 }
