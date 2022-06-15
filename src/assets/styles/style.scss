@@ -639,16 +639,6 @@ a {
     }
 }
 
-.fa,
-.fas {
-    cursor: pointer;
-    font-weight: 100;
-}
-.star {
-    color: #f16d7f;
-    font-weight: 800;
-}
-
 .description {
     display: flex;
     justify-content: center;
@@ -673,12 +663,12 @@ a {
 
     .fa,
     .fas {
-        font-weight: 100;
+        font-weight: 100 !important;
         cursor: pointer;
     }
     .star {
         color: #f16d7f;
-        font-weight: 800;
+        font-weight: 800 !important;
         cursor: pointer;
     }
 }
@@ -740,6 +730,16 @@ a {
 .bottom {
     padding: 19px 13px;
     background: white;
+
+    .fa,
+    .fas {
+        cursor: pointer;
+        font-weight: 100 !important;
+    }
+    .star {
+        color: #f16d7f;
+        font-weight: 800 !important;
+    }
 }
 
 .text__mango {
