@@ -70,7 +70,7 @@
           <img src="@/assets/img/search.png" alt="search" />
         </button>
       </form>
-      <span class="filtered" v-if="counter"
+      <span class="filtered" v-if="show"
         >Found products: {{ filteredLength }}</span
       >
     </div>
@@ -116,7 +116,7 @@ export default {
         "Jackets/vests",
       ],
       userSearch: "",
-      counter: null,
+      show: false,
     };
   },
   methods: {
@@ -129,7 +129,7 @@ export default {
     },
     filter() {
       this.$store.dispatch("actionForFilter", this.userSearch).finally(() => {
-        this.counter = 1;
+        this.show = true;
       });
     },
     beforeEnter(el) {
@@ -151,6 +151,13 @@ export default {
       newValue === 2
         ? (this.$refs.summary.classList.value = "unListed")
         : (this.$refs.summary.classList.value = "listed");
+    },
+    show(newValue) {
+      if (newValue === true) {
+        setTimeout(() => {
+          this.show = false;
+        }, 5000);
+      }
     },
   },
 };
