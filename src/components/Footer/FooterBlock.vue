@@ -223,13 +223,13 @@ export default {
             this.persons[newValue].active = true;
             this.renderComponent += 1;
             this.activeClass = 2;
-          }, 3000);
+          }, 7000);
 
           for (let i = 0; i <= 100; i++) {
             setTimeout(() => {
               this.percent = i;
               this.$refs.bar[0].style.background = this.active;
-            }, (i * 3000) / 100);
+            }, (i * 7000) / 100);
           }
           break;
         case 2:
@@ -240,13 +240,13 @@ export default {
             this.persons[newValue].active = true;
             this.renderComponent += 1;
             this.activeClass = 0;
-          }, 3000);
+          }, 7000);
 
           for (let i = 0; i <= 100; i++) {
             setTimeout(() => {
               this.percent = i;
               this.$refs.bar[1].style.background = this.active;
-            }, (i * 3000) / 100);
+            }, (i * 7000) / 100);
           }
           break;
         case 0:
@@ -260,13 +260,13 @@ export default {
             this.$refs.bar[1].style.background = "";
             this.$refs.bar[2].style.background = "";
             this.activeClass = 1;
-          }, 3001);
+          }, 7001);
 
           for (let i = 0; i <= 100; i++) {
             setTimeout(() => {
               this.percent = i;
               this.$refs.bar[2].style.background = this.active;
-            }, (i * 3000) / 100);
+            }, (i * 7000) / 100);
           }
           break;
       }
