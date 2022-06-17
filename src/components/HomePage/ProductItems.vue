@@ -16,7 +16,6 @@
       <p class="price">
         <span> &#36;{{ product.price }}</span>
         <span>
-          <i class="fas fa-thumbs-up fa-xs"></i>
           <i
             ref="star"
             @click="changeRating(n)"

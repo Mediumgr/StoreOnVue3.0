@@ -15,6 +15,7 @@ export default createStore({
     slidersProducts: [],
     user: null,
     userSearch: "",
+    cartStatus: "",
   },
   mutations: {
     SET_PRODUCTS(state, products) {
@@ -71,6 +72,9 @@ export default createStore({
     USER(state, payload) {
       state.user = payload;
     },
+    CART_STATUS(state, payload) {
+      state.cartStatus = payload;
+    },
   },
   actions: {
     getProducts({ commit }) {
@@ -116,8 +120,8 @@ export default createStore({
           throw error;
         });
     },
-    actionForFilter({ state, commit }, userSearch) {
-      state.userSearch = userSearch;
+    actionForFilter({ state, commit }, userProductSearch) {
+      state.userSearch = userProductSearch;
       commit("setLoading", true);
       EventService.getProducts()
         .then((response) => {
@@ -139,7 +143,7 @@ export default createStore({
           commit("CONCAT_SLIDERS_PRODUCTS");
         })
         .then(() => {
-          commit("FILTER_PRODUCTS_REGEXP", userSearch);
+          commit("FILTER_PRODUCTS_REGEXP", userProductSearch);
         })
         .finally(() => {
           commit("setLoading", false);
@@ -328,6 +332,9 @@ export default createStore({
     },
     userInput(state) {
       return state.userSearch;
+    },
+    cartStatus(state) {
+      return state.cartStatus;
     },
   },
   modules: {

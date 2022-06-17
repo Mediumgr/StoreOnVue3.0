@@ -1,6 +1,6 @@
 <template>
   <div class="bin__for__order">
-    <div class="bin__img cartRelative" @click="showCart = !showCart">
+    <div class="bin__img cartRelative" @click="clickToCart">
       <img
         v-if="!cart.length"
         class="header__cart"
@@ -100,11 +100,25 @@ export default {
     goToCheckout() {
       this.$router.push({ name: "CheckOut" });
     },
+    clickToCart() {
+      this.showCart === false
+        ? (this.showCart = true)
+        : (this.showCart = false);
+      this.$store.commit("CART_STATUS", this.showCart);
+    },
   },
   computed: {
     ...mapGetters(["totalPrice", "cartProductsAmount"]),
+    cartStatus() {
+      return this.$store.getters.cartStatus;
+    },
     cart() {
       return this.$store.state.cart;
+    },
+  },
+  watch: {
+    cartStatus(newValue) {
+      this.showCart = newValue;
     },
   },
   created() {

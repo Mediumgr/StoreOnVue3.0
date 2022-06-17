@@ -34,6 +34,7 @@ export default {
   },
   created() {
     NProgress.start();
+    this.$store.commit("CART_STATUS", false);
     this.$store
       .dispatch("getProductsForMainPage")
       .catch((error) => {

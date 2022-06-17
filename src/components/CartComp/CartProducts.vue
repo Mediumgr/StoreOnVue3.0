@@ -73,6 +73,9 @@ export default {
       return this.modelValue * this.product.price;
     },
   },
+  created() {
+    this.$store.commit("CART_STATUS", false);
+  },
 };
 </script>
 

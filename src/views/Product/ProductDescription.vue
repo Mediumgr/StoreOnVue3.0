@@ -39,7 +39,9 @@
       </div>
       <div class="choose__input" v-if="!currentPost.content">
         <select class="choose__your_size" v-model="yourSize">
-          <option v-for="size in sizes" :key="size">{{ size }}</option>
+          <option v-for="size in sizes" :key="size">
+            {{ size }}
+          </option>
         </select>
       </div>
     </div>
@@ -69,6 +71,7 @@ export default {
     },
   },
   created() {
+    this.$store.commit("CART_STATUS", false);
     this.$router.push({ name: "ProductDetails" });
   },
   mounted() {
@@ -132,13 +135,25 @@ li {
 }
 
 .choose__your_size {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -o-appearance: none;
+  overflow: hidden;
   outline: none;
   height: 35px;
-  width: 144px;
+  width: 114px;
   padding-left: 15px;
+  padding-right: 10px;
   border: 1px solid black;
   font-size: 13px;
   text-align: center;
   line-height: 24px;
+  background: url(@/assets/img/caret-down.jpg) no-repeat right;
+  background-position-x: 85px;
+}
+
+select::-ms-expand {
+  display: none;
 }
 </style>

@@ -24,7 +24,6 @@
           <p class="price">
             <span> &#36;{{ product.price }}</span>
             <span>
-              <i class="fas fa-thumbs-up fa-xs"></i>
               <i
                 ref="star"
                 @click="changeRating(n)"
@@ -58,8 +57,11 @@
     </div>
     <button class="putToCart" @click="addProductToCart(product)">
       <img :src="require('@/assets/img/w_b.png')" alt="buy" />
+      <span class="addToCart">Add to cart</span>
+      <span class="cartAdded" v-if="cartProductsAmount !== 0">{{
+        message
+      }}</span>
     </button>
-    <span class="cartAdded" v-if="cartProductsAmount !== 0">{{ message }}</span>
   </div>
   <div class="block__of__spinner" v-if="loading === true">
     <i class="fa-solid fa-spinner fa-spin fa-2xl"></i>

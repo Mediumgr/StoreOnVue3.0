@@ -55,7 +55,13 @@
                 <i class="fa-solid fa-angles-right fa-xs"></i>Easy access to
                 your order history and status
               </h4>
-              <button class="continue" @click="goAhead">continue</button>
+              <button
+                class="continue"
+                @click="goAhead"
+                v-if="picked === 'guest'"
+              >
+                continue
+              </button>
             </div>
             <form @submit.prevent="register" :class="registerClass">
               <fieldset>
@@ -252,6 +258,7 @@ export default {
   },
   created() {
     NProgress.start();
+    this.$store.commit("CART_STATUS", false);
     this.$store
       .dispatch("user", JSON.parse(localStorage.getItem("Login")))
       .then(() => {

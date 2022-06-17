@@ -18,51 +18,45 @@
           <summary ref="summary" class="listed" @click="currentSummary">
             <span>Browse</span>
           </summary>
-          <transition name="expand">
-            <div class="drop__browse" v-if="showList">
-              <div>
-                <h3 class="drop__h3">Women</h3>
-                <transition-group
-                  appear
-                  tag="ul"
-                  @before-enter="beforeEnter"
-                  @enter="enter"
-                  :css="false"
-                  class="drop__ul"
-                >
-                  <li v-for="cloth in clothes" :key="cloth">
-                    <router-link
-                      :to="{ name: 'ProductPage' }"
-                      class="drop__a"
-                      >{{ cloth }}</router-link
-                    >
-                  </li>
-                </transition-group>
-              </div>
-              <div>
-                <h3 class="drop__h3">Men</h3>
-                <transition-group
-                  appear
-                  tag="ul"
-                  @before-enter="beforeEnter"
-                  @enter="enter"
-                  :css="false"
-                  class="drop__ul"
-                >
-                  <li v-for="wear in outerWear" :key="wear">
-                    <router-link
-                      :to="{ name: 'ProductPage' }"
-                      class="drop__a"
-                      >{{ wear }}</router-link
-                    >
-                  </li>
-                </transition-group>
-              </div>
+          <div class="drop__browse" v-if="showList">
+            <div>
+              <h3 class="drop__h3">Women</h3>
+              <transition-group
+                appear
+                tag="ul"
+                @before-enter="beforeEnter"
+                @enter="enter"
+                :css="false"
+                class="drop__ul"
+              >
+                <li v-for="cloth in clothes" :key="cloth">
+                  <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                    cloth
+                  }}</router-link>
+                </li>
+              </transition-group>
             </div>
-          </transition>
+            <div>
+              <h3 class="drop__h3">Men</h3>
+              <transition-group
+                appear
+                tag="ul"
+                @before-enter="beforeEnter"
+                @enter="enter"
+                :css="false"
+                class="drop__ul"
+              >
+                <li v-for="wear in outerWear" :key="wear">
+                  <router-link :to="{ name: 'ProductPage' }" class="drop__a">{{
+                    wear
+                  }}</router-link>
+                </li>
+              </transition-group>
+            </div>
+          </div>
         </details>
         <input
-          v-model.trim="userSearch"
+          v-model.trim="userProductSearch"
           placeholder="Search for outwear..."
           type="text"
         />
@@ -87,7 +81,7 @@ import CartOrder from "@/components/Header/CartOrder.vue";
 import MyAccount from "@/components/Header/MyAccount.vue";
 import LineBar from "@/components/Header/LineBar.vue";
 import Velocity from "velocity-animate";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "NavBar",
@@ -115,7 +109,7 @@ export default {
         "Blazers",
         "Jackets/vests",
       ],
-      userSearch: "",
+      userProductSearch: "",
       show: false,
     };
   },
@@ -128,9 +122,11 @@ export default {
       });
     },
     filter() {
-      this.$store.dispatch("actionForFilter", this.userSearch).finally(() => {
-        this.show = true;
-      });
+      this.$store
+        .dispatch("actionForFilter", this.userProductSearch)
+        .finally(() => {
+          this.show = true;
+        });
     },
     beforeEnter(el) {
       el.style.height = 0;
@@ -139,11 +135,12 @@ export default {
       Velocity(
         el,
         { height: "28px" },
-        { duration: 1500, easing: "ease", complete: done }
+        { duration: 1200, easing: "ease", complete: done }
       );
     },
   },
   computed: {
+    ...mapState(["userSearch"]),
     ...mapGetters(["filteredLength"]),
   },
   watch: {
@@ -157,6 +154,11 @@ export default {
         setTimeout(() => {
           this.show = false;
         }, 5000);
+      }
+    },
+    userSearch() {
+      if (this.$store.state.userSearch === "") {
+        this.userProductSearch = "";
       }
     },
   },

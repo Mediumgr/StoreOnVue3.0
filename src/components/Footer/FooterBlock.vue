@@ -28,11 +28,13 @@
         </transition>
         <div class="gorizontal__bar">
           <div
+            ref="bar"
             class="bar"
-            v-for="n in persons.length"
+            v-for="(n, index) in persons.length"
             :key="n"
-            @click="changeGuest(n)"
-            :class="{ active: activeClass === n }"
+            :class="{
+              active: activeClass === index,
+            }"
           ></div>
         </div>
       </div>
@@ -146,7 +148,7 @@
 export default {
   data() {
     return {
-      activeClass: 1,
+      activeClass: 0,
       renderComponent: 0,
       links: [
         "fa-facebook-f",
@@ -168,7 +170,7 @@ export default {
         {
           id: 0,
           text: "Vestibulum quis porttitor dui! Quisque viverra nunc mi, apulvinar purus condlmentum a. Aliquam condimentum mattis neque sed pretium",
-          name: "Ram",
+          name: "Ramchik",
           location: "Sochi, Russia",
           src: "ram.jpg",
           active: true,
@@ -176,8 +178,8 @@ export default {
         {
           id: 1,
           text: "A modern online store with good selection of bona pro omnigustu. Magistratus urbani et consultores responsivi qui plus semel ad exemplar electionis adiuverunt. Gratias tibi!",
-          name: "Dmitriy",
-          location: "Canada, Ottava",
+          name: "Victor",
+          location: "Saint-Petersburg, Russia",
           src: "dim.jpg",
           active: false,
         },
@@ -195,28 +197,88 @@ export default {
       correctEmail: "",
       error: "Enter correct email: *****@*** . **",
       success: "Your e-mail has been added to database",
+      percent: "",
     };
   },
   methods: {
-    changeGuest(index) {
-      this.activeClass = index;
-      this.persons.map((person) => {
-        person.active = false;
-      });
-      this.persons[index - 1].active = true;
-      this.renderComponent += 1;
-    },
     checkEmail() {
       this.correctEmail = this.email.test(this.userEmail);
     },
+  },
+  computed: {
+    active() {
+      return `linear-gradient(90deg, #f16d7f ${parseInt(
+        this.percent
+      )}%, rgb(214, 214, 214) ${parseInt(this.percent)}%)`;
+    },
+  },
+  watch: {
+    activeClass(newValue) {
+      switch (newValue) {
+        case 1:
+          setTimeout(() => {
+            this.persons.map((person) => {
+              person.active = false;
+            });
+            this.persons[newValue].active = true;
+            this.renderComponent += 1;
+            this.activeClass = 2;
+          }, 3000);
+
+          for (let i = 0; i <= 100; i++) {
+            setTimeout(() => {
+              this.percent = i;
+              this.$refs.bar[0].style.background = this.active;
+            }, (i * 3000) / 100);
+          }
+          break;
+        case 2:
+          setTimeout(() => {
+            this.persons.map((person) => {
+              person.active = false;
+            });
+            this.persons[newValue].active = true;
+            this.renderComponent += 1;
+            this.activeClass = 0;
+          }, 3000);
+
+          for (let i = 0; i <= 100; i++) {
+            setTimeout(() => {
+              this.percent = i;
+              this.$refs.bar[1].style.background = this.active;
+            }, (i * 3000) / 100);
+          }
+          break;
+        case 0:
+          setTimeout(() => {
+            this.persons.map((person) => {
+              person.active = false;
+            });
+            this.persons[newValue].active = true;
+            this.renderComponent += 1;
+            this.$refs.bar[0].style.background = "";
+            this.$refs.bar[1].style.background = "";
+            this.$refs.bar[2].style.background = "";
+            this.activeClass = 1;
+          }, 3001);
+
+          for (let i = 0; i <= 100; i++) {
+            setTimeout(() => {
+              this.percent = i;
+              this.$refs.bar[2].style.background = this.active;
+            }, (i * 3000) / 100);
+          }
+          break;
+      }
+    },
+  },
+  created() {
+    this.activeClass = 1;
   },
 };
 </script>
 
 <style scoped>
-.active {
-  background-color: #f16d7f;
-}
 .content {
   display: flex;
   justify-content: space-between;

@@ -58,7 +58,7 @@
     </router-link>
     <router-link :to="{ name: 'SinglePage' }">
       <div class="our-offer" :style="styles" v-if="screenWidth >= 1481">
-        <button class="raise">Offer</button>
+        <button class="raise">OFFER</button>
         <i class="fa-solid fa-circle-chevron-right fa-xl"></i>
       </div>
     </router-link>
@@ -99,7 +99,7 @@
     </transition-group>
     <div
       class="block__of__product"
-      v-if="filteredLength === 0 && message === ''"
+      v-if="filteredLength === 0 && message === '' && userInput !== ''"
     >
       <div class="noSuchSizes">
         No any products were found based on your request
@@ -175,6 +175,7 @@ export default {
   },
   methods: {
     viewAllProducts() {
+      this.message = "";
       this.filteredCategory = this.products;
       this.categoryPrice = "choose";
       this.categorySex = "All";
@@ -375,9 +376,13 @@ export default {
       this.filteredCategory = Array.from(new Set(this.filteredCategory));
     },
     sliderChanged() {
+      this.$store.state.userSearch = "";
+      this.filtered = [];
       setTimeout(() => {
         this.filteredCategory = [];
         this.message = "";
+        let products = this.$store.state.products;
+        console.log(products);
         if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
           this.productsIdArray.forEach((itemName) => {
             this.products.map((product) => {
@@ -477,6 +482,7 @@ export default {
     this.message = "";
     NProgress.start();
     this.$store.commit("setLoading", true);
+    this.$store.commit("CART_STATUS", false);
     this.$store
       .dispatch("getProducts")
       .then(() => {
