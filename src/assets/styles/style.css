@@ -1201,11 +1201,6 @@ a {
   background-color: #d6d6d6;
 }
 
-.bar:hover {
-  background-color: #f16d7f;
-  cursor: pointer;
-}
-
 .right__subscribe {
   padding-top: 37px;
   padding-left: 80px;
