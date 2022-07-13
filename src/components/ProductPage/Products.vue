@@ -381,8 +381,7 @@ export default {
       setTimeout(() => {
         this.filteredCategory = [];
         this.message = "";
-        let products = this.$store.state.products;
-        console.log(products);
+
         if (this.categorySex !== "All" && this.productsIdArray.length !== 0) {
           this.productsIdArray.forEach((itemName) => {
             this.products.map((product) => {

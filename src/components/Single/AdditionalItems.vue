@@ -18,7 +18,6 @@
       <p class="price">
         <span> &#36;{{ product.price }}</span>
         <span>
-          <i class="fas fa-thumbs-up fa-xs"></i>
           <i
             ref="star"
             @click="changeRating(n)"
@@ -36,7 +35,10 @@
 </template>
 
 <script>
+import mixin from "@/mixins/Stars.vue";
+
 export default {
+  mixins: [mixin],
   props: {
     product: {
       type: Object,
@@ -50,16 +52,6 @@ export default {
     };
   },
   methods: {
-    changeRating(n) {
-      for (let i = 0; i < n; i++) {
-        this.$refs.star[i].classList.value = "fas fa-star fa-sm star";
-      }
-      if (n <= this.$refs.star.length) {
-        for (let i = n; i < this.$refs.star.length; i++) {
-          this.$refs.star[i].classList.value = "fas fa-star fa-sm";
-        }
-      }
-    },
     addProductToCart(product) {
       this.$store
         .dispatch("postToCart", {
