@@ -14,6 +14,7 @@
             v-for="category in priceCategories"
             :key="category"
             :value="category"
+            :selected="price === category"
           >
             {{ category }}
           </option>
@@ -32,6 +33,7 @@
             v-for="category in sexCategories"
             :key="category"
             :value="category"
+            :selected="sex === category"
           >
             {{ category }}
           </option>
