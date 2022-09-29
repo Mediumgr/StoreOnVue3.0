@@ -27,15 +27,7 @@
           </div>
         </transition>
         <div class="gorizontal__bar">
-          <div
-            ref="bar"
-            class="bar"
-            v-for="(n, index) in persons.length"
-            :key="n"
-            :class="{
-              active: activeClass === index,
-            }"
-          ></div>
+          <div ref="bar" class="bar" v-for="n in persons.length" :key="n"></div>
         </div>
       </div>
       <div>
@@ -225,7 +217,7 @@ export default {
             this.activeClass = 2;
           }, 5000);
 
-          for (let i = 0; i <= 100; i++) {
+          for (let i = 0; i < 101; i++) {
             setTimeout(() => {
               this.percent = i;
               this.$refs.bar[0].style.background = this.active;
@@ -242,7 +234,7 @@ export default {
             this.activeClass = 0;
           }, 5000);
 
-          for (let i = 0; i <= 100; i++) {
+          for (let i = 0; i < 101; i++) {
             setTimeout(() => {
               this.percent = i;
               this.$refs.bar[1].style.background = this.active;
@@ -262,7 +254,7 @@ export default {
             this.activeClass = 1;
           }, 5001);
 
-          for (let i = 0; i <= 100; i++) {
+          for (let i = 0; i < 101; i++) {
             setTimeout(() => {
               this.percent = i;
               this.$refs.bar[2].style.background = this.active;

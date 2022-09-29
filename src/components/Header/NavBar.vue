@@ -15,7 +15,7 @@
       </router-link>
       <form @submit.prevent="filter" class="header__form">
         <details>
-          <summary ref="summary" class="listed" @click="currentSummary">
+          <summary :class="activeClass" @click="currentSummary">
             <span>Browse</span>
           </summary>
           <div class="drop__browse" v-if="showList">
@@ -81,15 +81,15 @@ import CartOrder from "@/components/Header/CartOrder.vue";
 import MyAccount from "@/components/Header/MyAccount.vue";
 import LineBar from "@/components/Header/LineBar.vue";
 import Velocity from "velocity-animate";
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "NavBar",
   components: { CartOrder, MyAccount, LineBar },
   data() {
     return {
-      current: 1,
       showList: true,
+      activeClass: "listed",
       clothes: [
         "Dresses",
         "Tops",
@@ -115,11 +115,10 @@ export default {
   },
   methods: {
     currentSummary() {
-      this.current === 1 ? (this.current = 2) : (this.current = 1);
-      this.showList = false;
-      this.$nextTick(() => {
-        this.showList = true;
-      });
+      this.activeClass === "listed"
+        ? (this.activeClass = "unListed")
+        : (this.activeClass = "listed");
+      this.showList === true ? (this.showList = true) : (this.showList = false);
     },
     filter() {
       this.$store
@@ -140,25 +139,14 @@ export default {
     },
   },
   computed: {
-    ...mapState(["userSearch"]),
     ...mapGetters(["filteredLength"]),
   },
   watch: {
-    current(newValue) {
-      newValue === 2
-        ? (this.$refs.summary.classList.value = "unListed")
-        : (this.$refs.summary.classList.value = "listed");
-    },
     show(newValue) {
       if (newValue === true) {
         setTimeout(() => {
           this.show = false;
         }, 5000);
-      }
-    },
-    userSearch() {
-      if (this.$store.state.userSearch === "") {
-        this.userProductSearch = "";
       }
     },
   },
