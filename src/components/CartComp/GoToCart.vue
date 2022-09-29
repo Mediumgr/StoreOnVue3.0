@@ -38,7 +38,7 @@
   </div>
   <div class="fill__your__information center">
     <form
-      @submit.prevent="shippingAddress"
+      @submit.stop.prevent="shippingAddress"
       class="shipping"
       v-if="!shipMessage"
     >

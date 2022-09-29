@@ -15,7 +15,7 @@ export default createStore({
     slidersProducts: [],
     user: null,
     userSearch: "",
-    cartStatus: "",
+    cartStatus: false,
   },
   mutations: {
     SET_PRODUCTS(state, products) {

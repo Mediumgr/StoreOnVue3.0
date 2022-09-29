@@ -264,26 +264,26 @@ export default {
     filterPrice(emittedValue) {
       if (emittedValue === "on increase") {
         if (this.filteredCategory.length && this.userInput === "") {
-          this.filteredCategory.sort((productA, productB) => {
-            return productA.price > productB.price ? 1 : -1;
-          });
+          this.filteredCategory.sort(
+            (productA, productB) => productA.price - productB.price
+          );
         }
         if (this.filtered.length && this.userInput !== "") {
-          this.filtered.sort((productA, productB) => {
-            return productA.price > productB.price ? 1 : -1;
-          });
+          this.filtered.sort(
+            (productA, productB) => productA.price - productB.price
+          );
         }
       }
       if (emittedValue === "on decrease") {
         if (this.filteredCategory.length && this.userInput === "") {
-          this.filteredCategory.sort((productA, productB) => {
-            return productA.price < productB.price ? 1 : -1;
-          });
+          this.filteredCategory.sort(
+            (productA, productB) => productB.price - productA.price
+          );
         }
         if (this.filtered.length && this.userInput !== "") {
-          this.filtered.sort((productA, productB) => {
-            return productA.price < productB.price ? 1 : -1;
-          });
+          this.filtered.sort(
+            (productA, productB) => productB.price - productA.price
+          );
         }
       }
     },

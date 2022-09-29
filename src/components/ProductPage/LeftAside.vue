@@ -4,7 +4,7 @@
       <summary class="category" @click="currentSummaryOne">
         Category<i
           class="fas fa-caret-down category__arrow"
-          v-if="currentOne === 1"
+          v-if="showList"
         ></i>
         <i class="fas fa-caret-up category__arrow" v-else></i>
       </summary>
@@ -31,10 +31,7 @@
     </details>
     <details>
       <summary class="brand__details" @click="currentSummaryTwo">
-        brand<i
-          class="fas fa-caret-down brand__arrow"
-          v-if="currentTwo === 1"
-        ></i>
+        brand<i class="fas fa-caret-down brand__arrow" v-if="showBrand"></i>
         <i class="fas fa-caret-up brand__arrow" v-else></i>
       </summary>
       <template v-if="showBrand">
@@ -62,7 +59,7 @@
       <summary class="designer__details" @click="currentSummaryThree">
         designer<i
           class="fas fa-caret-down designer__arrow"
-          v-if="currentThree === 1"
+          v-if="showMoschino"
         ></i>
         <i class="fas fa-caret-up designer__arrow" v-else></i>
       </summary>
@@ -114,40 +111,27 @@ export default {
       categoryBrand: ["Leggins", "Dress", "Pants"],
       numbers: ["09", "08", "07", "06", "05"],
       MoschinoArray: ["Moschino", "All Products"],
-      currentOne: 1,
-      currentTwo: 1,
-      currentThree: 1,
       categoryActive: null,
       categoryBrandActive: null,
       categoryMochino: null,
-      showList: true,
-      showBrand: true,
-      showMoschino: true,
+      showList: false,
+      showBrand: false,
+      showMoschino: false,
     };
   },
   methods: {
     currentSummaryOne() {
-      this.currentOne === 1 ? (this.currentOne = 2) : (this.currentOne = 1);
-      this.showList = false;
-      this.$nextTick(() => {
-        this.showList = true;
-      });
+      this.showList === true ? (this.showList = false) : (this.showList = true);
     },
     currentSummaryTwo() {
-      this.currentTwo === 1 ? (this.currentTwo = 2) : (this.currentTwo = 1);
-      this.showBrand = false;
-      this.$nextTick(() => {
-        this.showBrand = true;
-      });
+      this.showBrand === true
+        ? (this.showBrand = false)
+        : (this.showBrand = true);
     },
     currentSummaryThree() {
-      this.currentThree === 1
-        ? (this.currentThree = 2)
-        : (this.currentThree = 1);
-      this.showMoschino = false;
-      this.$nextTick(() => {
-        this.showMoschino = true;
-      });
+      this.showMoschino === true
+        ? (this.showMoschino = false)
+        : (this.showMoschino = true);
     },
     filterCategory(category, index) {
       this.categoryBrandActive = this.categoryMochino = null;
